@@ -1,0 +1,19 @@
+
+/_dist_/
+/_build_/
+/VisionLayout/Assets/TextMesh Pro/
+/VisionLayout/Assets/TextMesh Pro.meta
+/VisionLayout/Assets/Plugins/
+/VisionLayout/Assets/Plugins.meta
+/VisionLayout/Assets/3rd/
+/VisionLayout/Assets/3rd.meta
+/VisionLayout/Library/
+/VisionLayout/obj/
+/VisionLayout/Logs/
+/VisionLayout/Temp/
+/VisionLayout/UserSettings/
+/VisionLayout/*.sln
+/VisionLayout/*.csproj
+/VisionLayout/.vsconfig
+/VisionLayout/.vs/
+/.UNITY_HOME.env

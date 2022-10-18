@@ -1,0 +1,16 @@
+org_name: XTC
+module_name: VisionLayout
+generate:
+  active: false
+  database_driver: mongodb
+  debug: false
+  unity_solution: true
+publish:
+  active: true
+  environment: product
+  repository: grpcs://api.xtech.cloud:29000
+deploy:
+  active: true
+  environment: product
+  repository: grpcs://api.xtech.cloud:29000
+  agent_port: 28003
