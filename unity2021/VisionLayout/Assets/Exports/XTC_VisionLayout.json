@@ -1,17 +1,29 @@
 {
     "sectionS":[
         {
-            "name":"",
-            "path": "/",
+            "name":"榜样人物",
+            "path": "/榜样人物",
             "instanceS": [
                 "default"
             ],
             "contentS": [
-                "XTC.VisionLayout/+"
+                "XTC.VisionLayout.1/+"
             ],
             "kvS": {
-                "key1":"value1",
-                "key2":"value2"
+                "LayerPattern":"Flow"
+            }
+        },
+        {
+            "name":"七一勋章",
+            "path": "/七一勋章",
+            "instanceS": [
+                "default"
+            ],
+            "contentS": [
+                "XTC.VisionLayout.2/+"
+            ],
+            "kvS": {
+                "LayerPattern":"Flow"
             }
         }
     ]

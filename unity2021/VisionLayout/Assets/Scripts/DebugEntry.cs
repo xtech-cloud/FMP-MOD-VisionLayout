@@ -10,7 +10,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
     /// <remarks>
     /// 不参与模块编译，仅用于在编辑器中开发调试
     /// </remarks>
-    public class DebugEntry : MyEntry 
+    public class DebugEntry : MyEntry
     {
         /// <summary>
         /// 调试预加载
@@ -18,9 +18,14 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         public void __DebugPreload(GameObject _exportRoot)
         {
             processRoot(_exportRoot);
-            createInstances(() =>
+            runtime_.Preload((_percentage) =>
             {
-                publishPreloadSubjects();
+            }, () =>
+            {
+                createInstances(() =>
+                {
+                    publishPreloadSubjects();
+                });
             });
         }
 
@@ -53,13 +58,13 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             data["delay"] = _delay;
             modelDummy_.Publish(MySubjectBase.Open, data);
         }
-        
+
         /// <summary>
         /// 调试显示
         /// </summary>
         /// <param name="_uid">实例的uid</param>
         /// <param name="_delay">延迟时间，单位秒</param>
-        public void __DebugShow(string _uid,  float _delay)
+        public void __DebugShow(string _uid, float _delay)
         {
             var data = new Dictionary<string, object>();
             data["uid"] = _uid;
@@ -72,7 +77,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// </summary>
         /// <param name="_uid">实例的uid</param>
         /// <param name="_delay">延迟时间，单位秒</param>
-        public void __DebugHide(string _uid,  float _delay)
+        public void __DebugHide(string _uid, float _delay)
         {
             var data = new Dictionary<string, object>();
             data["uid"] = _uid;

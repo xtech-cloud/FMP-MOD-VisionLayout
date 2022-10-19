@@ -1,0 +1,22 @@
+{
+    "alias": "白求恩",
+    "caption": "1890.3-1939.11",
+    "description": "他在中国工作的一年半时间里为中国抗日革命呕心沥血，毛泽东称其为是一个高尚的人，一个纯粹的人，一个有道德的人，一个脱离了低级趣味的人，一个有益于人民的人。",
+    "format": "v3",
+    "kv": {
+        "app": "",
+        "document": "",
+        "image2D": "",
+        "image3D": "",
+        "live": "",
+        "native": "",
+        "qrCode": "",
+        "video2D": "",
+        "video3D": "",
+        "media":"MediaHub.json"
+    },
+    "label": "全国抗战英烈",
+    "title": "白求恩",
+    "topic": "",
+    "uri": "tech.meex.榜样人物/白求恩"
+}

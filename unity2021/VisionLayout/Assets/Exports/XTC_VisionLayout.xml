@@ -1,45 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MyConfig version="1.0">
-    <!-- UI 
-      visible: 预加载完成后是否显示
-      slot: ui根节点在主Canvas中的挂载路径
+  <!-- UI
+        visible: 预加载完成后是否显示
+        slot: ui根节点在主Canvas中的挂载路径
     -->
-    <UI visible="true" slot="[root]"/>
-    <!-- 远程过程调用
-      address: 地址
+  <UI visible="true" slot="[root]"/>
+  <!-- 远程过程调用
+        address: 地址
     -->
-    <GRPC address="https://localhost:19000"/>
-    <!-- 样式列表
-      name: 名称
+  <GRPC address="https://localhost:19000"/>
+  <!-- 样式列表
+        name: 名称
+        Style.LayerPatterns: 层模式的列表
+        Style.LayerPattern.name: 层模式的名称
+        Style.LayerPattern.interactable: 点击节点是否能打开工作台
+        Style.LayerPattern.LayoutActions: 布局的行为列表
+        Style.LayerPattern.InActions: 布局进入时的变换的行为列表
+        Style.LayerPattern.OutActions: 布局退出时的变换的行为列表
+        Style.LayerPattern.Action.name: 行为的名称
+        Style.LayerPattern.Action.disable: 行为是否禁用
+        Style.LayerPattern.Action.Properties: 行为的属性列表
     -->
-    <Styles>
-        <Style name="default">
-        </Style>
-    </Styles>
-    <!-- 预创建的实例列表
-      uid: 实例的唯一ID
-      style: 使用的样式名
+  <Styles>
+    <Style name="default">
+      <LayerPatterns>
+        <LayerPattern name="Flow" interactable="true">
+          <LayoutActions>
+            <Action name="HorizontalFlowLayout" disable="false">
+              <Properties>
+                <Property key="duration" value="30" type="float"/>
+                <Property key="speed" value="100" type="float"/>
+                <Property key="row" value="8" type="int"/>
+                <Property key="space" value="10" type="int"/>
+                <Property key="surround" value="true" type="bool"/>
+              </Properties>
+            </Action>
+            <Action name="VerticalFlowLayout" disable="false">
+              <Properties>
+                <Property key="duration" value="30" type="float"/>
+                <Property key="speed" value="100" type="float"/>
+                <Property key="column" value="14" type="int"/>
+                <Property key="space" value="10" type="int"/>
+                <Property key="surround" value="true" type="bool"/>
+              </Properties>
+            </Action>
+          </LayoutActions>
+          <InActions>
+            <Action name="EdgeFlyInTransition" disable="false">
+              <Properties>
+                <Property key="duration" value="4.5" type="float"/>
+                <!-- duration中前部分预留多长的空白时间 -->
+                <Property key="blank" value="1.5" type="float"/>
+              </Properties>
+            </Action>
+          </InActions>
+          <OutActions>
+            <Action name="EdgeFlyOutTransition" disable="false">
+              <Properties>
+                <Property key="duration" value="3" type="float"/>
+              </Properties>
+            </Action>
+          </OutActions>
+        </LayerPattern>
+        <LayerPattern name="Film" interactable="true">
+          <LayoutActions>
+            <!-- 胶卷布局 -->
+            <Action name="FilmLayout" disable="false">
+              <Properties>
+                <!-- 整个布局的持续时间 -->
+                <Property key="duration" value="3000" type="float"/>
+                <!-- 间隔 -->
+                <Property key="space" value="20" type="int"/>
+                <!-- 轨道的数目 -->
+                <Property key="trackCount" value="7" type="int"/>
+                <!-- 各个轨道的数据，轨道的顺序为从屏幕后方往前 -->
+                <!-- 轨道的x坐标位置, 屏幕左方为-1.0,屏幕右方为1.0，可在屏幕外 -->
+                <Property key="track_0_x" value="-0.25" type="float"/>
+                <Property key="track_1_x" value="0.35" type="float"/>
+                <Property key="track_2_x" value="-0.35" type="float"/>
+                <Property key="track_3_x" value="0.75" type="float"/>
+                <Property key="track_4_x" value="0.05" type="float"/>
+                <Property key="track_5_x" value="-0.78" type="float"/>
+                <Property key="track_6_x" value="0.88" type="float"/>
+                <!-- 轨道的长度, 推荐值为屏幕高度的6倍-->
+                <Property key="track_0_length" value="6000" type="int"/>
+                <Property key="track_1_length" value="6000" type="int"/>
+                <Property key="track_2_length" value="6000" type="int"/>
+                <Property key="track_3_length" value="6000" type="int"/>
+                <Property key="track_4_length" value="6000" type="int"/>
+                <Property key="track_5_length" value="6000" type="int"/>
+                <Property key="track_6_length" value="6000" type="int"/>
+                <!-- 轨道的缩放 -->
+                <Property key="track_0_scale" value="0.4" type="float"/>
+                <Property key="track_1_scale" value="0.45" type="float"/>
+                <Property key="track_2_scale" value="0.6" type="float"/>
+                <Property key="track_3_scale" value="0.6" type="float"/>
+                <Property key="track_4_scale" value="0.8" type="float"/>
+                <Property key="track_5_scale" value="0.9" type="float"/>
+                <Property key="track_6_scale" value="0.8" type="float"/>
+                <!-- 轨道的透明值 -->
+                <Property key="track_0_alpha" value="0.2" type="float"/>
+                <Property key="track_1_alpha" value="0.4" type="float"/>
+                <Property key="track_2_alpha" value="0.6" type="float"/>
+                <Property key="track_3_alpha" value="1.0" type="float"/>
+                <Property key="track_4_alpha" value="0.9" type="float"/>
+                <Property key="track_5_alpha" value="1.0" type="float"/>
+                <Property key="track_6_alpha" value="1.0" type="float"/>
+                <!-- 移动的方向 -->
+                <Property key="track_0_direction" value="-1" type="float"/>
+                <Property key="track_1_direction" value="1" type="float"/>
+                <Property key="track_2_direction" value="-1" type="float"/>
+                <Property key="track_3_direction" value="1" type="float"/>
+                <Property key="track_4_direction" value="-1" type="float"/>
+                <Property key="track_5_direction" value="1" type="float"/>
+                <Property key="track_6_direction" value="-1" type="float"/>
+                <!-- 移动的速度 -->
+                <Property key="track_0_speed" value="20" type="float"/>
+                <Property key="track_1_speed" value="20" type="float"/>
+                <Property key="track_2_speed" value="20" type="float"/>
+                <Property key="track_3_speed" value="20" type="float"/>
+                <Property key="track_4_speed" value="20" type="float"/>
+                <Property key="track_5_speed" value="20" type="float"/>
+                <Property key="track_6_speed" value="20" type="float"/>
+                <!-- 轨道的z轴旋转角度, 垂直方向左方为正数，右方为负 -->
+                <Property key="track_0_angle_z" value="-13" type="float"/>
+                <Property key="track_1_angle_z" value="14" type="float"/>
+                <Property key="track_2_angle_z" value="45" type="float"/>
+                <Property key="track_3_angle_z" value="-25" type="float"/>
+                <Property key="track_4_angle_z" value="-46" type="float"/>
+                <Property key="track_5_angle_z" value="-10" type="float"/>
+                <Property key="track_6_angle_z" value="19" type="float"/>
+                <!-- 轨道的x轴旋转角度 -->
+                <Property key="track_0_angle_x" value="0" type="float"/>
+                <Property key="track_1_angle_x" value="0" type="float"/>
+                <Property key="track_2_angle_x" value="0" type="float"/>
+                <Property key="track_3_angle_x" value="0" type="float"/>
+                <Property key="track_4_angle_x" value="0" type="float"/>
+                <Property key="track_5_angle_x" value="0" type="float"/>
+                <Property key="track_6_angle_x" value="0" type="float"/>
+                <!-- 轨道的y轴旋转角度 -->
+                <Property key="track_0_angle_y" value="0" type="float"/>
+                <Property key="track_1_angle_y" value="0" type="float"/>
+                <Property key="track_2_angle_y" value="0" type="float"/>
+                <Property key="track_3_angle_y" value="0" type="float"/>
+                <Property key="track_4_angle_y" value="0" type="float"/>
+                <Property key="track_5_angle_y" value="0" type="float"/>
+                <Property key="track_6_angle_y" value="0" type="float"/>
+                <!-- 轨道的遮罩透明值 -->
+                <Property key="track_0_mask" value="0.1" type="float"/>
+                <Property key="track_1_mask" value="0.1" type="float"/>
+                <Property key="track_2_mask" value="0.1" type="float"/>
+                <Property key="track_3_mask" value="0.1" type="float"/>
+                <Property key="track_4_mask" value="0.1" type="float"/>
+                <Property key="track_5_mask" value="0.1" type="float"/>
+                <Property key="track_6_mask" value="0.1" type="float"/>
+              </Properties>
+            </Action>
+          </LayoutActions>
+          <InActions>
+            <Action name="FilmInTransition" disable="false">
+              <Properties>
+                <Property key="duration" value="3" type="float"/>
+                <!-- duration中前部分预留多长的空白时间 -->
+                <Property key="blank" value="0" type="float"/>
+              </Properties>
+            </Action>
+          </InActions>
+          <OutActions>
+            <Action name="FilmOutTransition" disable="false">
+              <Properties>
+                <Property key="duration" value="3" type="float"/>
+                <!-- duration中后部分预留多长的空白时间 -->
+                <Property key="blank" value="0" type="float"/>
+              </Properties>
+            </Action>
+          </OutActions>
+        </LayerPattern>
+      </LayerPatterns>
+    </Style>
+  </Styles>
+  <!-- 预创建的实例列表
+        uid: 实例的唯一ID
+        style: 使用的样式名
     -->
-    <Instances>
-        <Instance uid="default" style="default"/>
-    </Instances>
-    <!-- 预加载 -->
-    <Preload>
-        <!-- 消息订阅的主题
-          message: 消息
-          Parameter.key: 参数的键
-          Parameter.value: 参数的值
-          Parameter.type: 参数的类型，支持的类型为string,int,float,bool
+  <Instances>
+    <Instance uid="default" style="default"/>
+  </Instances>
+  <!-- 预加载 -->
+  <Preload>
+    <!-- 消息订阅的主题
+            message: 消息
+            Parameter.key: 参数的键
+            Parameter.value: 参数的值
+            Parameter.type: 参数的类型，支持的类型为string,int,float,bool
         -->
-        <Subjects>
-            <Subject message="/XTC/VisionLayout/Open">
-                <Parameters>
-                    <Parameter key="uid" value="default" type="string"/>
-                    <Parameter key="source" value="" type="string"/>
-                    <Parameter key="uri" value="" type="string"/>
-                    <Parameter key="delay" value="0" type="float"/>
-                </Parameters>
-            </Subject>
-        </Subjects>
-    </Preload>
+    <Subjects>
+      <Subject message="/XTC/VisionLayout/Open">
+        <Parameters>
+          <Parameter key="uid" value="default" type="string"/>
+          <Parameter key="source" value="" type="string"/>
+          <Parameter key="uri" value="" type="string"/>
+          <Parameter key="delay" value="0" type="float"/>
+        </Parameters>
+      </Subject>
+    </Subjects>
+  </Preload>
 </MyConfig>
