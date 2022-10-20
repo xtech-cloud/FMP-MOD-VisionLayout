@@ -43,6 +43,12 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             }
         }
 
+        public class Profile : UiElement
+        {
+            [XmlAttribute("duration")]
+            public int duration { get; set; } = 5;
+        }
+
 
         public class LayerPattern
         {
@@ -75,6 +81,8 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
             [XmlElement("Title")]
             public UiElement title { get; set; } = new UiElement();
+            [XmlElement("Profile")]
+            public Profile profile { get; set; } = new Profile();
 
             [XmlArray("LayerPatterns"), XmlArrayItem("LayerPattern")]
             public LayerPattern[] layerPatternS { get; set; } = new LayerPattern[0];

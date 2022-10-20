@@ -1916,18 +1916,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[ExportRoot]'
       objectReference: {fileID: 0}
-    - target: {fileID: 2737355232505002265, guid: 9b979adb308c521449ed20a4a2bc15e9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4255748006369319724, guid: 9b979adb308c521449ed20a4a2bc15e9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6622212506311443114, guid: 9b979adb308c521449ed20a4a2bc15e9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7443087566117829749, guid: 9b979adb308c521449ed20a4a2bc15e9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

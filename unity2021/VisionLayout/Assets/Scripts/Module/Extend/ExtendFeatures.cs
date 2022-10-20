@@ -7,5 +7,6 @@
     {
         public ToolBar toolbar { get; private set; } = new ToolBar();
         public ImageTitle imageTitle { get; private set; } = new ImageTitle();
+        public ImageProfile imageProfile { get; private set; } = new ImageProfile();
     }
 }

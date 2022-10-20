@@ -13,6 +13,7 @@
         name: 名称
         Style.Background: 背景, 优先级为 video>image>color，全为空时，背景不显示
         Style.ToolBar.clickTrigger: 工具栏触发的点击次数
+        Style.Profile.duration: 图片简介持续显示的时间，超时后隐藏
         Style.LayerPatterns: 层模式的列表
         Style.LayerPattern.name: 层模式的名称
         Style.LayerPattern.interactable: 点击节点是否能打开工作台
@@ -30,6 +31,9 @@
       <Title>
         <Anchor horizontal="left" vertical="top" marginH="64" marginV="0" height="100"/>
       </Title>
+      <Profile duration="5">
+        <Anchor horizontal="left" vertical="center" marginH="64" marginV="0" width="506" height="788"/>
+      </Profile>
       <LayerPatterns>
         <LayerPattern name="Flow" interactable="true">
           <LayoutActions>

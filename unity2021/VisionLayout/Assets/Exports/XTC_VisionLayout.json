@@ -11,7 +11,8 @@
       ],
       "kvS": {
         "LayerPattern": "Flow",
-        "TitleImage": "title.1.png"
+        "TitleImage": "title.1.png",
+        "ProfileImage": "profile.1.png"
       }
     },
     {
@@ -25,7 +26,8 @@
       ],
       "kvS": {
         "LayerPattern": "Flow",
-        "TitleImage": "title.2.png"
+        "TitleImage": "title.2.png",
+        "ProfileImage": "profile.2.png"
       }
     }
   ]

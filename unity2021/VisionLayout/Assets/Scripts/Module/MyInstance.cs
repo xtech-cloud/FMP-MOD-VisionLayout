@@ -15,6 +15,12 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         private ContentReader contentReader_;
         private FastFSM fastFSM_;
 
+        public MonoBehaviour getMono()
+        {
+            return mono_;
+        }
+
+
         public LibMVCS.Logger getLogger()
         {
             return logger_;
@@ -63,8 +69,12 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             goToolBar.SetActive(false);
             // 加载工具栏logo
 
+
             var imageTitle = rootUI.transform.Find("LayerContainer/LayerTemplate/imgTitle");
             alignByAncor(imageTitle, style_.title.anchor);
+
+            var imageProfile = rootUI.transform.Find("LayerContainer/LayerTemplate/imgProfile");
+            alignByAncor(imageProfile, style_.profile.anchor);
         }
 
         /// <summary>

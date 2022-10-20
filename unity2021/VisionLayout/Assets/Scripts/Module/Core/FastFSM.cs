@@ -319,6 +319,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
             extendFeatures_.toolbar.HandleLayerCreated(_layer, _alias);
             extendFeatures_.imageTitle.HandleLayerCreated(cloneLayer, _catalogSection);
+            extendFeatures_.imageProfile.HandleLayerCreated(cloneLayer, _catalogSection);
         }
 
         private void initializeExtendFeatures()
@@ -332,6 +333,8 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             };
 
             extendFeatures_.imageTitle.myInstance = myInstance;
+            extendFeatures_.imageProfile.myInstance = myInstance;
+            extendFeatures_.imageProfile.mono = myInstance.getMono();
         }
     }
 }

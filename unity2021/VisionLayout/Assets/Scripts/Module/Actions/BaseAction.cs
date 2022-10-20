@@ -395,6 +395,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             extendFeatures.toolbar.SwitchLayer(layer);
             extendFeatures.toolbar.SwitchInteractable(true);
             extendFeatures.imageTitle.Display(layer);
+            extendFeatures.imageProfile.Display(layer);
         }
 
         /// <summary>
@@ -416,6 +417,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             base.baseExit(_actionName);
             extendFeatures.toolbar.SwitchInteractable(false);
             extendFeatures.imageTitle.Disappear(layer);
+            extendFeatures.imageProfile.Disappear(layer);
         }
 
         /// <summary>
