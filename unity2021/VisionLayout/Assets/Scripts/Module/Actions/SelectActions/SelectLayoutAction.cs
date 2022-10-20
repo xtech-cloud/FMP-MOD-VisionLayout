@@ -52,12 +52,12 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// </summary>
         protected override void onEnter()
         {
-            logger.Trace(NAME + ".onEnter");
+            myInstance.getLogger().Trace(NAME + ".onEnter");
 
             var len = layers.Count;
             if (len < 2)
             {
-                logger.Error("only has {0} layers, the count must large than 2", layers.Count);
+                myInstance.getLogger().Error("only has {0} layers, the count must large than 2", layers.Count);
                 return;
             }
 
@@ -73,8 +73,8 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             setParameter(ParameterDefine.Layer_Disappear, Parameter.FromString(layerDisappear_));
             setParameter(ParameterDefine.LayoutAction_Disappear, Parameter.FromString(layoutActionDisappear_));
 
-            logger.Debug("select disappear layer:{0} layoutAction:{1}", layerDisappear_, layoutActionDisappear_);
-            logger.Debug("select display layer:{0} layoutAction:{1}", layerDisplay_, layoutActionDisplay_);
+            myInstance.getLogger().Debug("select disappear layer:{0} layoutAction:{1}", layerDisappear_, layoutActionDisappear_);
+            myInstance.getLogger().Debug("select display layer:{0} layoutAction:{1}", layerDisplay_, layoutActionDisplay_);
 
             finish();
         }
@@ -91,7 +91,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// </summary>
         protected override void onExit()
         {
-            logger.Trace(NAME + ".onExit");
+            myInstance.getLogger().Trace(NAME + ".onExit");
         }
 
         /// <summary>

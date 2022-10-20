@@ -122,7 +122,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 {
                     contentUri = _contentList[cells.Count % _contentList.Count];
                     object cover;
-                    if (preloadsRepetition.TryGetValue(contentUri + "/cover.png", out cover))
+                    if (myInstance.preloadsRepetition.TryGetValue(contentUri + "/cover.png", out cover))
                     {
                         coverTexture = cover as UnityEngine.Texture2D;
                         if (null != coverTexture)

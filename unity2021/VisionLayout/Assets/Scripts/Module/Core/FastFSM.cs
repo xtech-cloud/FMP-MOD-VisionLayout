@@ -12,20 +12,9 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
     /// </summary>
     public class FastFSM
     {
-        /// <summary>
-        /// UI的根对象
-        /// </summary>
-        public Transform rootUI { get; set; }
+        public MyInstance myInstance { get; set; }
 
         public UnityEngine.Vector2 virtualResolution { get; set; }
-
-        public LibMVCS.Logger logger { get; set; }
-
-        public MyConfig.Style style { get; set; }
-
-        public MyCatalog catalog { get; set; }
-
-        public Dictionary<string, object> preloadsRepetition { get; set; }
 
         private Machine machine_ { get; set; }
         private State stateLayout_ { get; set; }
@@ -40,7 +29,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// </summary>
         public void Initialize()
         {
-            runtimeClone_.rootUI = rootUI;
+            runtimeClone_.rootUI =  myInstance.rootUI.transform;
             // 初始化扩展功能
             initializeExtendFeatures();
 
@@ -55,7 +44,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             //   /|\                     |
             //    |______________________|
             // 设置状态机参数
-            logger.Trace("set parameters");
+            myInstance.getLogger().Trace("set parameters");
             machine_.SetParameter(ParameterDefine.Layer_Display, Parameter.FromString(""));
             machine_.SetParameter(ParameterDefine.Layer_Disappear, Parameter.FromString(""));
             machine_.SetParameter(ParameterDefine.LayoutAction_Display, Parameter.FromString(""));
@@ -64,7 +53,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             machine_.SetParameter(ParameterDefine.TransitionAction_Out, Parameter.FromString(""));
             machine_.SetParameter(ParameterDefine.Virtual_Resolution_Width, Parameter.FromInt((int)virtualResolution.x));
             machine_.SetParameter(ParameterDefine.Virtual_Resolution_Height, Parameter.FromInt((int)virtualResolution.y));
-            logger.Trace("create switch state");
+            myInstance.getLogger().Trace("create switch state");
             // 创建阶段转换状态
             var stateSwitch = machine_.NewState("switch");
             // transition必须在layout之后创建
@@ -73,11 +62,11 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             // 创建对应的外部命令
             var cmd = machine_.NewCommand("GotoSwitch");
             cmd.state = stateSwitch;
-            logger.Trace("create transition state");
+            myInstance.getLogger().Trace("create transition state");
             // 创建切换状态
             stateTransition_ = machine_.NewState("transition");
             // 创建显示状态
-            logger.Trace("create layout state");
+            myInstance.getLogger().Trace("create layout state");
             stateLayout_ = machine_.NewState("layout");
             // 转换状态完成后进入到切换状态
             stateSwitch.onFinish.state = stateTransition_;
@@ -124,15 +113,15 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
             };
 
-            logger.Trace("create layers");
+            myInstance.getLogger().Trace("create layers");
             List<string> preloadContentUriS = new List<string>();
             object objContentUriS;
-            if (preloadsRepetition.TryGetValue("ContentUriS", out objContentUriS))
+            if (myInstance.preloadsRepetition.TryGetValue("ContentUriS", out objContentUriS))
             {
                 preloadContentUriS = objContentUriS as List<string>;
             }
             // 遍历纲目，创建对应的层
-            foreach (var section in catalog.sectionS)
+            foreach (var section in myInstance.getCatalog().sectionS)
             {
                 List<string> contentList = new List<string>();
                 foreach (var contentPattern in section.contentS)
@@ -148,28 +137,28 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 string strLayerPattens = "";
                 if (!section.kvS.TryGetValue("LayerPattern", out strLayerPattens))
                 {
-                    logger.Error("LayerPattern not found in catalog.kvS");
+                    myInstance.getLogger().Error("LayerPattern not found in catalog.kvS");
                     continue;
                 }
                 MyConfig.LayerPattern layerPattern = null;
-                foreach (var s in style.layerPatternS)
+                foreach (var s in myInstance.getStyle().layerPatternS)
                 {
                     if (strLayerPattens.Equals(s.name))
                         layerPattern = s;
                 }
                 if (null == layerPattern)
                 {
-                    logger.Error("want to create the layer:{0} but none LayerPattern matched {1}", section.name, strLayerPattens);
+                    myInstance.getLogger().Error("want to create the layer:{0} but none LayerPattern matched {1}", section.name, strLayerPattens);
                     continue;
                 }
                 // 以path作为层的名字，例如"A/1"，每个层中有多个布局行为，每个布局行为下都有自己的节点列表
-                createLayer(section.path, layerPattern, section.name);
+                createLayer(section.path, layerPattern, section.name, section);
                 decorateLayer(section.path, layerPattern, contentList);
             }
 
-            logger.Info(machine_.ToTreeString());
+            myInstance.getLogger().Info(machine_.ToTreeString());
 
-            logger.Trace("initialize FSM finish");
+            myInstance.getLogger().Trace("initialize FSM finish");
             //运行状态机，执行初始的空状态
             machine_.Run();
             //执行运行命令，进入流程循环
@@ -305,8 +294,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     return null;
             }
 
-            action.logger = logger;
-            action.preloadsRepetition = preloadsRepetition;
+            action.myInstance = myInstance;
             action.runtimeClone = runtimeClone_;
             action.extendFeatures = extendFeatures_;
             return action;
@@ -318,31 +306,32 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// <param name="_layer">层的名称</param>
         /// <param name="_layerPattern">层的模式</param>
         /// <param name="_alias">层的别名</param>
-        private void createLayer(string _layer, MyConfig.LayerPattern _layerPattern, string _alias)
+        private void createLayer(string _layer, MyConfig.LayerPattern _layerPattern, string _alias, MyCatalogBase.Section _catalogSection)
         {
             var layerTemplate = runtimeClone_.rootUI.Find("LayerContainer/LayerTemplate");
             // 实例化层
-            var cloneLayer = GameObject.Instantiate(layerTemplate, layerTemplate.transform.parent);
+            var cloneLayer = GameObject.Instantiate(layerTemplate.gameObject, layerTemplate.transform.parent);
             cloneLayer.name = _layer;
             runtimeClone_.layerMap[_layer] = cloneLayer.transform;
             var goCellTemplate = cloneLayer.transform.Find("CellContainer/CellTemplate").gameObject;
             goCellTemplate.SetActive(false);
             runtimeClone_.cellTemplateMap[_layer] = goCellTemplate;
 
-            // 添加工具栏入口
-            extendFeatures_.toolbar.AddLayerEntry(_layer, _alias);
+            extendFeatures_.toolbar.HandleLayerCreated(_layer, _alias);
+            extendFeatures_.imageTitle.HandleLayerCreated(cloneLayer, _catalogSection);
         }
 
         private void initializeExtendFeatures()
         {
-            extendFeatures_.toolbar.BindRootGameObject(rootUI.Find("ToolBar").gameObject);
-            extendFeatures_.toolbar.clickTrigger = style.toolBar.clickTrigger;
+            extendFeatures_.toolbar.BindRootGameObject(myInstance.rootUI.transform.Find("ToolBar").gameObject);
+            extendFeatures_.toolbar.clickTrigger = myInstance.getStyle().toolBar.clickTrigger;
             extendFeatures_.toolbar.OnSwitch = () =>
             {
                 //强制切换到Switch状态
                 machine_.InvokeCommand("GotoSwitch");
             };
 
+            extendFeatures_.imageTitle.myInstance = myInstance;
         }
     }
 }

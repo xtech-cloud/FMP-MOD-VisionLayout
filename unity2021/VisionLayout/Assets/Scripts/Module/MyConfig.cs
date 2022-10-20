@@ -73,6 +73,9 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             [XmlElement("ToolBar")]
             public ToolBar toolBar { get; set; } = new ToolBar();
 
+            [XmlElement("Title")]
+            public UiElement title { get; set; } = new UiElement();
+
             [XmlArray("LayerPatterns"), XmlArrayItem("LayerPattern")]
             public LayerPattern[] layerPatternS { get; set; } = new LayerPattern[0];
         }

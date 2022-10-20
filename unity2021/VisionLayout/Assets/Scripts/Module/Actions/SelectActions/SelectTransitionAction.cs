@@ -41,7 +41,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// </remarks>
         protected override void onEnter()
         {
-            logger.Trace(NAME+".onEnter");
+            myInstance.getLogger().Trace(NAME+".onEnter");
 
             var layerDisplay = getParameter(ParameterDefine.Layer_Display).AsString;
             var layerDisappear = getParameter(ParameterDefine.Layer_Disappear).AsString;
@@ -50,14 +50,14 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             var inAry = inActions[layerDisplay];
             var inIdx = new System.Random().Next(0, inAry.Count);
             var inAction = inAry[inIdx];
-            logger.Debug("select transition in-action: {0}", inAction);
+            myInstance.getLogger().Debug("select transition in-action: {0}", inAction);
             setParameter(ParameterDefine.TransitionAction_In, Parameter.FromString(inAction));
 
             // 从退出变换的行为列表中随机选择下一个退出的行为
             var outAry = outActions[layerDisappear];
             var outIdx = new System.Random().Next(0, outAry.Count);
             var outAction = outAry[outIdx];
-            logger.Debug("select transition out-action: {0}", outAction);
+            myInstance.getLogger().Debug("select transition out-action: {0}", outAction);
             setParameter(ParameterDefine.TransitionAction_Out, Parameter.FromString(outAction));
             // 完成行为
             finish();
@@ -68,7 +68,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// </summary>
         protected override void onExit()
         {
-            logger.Trace(NAME+".onExit");
+            myInstance.getLogger().Trace(NAME+".onExit");
         }
 
         /// <summary>

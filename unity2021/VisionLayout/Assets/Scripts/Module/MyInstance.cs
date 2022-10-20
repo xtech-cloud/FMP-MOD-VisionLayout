@@ -15,6 +15,22 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         private ContentReader contentReader_;
         private FastFSM fastFSM_;
 
+        public LibMVCS.Logger getLogger()
+        {
+            return logger_;
+        }
+
+        public MyConfig.Style getStyle()
+        {
+            return style_;
+        }
+
+        public MyCatalog getCatalog()
+        {
+            return catalog_;
+        }
+
+
         public MyInstance(string _uid, string _style, MyConfig _config, MyCatalog _catalog, LibMVCS.Logger _logger, Dictionary<string, LibMVCS.Any> _settings, MyEntryBase _entry, MonoBehaviour _mono, GameObject _rootAttachments)
             : base(_uid, _style, _config, _catalog, _logger, _settings, _entry, _mono, _rootAttachments)
         {
@@ -43,9 +59,12 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             goLayerTemplate.SetActive(false);
 
             // 隐藏工具栏
-            var goToolBar= rootUI.transform.Find("ToolBar").gameObject;
+            var goToolBar = rootUI.transform.Find("ToolBar").gameObject;
             goToolBar.SetActive(false);
             // 加载工具栏logo
+
+            var imageTitle = rootUI.transform.Find("LayerContainer/LayerTemplate/imgTitle");
+            alignByAncor(imageTitle, style_.title.anchor);
         }
 
         /// <summary>
@@ -67,12 +86,8 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             contentReader_.AssetRootPath = settings_["path.assets"].AsString();
 
             fastFSM_ = new FastFSM();
-            fastFSM_.logger = logger_;
-            fastFSM_.style = style_;
-            fastFSM_.catalog = catalog_;
-            fastFSM_.rootUI = rootUI.transform;
+            fastFSM_.myInstance = this;
             fastFSM_.virtualResolution = rootUI.GetComponent<RectTransform>().rect.size;
-            fastFSM_.preloadsRepetition = preloadsRepetition;
             fastFSM_.Initialize();
             rootUI.gameObject.SetActive(true);
             mono_.StartCoroutine(fastFSM_.updateFSM());
@@ -86,6 +101,12 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             rootUI.gameObject.SetActive(false);
             fastFSM_.Release();
             fastFSM_ = null;
+        }
+
+        /// <see cref="MyInstanceBase.loadTextureFromTheme(string, System.Action{Texture2D}, System.Action)"/>
+        public void LoadTextureFromTheme(string _file, System.Action<Texture2D> _onFinish, System.Action _onError)
+        {
+            loadTextureFromTheme(_file, _onFinish, _onError);
         }
     }
 }

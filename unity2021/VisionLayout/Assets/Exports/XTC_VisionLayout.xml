@@ -27,6 +27,9 @@
     <Style name="default">
       <Background color="#242424FF" image="" video=""/>
       <ToolBar clickTrigger="20"/>
+      <Title>
+        <Anchor horizontal="left" vertical="top" marginH="64" marginV="0" height="100"/>
+      </Title>
       <LayerPatterns>
         <LayerPattern name="Flow" interactable="true">
           <LayoutActions>

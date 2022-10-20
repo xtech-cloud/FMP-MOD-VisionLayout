@@ -9,14 +9,8 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
     /// </summary>
     public abstract class BaseAction : Action
     {
-        /// <summary>
-        /// 日志
-        /// </summary>
-        public Logger logger { get; set; }
-
-        /// <see cref="MyInstanceBase.preloadsRepetition"/>
-        public Dictionary<string, object> preloadsRepetition { get; set; }
-
+        public MyInstance myInstance { get; set; }
+      
         public RuntimeClone runtimeClone { get; set; }
 
         public ExtendFeatures extendFeatures { get; set; }
@@ -139,7 +133,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// <param name="_actionCategory">行为的类别</param>
         protected virtual void baseEnter(string _actionName)
         {
-            logger.Trace(_actionName + ".onEnter");
+            myInstance.getLogger().Trace(_actionName + ".onEnter");
             canvasWidth_ = getParameter(ParameterDefine.Virtual_Resolution_Width).AsInt;
             canvasHeight_ = getParameter(ParameterDefine.Virtual_Resolution_Height).AsInt;
             resetTimer();
@@ -164,7 +158,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// <param name="_actionName">行为的名称</param>
         protected virtual void baseExit(string _actionName)
         {
-            logger.Trace(_actionName + ".onExit");
+            myInstance.getLogger().Trace(_actionName + ".onExit");
         }
 
         /// <summary>
@@ -204,7 +198,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             layoutCells_ = getParameter(string.Format("layer.{0}.{1}.cells", layer, layoutAction)).Get<List<Cell>>();
             if (null == layoutCells_)
             {
-                logger.Error("layoutCells_ is null");
+                myInstance.getLogger().Error("layoutCells_ is null");
                 finish();
                 return false;
             }
@@ -400,6 +394,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             base.baseEnter(_actionName);
             extendFeatures.toolbar.SwitchLayer(layer);
             extendFeatures.toolbar.SwitchInteractable(true);
+            extendFeatures.imageTitle.Display(layer);
         }
 
         /// <summary>
@@ -420,6 +415,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         {
             base.baseExit(_actionName);
             extendFeatures.toolbar.SwitchInteractable(false);
+            extendFeatures.imageTitle.Disappear(layer);
         }
 
         /// <summary>
@@ -564,7 +560,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             UnityEngine.Transform layerTransform = null;
             if (!runtimeClone.layerMap.TryGetValue(layer, out layerTransform))
             {
-                logger.Error("layer:{0} not found in RuntimeClone.layerMap", layer);
+                myInstance.getLogger().Error("layer:{0} not found in RuntimeClone.layerMap", layer);
                 return;
             }
             layerTransform.gameObject.SetActive(true);
@@ -585,7 +581,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             UnityEngine.Transform layerTransform = null;
             if (!runtimeClone.layerMap.TryGetValue(layer, out layerTransform))
             {
-                logger.Error("layer:{0} not found in RuntimeClone.layerMap", layer);
+                myInstance.getLogger().Error("layer:{0} not found in RuntimeClone.layerMap", layer);
                 return;
             }
             layerTransform.gameObject.SetActive(false);

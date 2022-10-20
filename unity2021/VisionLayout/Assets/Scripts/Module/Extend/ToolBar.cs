@@ -57,11 +57,11 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         }
 
         /// <summary>
-        /// 添加层的切换入口
+        /// 处理层创建后
         /// </summary>
         /// <param name="_layer">层的名称</param>
         /// <param name="_alias">显示的别名</param>
-        public void AddLayerEntry(string _layer, string _alias)
+        public void HandleLayerCreated(string _layer, string _alias)
         {
             var clone = GameObject.Instantiate(entryTemplate_.gameObject, entryTemplate_.transform.parent);
             clone.name = _layer;
