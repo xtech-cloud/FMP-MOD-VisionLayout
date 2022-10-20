@@ -42,11 +42,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         public const string LayoutAction_Disappear = "action.Disappear";
 
         /// <summary>
-        /// 控制台的层
-        /// </summary>
-        public const string Console_Layer = "console.layer";
-
-        /// <summary>
         /// 虚拟分辨率宽度
         /// </summary>
         public const string Virtual_Resolution_Width = "virtual_resolution_width";

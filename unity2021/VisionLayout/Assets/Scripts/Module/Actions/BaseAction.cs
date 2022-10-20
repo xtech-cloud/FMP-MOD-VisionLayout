@@ -137,7 +137,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// <param name="_actionName">行为名</param>
         /// <param name="_layerCategory">层的类别</param>
         /// <param name="_actionCategory">行为的类别</param>
-        protected void baseEnter(string _actionName)
+        protected virtual void baseEnter(string _actionName)
         {
             logger.Trace(_actionName + ".onEnter");
             canvasWidth_ = getParameter(ParameterDefine.Virtual_Resolution_Width).AsInt;
@@ -146,10 +146,23 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         }
 
         /// <summary>
+        /// 每帧更新的基础方法
+        /// </summary>
+        protected virtual void baseUpdate()
+        {
+            updateTimer();
+            if (timer_ > duration)
+            {
+                finish();
+            }
+        }
+
+
+        /// <summary>
         /// 行为退出的基础方法
         /// </summary>
         /// <param name="_actionName">行为的名称</param>
-        protected void baseExit(string _actionName)
+        protected virtual void baseExit(string _actionName)
         {
             logger.Trace(_actionName + ".onExit");
         }
@@ -382,10 +395,17 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             layout(_contentList);
         }
 
+        protected override void baseEnter(string _actionName)
+        {
+            base.baseEnter(_actionName);
+            extendFeatures.toolbar.SwitchLayer(layer);
+            extendFeatures.toolbar.SwitchInteractable(true);
+        }
+
         /// <summary>
         /// 每帧更新的基础方法
         /// </summary>
-        protected void baseUpdate()
+        protected override void baseUpdate()
         {
             updateTimer();
             if (timer_ > duration)
@@ -394,6 +414,12 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 if (!extendFeatures.toolbar.IsActive)
                     finish();
             }
+        }
+
+        protected override void baseExit(string _actionName)
+        {
+            base.baseExit(_actionName);
+            extendFeatures.toolbar.SwitchInteractable(false);
         }
 
         /// <summary>
@@ -498,17 +524,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// </summary>
         protected List<Cell> animCells { get; set; }
 
-        /// <summary>
-        /// 每帧更新的基础方法
-        /// </summary>
-        protected void baseUpdate()
-        {
-            updateTimer();
-            if (timer_ > duration)
-            {
-                finish();
-            }
-        }
 
         protected void updateTitleIn()
         {

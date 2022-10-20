@@ -127,8 +127,8 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             layerDisappear_ = layers[0];
             layoutActionDisappear_ = getParameter(ParameterDefine.LayoutAction_Display).AsString;
 
-            // 需要显示的层为控制台选择的层
-            layerDisplay_ = getParameter(ParameterDefine.Console_Layer).AsString;
+            // 需要显示的层为工具栏选择的层
+            layerDisplay_ = extendFeatures.toolbar.activeLayer;
             // 需要显示的层的行为列表
             var aryDisplay = actions[layerDisplay_];
             // 随机选择显示布局的行为

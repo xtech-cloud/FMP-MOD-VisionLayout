@@ -337,15 +337,10 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         {
             extendFeatures_.toolbar.BindRootGameObject(rootUI.Find("ToolBar").gameObject);
             extendFeatures_.toolbar.clickTrigger = style.toolBar.clickTrigger;
-            extendFeatures_.toolbar.OnOpen = () =>
+            extendFeatures_.toolbar.OnSwitch = () =>
             {
-            };
-            extendFeatures_.toolbar.OnClose = () =>
-            {
-            };
-            extendFeatures_.toolbar.OnSwitch = (_layer) =>
-            {
-
+                //强制切换到Switch状态
+                machine_.InvokeCommand("GotoSwitch");
             };
 
         }
