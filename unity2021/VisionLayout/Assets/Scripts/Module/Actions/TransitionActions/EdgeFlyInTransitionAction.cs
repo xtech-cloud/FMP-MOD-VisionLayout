@@ -9,16 +9,16 @@
 
         protected override void onEnter()
         {
-            checkActive(NAME, LayerCategory.Disappear, ActionCategory.In);
+            checkActive(NAME, LayerCategory.Display, ActionCategory.In);
             if (!active_)
                 return;
 
             baseEnter(NAME);
+            showLayer();
 
             if (!filterLayoutCells(LayerCategory.Display))
                 return;
 
-            showLayer();
 
             // 计算动画开始的位置
             // 并移动所有目标节点到动画开始位置
@@ -68,10 +68,10 @@
 
         protected override void onExit()
         {
-            baseExit(NAME);
             if (!active_)
                 return;
 
+            baseExit(NAME);
             if (null == animCells)
                 return;
 

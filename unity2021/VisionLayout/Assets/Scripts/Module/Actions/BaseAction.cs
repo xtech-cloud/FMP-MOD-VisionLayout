@@ -137,8 +137,8 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         protected void baseEnter(string _actionName)
         {
             logger.Trace(_actionName + ".onEnter");
-            canvasHeight_ = getParameter(ParameterDefine.Virtual_Resolution_Width).AsInt;
-            canvasWidth_ = getParameter(ParameterDefine.Virtual_Resolution_Height).AsInt;
+            canvasWidth_ = getParameter(ParameterDefine.Virtual_Resolution_Width).AsInt;
+            canvasHeight_ = getParameter(ParameterDefine.Virtual_Resolution_Height).AsInt;
             resetTimer();
         }
 
@@ -180,7 +180,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         {
             // 从全局参数中获取选中的布局行为的名称
             string layoutAction = getParameter(string.Format("action.{0}", _layerCatagory.ToString())).AsString;
-            if(string.IsNullOrEmpty(layoutAction))
+            if (string.IsNullOrEmpty(layoutAction))
             {
                 return false;
             }
@@ -289,13 +289,10 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// <returns>过滤出的节点列表</returns>
         protected List<Cell> filterInCanvasRectCells()
         {
-            int canvasWidth = getParameter(ParameterDefine.Virtual_Resolution_Width).AsInt;
-            int canvasHeight = getParameter(ParameterDefine.Virtual_Resolution_Height).AsInt;
-
             List<Cell> cells = new List<Cell>();
             foreach (var cell in layoutCells_)
             {
-                if (isCellInCanvasRect(cell, canvasWidth, canvasHeight))
+                if (isCellInCanvasRect(cell, canvasWidth_, canvasHeight_))
                     cells.Add(cell);
             }
             return cells;
@@ -551,6 +548,13 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
         protected void showLayer()
         {
+            UnityEngine.Transform layerTransform = null;
+            if (!runtimeClone.layerMap.TryGetValue(layer, out layerTransform))
+            {
+                logger.Error("layer:{0} not found in RuntimeClone.layerMap", layer);
+                return;
+            }
+            layerTransform.gameObject.SetActive(true);
             /*
             ShowLayerImplement(layer);
             var tLayer = view.GetLayer(layer);
@@ -565,6 +569,13 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
         protected void hideLayer()
         {
+            UnityEngine.Transform layerTransform = null;
+            if (!runtimeClone.layerMap.TryGetValue(layer, out layerTransform))
+            {
+                logger.Error("layer:{0} not found in RuntimeClone.layerMap", layer);
+                return;
+            }
+            layerTransform.gameObject.SetActive(false);
             /*
             HideLayerImplement(layer);
             view.GetLayer(layer).Find("bg").gameObject.SetActive(false);

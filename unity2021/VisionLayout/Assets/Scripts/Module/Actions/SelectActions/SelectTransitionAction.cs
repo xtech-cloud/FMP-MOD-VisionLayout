@@ -45,21 +45,20 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
             var layerDisplay = getParameter(ParameterDefine.Layer_Display).AsString;
             var layerDisappear = getParameter(ParameterDefine.Layer_Disappear).AsString;
-            logger.Debug("ready to transition layer: {0}->{1}", layerDisappear, layerDisplay);
 
             // 从进入变换的行为列表中随机选择下一个进入的行为
             var inAry = inActions[layerDisplay];
             var inIdx = new System.Random().Next(0, inAry.Count);
             var inAction = inAry[inIdx];
             logger.Debug("select transition in-action: {0}", inAction);
-            setParameter(ParameterDefine.Action_In, Parameter.FromString(inAction));
+            setParameter(ParameterDefine.TransitionAction_In, Parameter.FromString(inAction));
 
             // 从退出变换的行为列表中随机选择下一个退出的行为
             var outAry = outActions[layerDisappear];
             var outIdx = new System.Random().Next(0, outAry.Count);
             var outAction = outAry[outIdx];
             logger.Debug("select transition out-action: {0}", outAction);
-            setParameter(ParameterDefine.Action_Out, Parameter.FromString(outAction));
+            setParameter(ParameterDefine.TransitionAction_Out, Parameter.FromString(outAction));
             // 完成行为
             finish();
         }

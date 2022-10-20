@@ -54,10 +54,10 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             logger.Trace("set parameters");
             machine_.SetParameter(ParameterDefine.Layer_Display, Parameter.FromString(""));
             machine_.SetParameter(ParameterDefine.Layer_Disappear, Parameter.FromString(""));
-            machine_.SetParameter(ParameterDefine.Action_Display, Parameter.FromString(""));
-            machine_.SetParameter(ParameterDefine.Action_Disappear, Parameter.FromString(""));
-            machine_.SetParameter(ParameterDefine.Action_In, Parameter.FromString(""));
-            machine_.SetParameter(ParameterDefine.Action_Out, Parameter.FromString(""));
+            machine_.SetParameter(ParameterDefine.LayoutAction_Display, Parameter.FromString(""));
+            machine_.SetParameter(ParameterDefine.LayoutAction_Disappear, Parameter.FromString(""));
+            machine_.SetParameter(ParameterDefine.TransitionAction_In, Parameter.FromString(""));
+            machine_.SetParameter(ParameterDefine.TransitionAction_Out, Parameter.FromString(""));
             machine_.SetParameter(ParameterDefine.Console_IsActive, Parameter.FromBool(false));
             machine_.SetParameter(ParameterDefine.Virtual_Resolution_Width, Parameter.FromInt((int)virtualResolution.x));
             machine_.SetParameter(ParameterDefine.Virtual_Resolution_Height, Parameter.FromInt((int)virtualResolution.y));

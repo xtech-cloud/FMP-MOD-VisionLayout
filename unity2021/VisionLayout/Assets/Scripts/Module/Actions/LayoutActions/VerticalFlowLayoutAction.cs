@@ -15,13 +15,9 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         private int columnCount_ { get; set; }
 
         /// <summary>
-        /// 行末尾元素的位置
+        /// 每列的最后一个节点
         /// </summary>
-        private Dictionary<int, int> columnEdgeS_ = new Dictionary<int, int>();
-        /// <summary>
-        /// 行需要移动的元素
-        /// </summary>
-        private Dictionary<int, Cell> columnMoveCellS_ = new Dictionary<int, Cell>();
+        private Dictionary<int, Cell> columnTailS_ = new Dictionary<int, Cell>();
 
         protected override void onEnter()
         {
@@ -54,78 +50,65 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             if (null == layoutCells_)
                 return;
 
-            for (int i = 0; i < columnCount_; i++)
-            {
-                columnEdgeS_[i] = i % 2 == 0 ? int.MaxValue : -int.MaxValue;
-            }
-            columnMoveCellS_.Clear();
+            // 当前帧的节点的相对偏移位置
             float offset = UnityEngine.Time.deltaTime * speed_;
 
             //TODO DummyBoards
             //var dummyBoards = model.DummyBoards;
             foreach (var cell in layoutCells_)
             {
-                float y = cell.target.anchoredPosition.y + offset * cell.directionY;
-                UnityEngine.Vector2 pos = new UnityEngine.Vector2(cell.pinX, y);
-                cell.dynamicX = pos.x;
-                cell.dynamicY = pos.y;
-                //if (cell.surround)
-                //    pos.x = roundWorckbenchFitX(dummyBoards, config.dummyBoard.radius, pos);
-                cell.target.anchoredPosition = pos;
+                cell.dynamicY += offset * cell.directionY;
 
+                // 移动超出屏幕的节点到队尾
+                // 正向为屏幕上方，负向为屏幕下方
                 if (cell.directionY > 0)
                 {
-                    // 移动超出屏幕的节点到队尾
-                    if (y - cell.height / 2 > canvasHeight_ / 2)
-                        columnMoveCellS_[cell.column] = cell;
-                    if (y < columnEdgeS_[cell.column])
-                        columnEdgeS_[cell.column] = (int)y - cell.height / 2;
+                    if (cell.dynamicY - cell.height / 2 > canvasHeight_ / 2)
+                    {
+                        cell.dynamicY = columnTailS_[cell.column].dynamicY - columnTailS_[cell.column].height / 2 - space_ - cell.height / 2 + offset;
+                        columnTailS_[cell.column] = cell;
+                    }
                 }
                 else if (cell.directionY < 0)
                 {
-                    // 移动超出屏幕的节点到队尾
-                    if (y + cell.height / 2 < -canvasHeight_ / 2)
-                        columnMoveCellS_[cell.column] = cell;
-                    if (y > columnEdgeS_[cell.column])
-                        columnEdgeS_[cell.column] = (int)y + cell.height / 2;
+                    if (cell.dynamicY + cell.height / 2 < -canvasHeight_ / 2)
+                    {
+                        cell.dynamicY = columnTailS_[cell.column].dynamicY + columnTailS_[cell.column].height / 2 + space_ + cell.height / 2 - offset;
+                        columnTailS_[cell.column] = cell;
+                    }
                 }
+                //if (cell.surround)
+                //    pos.x = roundWorckbenchFitX(dummyBoards, config.dummyBoard.radius, pos);
+                var pos = cell.target.anchoredPosition;
+                pos.y = cell.dynamicY;
+                cell.target.anchoredPosition = pos;
             }
-
-            foreach (var column in columnMoveCellS_.Keys)
-            {
-                var cell = columnMoveCellS_[column];
-                if (null == cell)
-                    continue;
-                cell.target.anchoredPosition = new UnityEngine.Vector2(cell.target.anchoredPosition.x, columnEdgeS_[cell.column] - space_ * cell.directionY - cell.height / 2 * cell.directionY);
-            }
-
         }
         protected override void layout(List<string> _contentList)
         {
-            List<Cell> cells = new List<Cell>();
-
+            canvasWidth_ = getParameter(ParameterDefine.Virtual_Resolution_Width).AsInt;
+            canvasHeight_ = getParameter(ParameterDefine.Virtual_Resolution_Height).AsInt;
             speed_ = parseFloatFromProperty("speed");
             bool surround = parseBoolFromProperty("surround");
-
             columnCount_ = parseIntFromProperty("column");
             space_ = parseIntFromProperty("space");
-            int canvasWidth = getParameter(ParameterDefine.Virtual_Resolution_Width).AsInt;
-            canvasHeight_ = getParameter(ParameterDefine.Virtual_Resolution_Height).AsInt;
-            int cellWidth = (canvasWidth - (columnCount_ + 1) * space_) / columnCount_;
-            int cellHeight = cellWidth;
 
-            // 最下方为首列
+            int cellWidth = (canvasWidth_ - (columnCount_ + 1) * space_) / columnCount_;
+
+            // 最左方为首列
             // 首列往上移动
             int direction = 1;
-            // 首个节点在左上侧
-            int lastPinX = -canvasWidth / 2;
+            // 首个节点的位置在屏幕左上角
+            int lastPinX = -canvasWidth_ / 2;
             int lastPinY = canvasHeight_ / 2 * direction;
             int columnIndex = 0;
-            // 在屏幕外预留节点
+            // 屏幕外节点的数量
             int outOfEdgeCount = 0;
-            // 避免BUG引起的死循环
-            int counter = 0;
-            // 先将节点按行从左往右排列
+            // 屏幕外节点的换列数量
+            const int outOfEdgeWrapCount = 3;
+
+            List<Cell> cells = new List<Cell>();
+            // 先将节点按行从上往下排列
             while (true)
             {
                 if (columnIndex >= columnCount_)
@@ -133,11 +116,11 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
                 string contentUri = "";
                 int fitWidth = cellWidth;
-                int fitHeight = cellHeight;
+                int fitHeight = cellWidth;
                 UnityEngine.Texture2D coverTexture = null;
                 if (_contentList.Count > 0)
                 {
-                    contentUri = _contentList[counter % _contentList.Count];
+                    contentUri = _contentList[cells.Count % _contentList.Count];
                     object cover;
                     if (preloadsRepetition.TryGetValue(contentUri + "/cover.png", out cover))
                     {
@@ -149,7 +132,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     }
                 }
 
-                counter += 1;
                 int pinY = lastPinY - space_ * direction - fitHeight / 2 * direction;
                 lastPinY = pinY - fitHeight / 2 * direction;
                 int pinX = lastPinX + space_ + fitWidth / 2;
@@ -161,7 +143,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 }
 
                 // 换行
-                if (outOfEdgeCount >= 3)
+                if (outOfEdgeCount >= outOfEdgeWrapCount)
                 {
                     columnIndex += 1;
                     direction *= -1;
@@ -197,6 +179,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 cell.target.gameObject.SetActive(false);
                 if (null != coverTexture)
                     cell.image.texture = coverTexture;
+                columnTailS_[columnIndex] = cell;
             }
 
             setParameter(string.Format("layer.{0}.{1}.cells", layer, NAME), Parameter.FromCustom(cells));

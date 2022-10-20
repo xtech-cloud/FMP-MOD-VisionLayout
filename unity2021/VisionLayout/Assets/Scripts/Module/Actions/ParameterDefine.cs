@@ -24,22 +24,22 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// <summary>
         /// 进入的变换行为
         /// </summary>
-        public const string Action_In = "action.In";
+        public const string TransitionAction_In = "action.In";
 
         /// <summary>
         /// 退出的变换行为
         /// </summary>
-        public const string Action_Out = "action.Out";
+        public const string TransitionAction_Out = "action.Out";
 
         /// <summary>
-        /// 显示的布局行为
+        /// 显示的层的布局行为
         /// </summary>
-        public const string Action_Display = "action.Display";
+        public const string LayoutAction_Display = "action.Display";
 
         /// <summary>
-        /// 消失的布局行为
+        /// 消失的层的布局行为
         /// </summary>
-        public const string Action_Disappear = "action.Disappear";
+        public const string LayoutAction_Disappear = "action.Disappear";
 
 
         /// <summary>

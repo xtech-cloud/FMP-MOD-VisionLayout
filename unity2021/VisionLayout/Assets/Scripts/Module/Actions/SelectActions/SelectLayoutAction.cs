@@ -40,12 +40,12 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// <summary>
         /// 显示层的布局行为
         /// </summary>
-        private string actionDisplay_ { get; set; }
+        private string layoutActionDisplay_ { get; set; }
 
         /// <summary>
         /// 消失层的布局行为
         /// </summary>
-        private string actionDisappear_ { get; set; }
+        private string layoutActionDisappear_ { get; set; }
 
         /// <summary>
         /// 当行为进入时
@@ -68,13 +68,14 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             else
                 selectFromQueue();
 
+            // 设置选择后的结果
             setParameter(ParameterDefine.Layer_Display, Parameter.FromString(layerDisplay_));
-            setParameter(ParameterDefine.Action_Display, Parameter.FromString(actionDisplay_));
+            setParameter(ParameterDefine.LayoutAction_Display, Parameter.FromString(layoutActionDisplay_));
             setParameter(ParameterDefine.Layer_Disappear, Parameter.FromString(layerDisappear_));
-            setParameter(ParameterDefine.Action_Disappear, Parameter.FromString(actionDisappear_));
+            setParameter(ParameterDefine.LayoutAction_Disappear, Parameter.FromString(layoutActionDisappear_));
 
-            logger.Debug("ready to disappear layer:{0} layoutAction:{1}", layerDisappear_, actionDisappear_);
-            logger.Debug("ready to display layer:{0} layoutAction:{1}", layerDisplay_, actionDisplay_);
+            logger.Debug("select disappear layer:{0} layoutAction:{1}", layerDisappear_, layoutActionDisappear_);
+            logger.Debug("select display layer:{0} layoutAction:{1}", layerDisplay_, layoutActionDisplay_);
 
             finish();
         }
@@ -99,19 +100,20 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// </summary>
         private void selectFromQueue()
         {
-            // 列表第一个为需要消隐的层
+            // 列表第一个为选择后需要消隐的层
             layerDisappear_ = layers[0];
-            actionDisappear_ = getParameter(ParameterDefine.Action_Display).AsString;
+            layoutActionDisappear_ = getParameter(ParameterDefine.LayoutAction_Display).AsString;
 
-            // 列表第二个为需要显示的层
+            // 列表的第二个为选择后需要显示的层
             layerDisplay_ = layers[1];
+
             // 需要显示的层的行为列表
             var aryDisplay = actions[layerDisplay_];
-            // 随机选择显示布局的行为
+            // 随机选择显示的层布局的行为
             int idxDisplay = new System.Random().Next(0, aryDisplay.Count);
-            actionDisplay_ = aryDisplay[idxDisplay];
+            layoutActionDisplay_ = aryDisplay[idxDisplay];
 
-            // 以正向循环队列的形式将过时的层移到队尾
+            // 正向循环队列
             var firstLayer = layers[0];
             layers.RemoveAt(0);
             layers.Add(firstLayer);
@@ -124,7 +126,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         {
             // 列表第一个为需要消隐的层
             layerDisappear_ = layers[0];
-            actionDisappear_ = getParameter(ParameterDefine.Action_Display).AsString;
+            layoutActionDisappear_ = getParameter(ParameterDefine.LayoutAction_Display).AsString;
 
             // 需要显示的层为控制台选择的层
             layerDisplay_ = getParameter(ParameterDefine.Console_Layer).AsString;
@@ -132,7 +134,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             var aryDisplay = actions[layerDisplay_];
             // 随机选择显示布局的行为
             int idxDisplay = new System.Random().Next(0, aryDisplay.Count);
-            actionDisplay_ = aryDisplay[idxDisplay];
+            layoutActionDisplay_ = aryDisplay[idxDisplay];
 
             // 以正向循环队列的形式将过时的层移到队尾
             var firstLayer = layers[0];
