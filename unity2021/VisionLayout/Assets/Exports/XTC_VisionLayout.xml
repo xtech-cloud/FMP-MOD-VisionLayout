@@ -11,6 +11,8 @@
   <GRPC address="https://localhost:19000"/>
   <!-- 样式列表
         name: 名称
+        Style.Background: 背景, 优先级为 video>image>color，全为空时，背景不显示
+        Style.ToolBar.clickTrigger: 工具栏触发的点击次数
         Style.LayerPatterns: 层模式的列表
         Style.LayerPattern.name: 层模式的名称
         Style.LayerPattern.interactable: 点击节点是否能打开工作台
@@ -23,6 +25,8 @@
     -->
   <Styles>
     <Style name="default">
+      <Background color="#242424FF" image="" video=""/>
+      <ToolBar clickTrigger="20"/>
       <LayerPatterns>
         <LayerPattern name="Flow" interactable="true">
           <LayoutActions>

@@ -10,6 +10,11 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
     public class RuntimeClone
     {
         /// <summary>
+        /// ui的根对象
+        /// </summary>
+        public Transform rootUI;
+
+        /// <summary>
         /// 层的实例的列表
         /// </summary>
         /// <remarks>
@@ -24,6 +29,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// key: 层的名称
         /// </remarks>
         public Dictionary<string, GameObject> cellTemplateMap = new Dictionary<string, GameObject>();
+
 
         public Dictionary<string, RectTransform> titleMap = new Dictionary<string, RectTransform>();
         public Dictionary<string, RectTransform> profileMap = new Dictionary<string, RectTransform>();

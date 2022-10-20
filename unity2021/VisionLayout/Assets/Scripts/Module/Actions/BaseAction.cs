@@ -18,6 +18,9 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         public Dictionary<string, object> preloadsRepetition { get; set; }
 
         public RuntimeClone runtimeClone { get; set; }
+
+        public ExtendFeatures extendFeatures { get; set; }
+
     }
 
     /// <summary>
@@ -387,8 +390,8 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             updateTimer();
             if (timer_ > duration)
             {
-                // 计时器超过行为的持续时间，并且控制台没有激活时，完成行为
-                if (!getParameter(ParameterDefine.Console_IsActive).AsBool)
+                // 计时器超过行为的持续时间，并且工具栏没有激活时，完成行为
+                if (!extendFeatures.toolbar.IsActive)
                     finish();
             }
         }
@@ -413,13 +416,8 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             string layer = _layer;
             button.onClick.AddListener(() =>
             {
+                extendFeatures.toolbar.ClickHiddenArea(clone);
                 /*
-                // 控制台
-                clickHiddenFeatures(clone, () =>
-                 {
-                     facade.ui.console.root.gameObject.SetActive(true);
-                     machine_.SetParameter(ParameterDefine.Console_Active, Parameter.FromBool(true));
-                 });
                 Dictionary<string, object> data = new Dictionary<string, object>();
                 UnityEngine.Vector2 pos = button.GetComponent<UnityEngine.RectTransform>().anchoredPosition;
                 data["posX"] = pos.x;

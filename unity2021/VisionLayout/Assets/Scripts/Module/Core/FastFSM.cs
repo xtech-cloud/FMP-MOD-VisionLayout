@@ -13,9 +13,9 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
     public class FastFSM
     {
         /// <summary>
-        /// 层的模板的游戏对象
+        /// UI的根对象
         /// </summary>
-        public GameObject layerTemplateGameObject { get; set; }
+        public Transform rootUI { get; set; }
 
         public UnityEngine.Vector2 virtualResolution { get; set; }
 
@@ -25,7 +25,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
         public MyCatalog catalog { get; set; }
 
-        /// <see cref="MyInstanceBase.preloadsRepetition"/>
         public Dictionary<string, object> preloadsRepetition { get; set; }
 
         private Machine machine_ { get; set; }
@@ -34,12 +33,17 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         private SelectLayoutAction selectLayoutAction_ { get; set; }
         private SelectTransitionAction selectTransitionAction_ { get; set; }
         private RuntimeClone runtimeClone_ = new RuntimeClone();
+        private ExtendFeatures extendFeatures_ = new ExtendFeatures();
 
         /// <summary>
         /// 初始化
         /// </summary>
         public void Initialize()
         {
+            runtimeClone_.rootUI = rootUI;
+            // 初始化扩展功能
+            initializeExtendFeatures();
+
             machine_ = new Machine();
             //创建初始状态
             var state_none = machine_.NewState("NONE");
@@ -58,7 +62,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             machine_.SetParameter(ParameterDefine.LayoutAction_Disappear, Parameter.FromString(""));
             machine_.SetParameter(ParameterDefine.TransitionAction_In, Parameter.FromString(""));
             machine_.SetParameter(ParameterDefine.TransitionAction_Out, Parameter.FromString(""));
-            machine_.SetParameter(ParameterDefine.Console_IsActive, Parameter.FromBool(false));
             machine_.SetParameter(ParameterDefine.Virtual_Resolution_Width, Parameter.FromInt((int)virtualResolution.x));
             machine_.SetParameter(ParameterDefine.Virtual_Resolution_Height, Parameter.FromInt((int)virtualResolution.y));
             logger.Trace("create switch state");
@@ -160,7 +163,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     continue;
                 }
                 // 以path作为层的名字，例如"A/1"，每个层中有多个布局行为，每个布局行为下都有自己的节点列表
-                createLayer(section.path, layerPattern);
+                createLayer(section.path, layerPattern, section.name);
                 decorateLayer(section.path, layerPattern, contentList);
             }
 
@@ -183,15 +186,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             {
                 machine_.Update();
                 yield return new UnityEngine.WaitForEndOfFrame();
-                /*
-                consoleClickTimer += UnityEngine.Time.deltaTime;
-                if (consoleClickTimer > 0.5f)
-                {
-                    consoleClickTimer = 0f;
-                    consoleClickCount = 0;
-                    consoleClickID = 0;
-                }
-                */
             }
         }
 
@@ -314,6 +308,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             action.logger = logger;
             action.preloadsRepetition = preloadsRepetition;
             action.runtimeClone = runtimeClone_;
+            action.extendFeatures = extendFeatures_;
             return action;
         }
 
@@ -322,15 +317,37 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// </summary>
         /// <param name="_layer">层的名称</param>
         /// <param name="_layerPattern">层的模式</param>
-        private void createLayer(string _layer, MyConfig.LayerPattern _layerPattern)
+        /// <param name="_alias">层的别名</param>
+        private void createLayer(string _layer, MyConfig.LayerPattern _layerPattern, string _alias)
         {
+            var layerTemplate = runtimeClone_.rootUI.Find("LayerContainer/LayerTemplate");
             // 实例化层
-            var cloneLayer = GameObject.Instantiate(layerTemplateGameObject, layerTemplateGameObject.transform.parent);
+            var cloneLayer = GameObject.Instantiate(layerTemplate, layerTemplate.transform.parent);
             cloneLayer.name = _layer;
             runtimeClone_.layerMap[_layer] = cloneLayer.transform;
             var goCellTemplate = cloneLayer.transform.Find("CellContainer/CellTemplate").gameObject;
             goCellTemplate.SetActive(false);
             runtimeClone_.cellTemplateMap[_layer] = goCellTemplate;
+
+            // 添加工具栏入口
+            extendFeatures_.toolbar.AddLayerEntry(_layer, _alias);
+        }
+
+        private void initializeExtendFeatures()
+        {
+            extendFeatures_.toolbar.BindRootGameObject(rootUI.Find("ToolBar").gameObject);
+            extendFeatures_.toolbar.clickTrigger = style.toolBar.clickTrigger;
+            extendFeatures_.toolbar.OnOpen = () =>
+            {
+            };
+            extendFeatures_.toolbar.OnClose = () =>
+            {
+            };
+            extendFeatures_.toolbar.OnSwitch = (_layer) =>
+            {
+
+            };
+
         }
     }
 }

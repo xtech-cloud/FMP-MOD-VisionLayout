@@ -8,6 +8,22 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
     /// </summary>
     public class MyConfig : MyConfigBase
     {
+        public class Background
+        {
+            [XmlAttribute("color")]
+            public string color { get; set; }
+            [XmlAttribute("image")]
+            public string image { get; set; }
+            [XmlAttribute("video")]
+            public string video { get; set; }
+        }
+
+        public class ToolBar
+        {
+            [XmlAttribute("clickTrigger")]
+            public int clickTrigger { get; set; } = 20;
+        }
+
         public class Action
         {
             [XmlAttribute("name")]
@@ -50,6 +66,12 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         {
             [XmlAttribute("name")]
             public string name { get; set; } = "";
+
+            [XmlElement("Background")]
+            public Background background { get; set; } = new Background();
+
+            [XmlElement("ToolBar")]
+            public ToolBar toolBar { get; set; } = new ToolBar();
 
             [XmlArray("LayerPatterns"), XmlArrayItem("LayerPattern")]
             public LayerPattern[] layerPatternS { get; set; } = new LayerPattern[0];

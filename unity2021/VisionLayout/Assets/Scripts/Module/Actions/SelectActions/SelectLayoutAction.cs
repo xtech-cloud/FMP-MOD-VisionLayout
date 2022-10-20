@@ -61,10 +61,9 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 return;
             }
 
-            // 如果控制台激活并且已经设置了层
-            bool consoleActive = getParameter(ParameterDefine.Console_IsActive).AsBool;
-            if (consoleActive)
-                selectFromConsole();
+            // 如果工具栏激活并且已经设置了层
+            if (extendFeatures.toolbar.IsActive)
+                selectFromToolBar();
             else
                 selectFromQueue();
 
@@ -120,9 +119,9 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         }
 
         /// <summary>
-        /// 从控制台选择
+        /// 从工具栏选择
         /// </summary>
-        private void selectFromConsole()
+        private void selectFromToolBar()
         {
             // 列表第一个为需要消隐的层
             layerDisappear_ = layers[0];

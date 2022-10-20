@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using LibMVCS = XTC.FMP.LIB.MVCS;
 
 namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
@@ -27,6 +28,24 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// </remarks>
         public void HandleCreated()
         {
+            // 设置背景
+            Color color = Color.white;
+            RawImage instanceBackground = rootUI.transform.Find("bg").GetComponent<RawImage>();
+            instanceBackground.gameObject.SetActive(false);
+            if (UnityEngine.ColorUtility.TryParseHtmlString(style_.background.color, out color))
+            {
+                rootUI.transform.Find("bg").GetComponent<RawImage>().color = color;
+                instanceBackground.gameObject.SetActive(true);
+            }
+
+            // 隐藏层的模板
+            var goLayerTemplate = rootUI.transform.Find("LayerContainer/LayerTemplate").gameObject;
+            goLayerTemplate.SetActive(false);
+
+            // 隐藏工具栏
+            var goToolBar= rootUI.transform.Find("ToolBar").gameObject;
+            goToolBar.SetActive(false);
+            // 加载工具栏logo
         }
 
         /// <summary>
@@ -47,14 +66,11 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             contentReader_ = new ContentReader(contentObjectsPool);
             contentReader_.AssetRootPath = settings_["path.assets"].AsString();
 
-            var goLayerTemplate = rootUI.transform.Find("LayerContainer/LayerTemplate").gameObject;
-            goLayerTemplate.SetActive(false);
-
             fastFSM_ = new FastFSM();
             fastFSM_.logger = logger_;
             fastFSM_.style = style_;
             fastFSM_.catalog = catalog_;
-            fastFSM_.layerTemplateGameObject = goLayerTemplate;
+            fastFSM_.rootUI = rootUI.transform;
             fastFSM_.virtualResolution = rootUI.GetComponent<RectTransform>().rect.size;
             fastFSM_.preloadsRepetition = preloadsRepetition;
             fastFSM_.Initialize();

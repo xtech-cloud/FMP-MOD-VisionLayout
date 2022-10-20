@@ -41,12 +41,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// </summary>
         public const string LayoutAction_Disappear = "action.Disappear";
 
-
-        /// <summary>
-        /// 控制台是否激活
-        /// </summary>
-        public const string Console_IsActive = "console.isactive";
-
         /// <summary>
         /// 控制台的层
         /// </summary>
