@@ -94,8 +94,6 @@
         protected override void onUpdate()
         {
             baseUpdate();
-            updateTitleIn();
-            updateProfileIn();
             if (null == animCells)
                 return;
 

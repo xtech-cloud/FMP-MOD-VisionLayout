@@ -45,7 +45,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         protected override void onUpdate()
         {
             baseUpdate();
-            updateProfile();
 
             if (null == layoutCells_)
                 return;

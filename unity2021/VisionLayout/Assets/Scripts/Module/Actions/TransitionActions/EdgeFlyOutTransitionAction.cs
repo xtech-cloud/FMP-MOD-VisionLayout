@@ -90,8 +90,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         protected override void onUpdate()
         {
             baseUpdate();
-            updateTitleOut();
-            updateProfileOut();
             if (null == layoutCells_)
                 return;
 

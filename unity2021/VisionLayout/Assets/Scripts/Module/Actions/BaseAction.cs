@@ -10,7 +10,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
     public abstract class BaseAction : Action
     {
         public MyInstance myInstance { get; set; }
-      
+
         public RuntimeClone runtimeClone { get; set; }
 
         public ExtendFeatures extendFeatures { get; set; }
@@ -489,27 +489,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 cell.target.gameObject.SetActive(cell.pinVisible);
             }
         }
-
-        protected void updateProfile()
-        {
-            /*
-            if (layerStyle.profile.duration <= 0)
-                return;
-            float percent = timer_ / layerStyle.profile.duration;
-            if (percent <= 1f)
-            {
-                view.UpdateProfileTick(layer, percent);
-            }
-            else
-            {
-                percent = (timer_ - layerStyle.profile.duration) / 1.0f;
-                if (percent > 1f)
-                    percent = 1f;
-                percent = 1.0f - percent;
-                view.UpdateProfileAlpha(layer, percent);
-            }
-            */
-        }
     }
 
     /// <summary>
@@ -522,41 +501,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// </summary>
         protected List<Cell> animCells { get; set; }
 
-
-        protected void updateTitleIn()
-        {
-            /*
-            float percent = timer_ / 1.0f;
-            view.MoveTitle(layer, percent, MyView.AnimType.IN);
-            */
-        }
-
-        protected void updateTitleOut()
-        {
-            /*
-            float percent = timer_ / 1.0f;
-            view.MoveTitle(layer, percent, MyView.AnimType.OUT);
-            */
-        }
-
-        protected void updateProfileIn()
-        {
-            /*
-            view.UpdateProfileTick(layer, 0);
-            view.UpdateProfileAlpha(layer, 1);
-            float percent = timer_ / 1.0f;
-            view.MoveProfile(layer, percent, MyView.AnimType.IN);
-            */
-        }
-
-        protected void updateProfileOut()
-        {
-            /*
-            float percent = timer_ / 1.0f;
-            view.MoveProfile(layer, percent, MyView.AnimType.OUT);
-            */
-        }
-
         protected void showLayer()
         {
             UnityEngine.Transform layerTransform = null;
@@ -566,16 +510,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 return;
             }
             layerTransform.gameObject.SetActive(true);
-            /*
-            ShowLayerImplement(layer);
-            var tLayer = view.GetLayer(layer);
-            //仅当背景图有效时显示背景
-            var tBG = tLayer.Find("bg");
-            if (null != tBG.GetComponent<UnityEngine.UI.Image>().sprite)
-            {
-                tBG.gameObject.SetActive(true);
-            }
-            */
         }
 
         protected void hideLayer()
@@ -587,10 +521,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 return;
             }
             layerTransform.gameObject.SetActive(false);
-            /*
-            HideLayerImplement(layer);
-            view.GetLayer(layer).Find("bg").gameObject.SetActive(false);
-            */
         }
     }
 }

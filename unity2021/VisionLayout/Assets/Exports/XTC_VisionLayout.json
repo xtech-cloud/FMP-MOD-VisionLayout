@@ -1,8 +1,8 @@
 {
   "sectionS": [
     {
-      "name": "榜样人物",
-      "path": "/榜样人物",
+      "name": "1",
+      "path": "/1",
       "instanceS": [
         "default"
       ],
@@ -16,8 +16,8 @@
       }
     },
     {
-      "name": "七一勋章",
-      "path": "/七一勋章",
+      "name": "2",
+      "path": "/2",
       "instanceS": [
         "default"
       ],
@@ -29,6 +29,21 @@
         "TitleImage": "title.2.png",
         "ProfileImage": "profile.2.png"
       }
-    }
+    },
+    {
+      "name": "3",
+      "path": "/3",
+      "instanceS": [
+        "default"
+      ],
+      "contentS": [
+        "XTC.VisionLayout.1/+"
+      ],
+      "kvS": {
+        "LayerPattern": "Stacked",
+        "TitleImage": "title.1.png",
+        "ProfileImage": "profile.1.png"
+      }
+    },
   ]
 }

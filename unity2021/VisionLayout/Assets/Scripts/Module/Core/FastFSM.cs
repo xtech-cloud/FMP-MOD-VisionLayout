@@ -29,7 +29,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// </summary>
         public void Initialize()
         {
-            runtimeClone_.rootUI =  myInstance.rootUI.transform;
+            runtimeClone_.rootUI = myInstance.rootUI.transform;
             // 初始化扩展功能
             initializeExtendFeatures();
 
@@ -206,13 +206,13 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     action = _state.NewAction<VerticalFlowLayoutAction>();
                     decorateAnimationAction(action);
                     break;
+                case StackedLayoutAction.NAME:
+                    action = _state.NewAction<StackedLayoutAction>();
+                    decorateAnimationAction(action);
+                    break;
                 /*
             case VerticalSplitLayoutAction.NAME:
                 action = _state.NewAction<VerticalSplitLayoutAction>();
-                decorateAnimationAction(action);
-                break;
-            case StackedLayoutAction.NAME:
-                action = _state.NewAction<StackedLayoutAction>();
                 decorateAnimationAction(action);
                 break;
             case FenchLayoutAction.NAME:

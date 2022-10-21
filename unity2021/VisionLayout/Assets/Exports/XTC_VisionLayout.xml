@@ -16,13 +16,19 @@
         Style.Profile.duration: 图片简介持续显示的时间，超时后隐藏
         Style.LayerPatterns: 层模式的列表
         Style.LayerPattern.name: 层模式的名称
-        Style.LayerPattern.interactable: 点击节点是否能打开工作台
+        Style.LayerPattern.interactable: 点击节点是否能打开虚拟面板
         Style.LayerPattern.LayoutActions: 布局的行为列表
         Style.LayerPattern.InActions: 布局进入时的变换的行为列表
         Style.LayerPattern.OutActions: 布局退出时的变换的行为列表
         Style.LayerPattern.Action.name: 行为的名称
         Style.LayerPattern.Action.disable: 行为是否禁用
         Style.LayerPattern.Action.Properties: 行为的属性列表
+        Style.LayerPattern.Action.Property."duration": 行为持续的时间
+        Style.LayerPattern.Action.Property."speed": 效果的速度
+        Style.LayerPattern.Action.Property."surround": 在打开虚拟面板时，节点自动绕开
+        Style.LayerPattern.Action.Property."blank": TransitionIn类型的行为，在持续时间的开始预留的空白时间，过了blank时间后才开始动画
+        Style.LayerPattern.Action<name="Stacked">.Property."span": 虚拟列的跨越像素，数值越小越精细
+        Style.LayerPattern.Action<name="Stacked">.Property."alphaStep": 每层的透明值递减
     -->
   <Styles>
     <Style name="default">
@@ -60,7 +66,6 @@
             <Action name="EdgeFlyInTransition" disable="false">
               <Properties>
                 <Property key="duration" value="4.5" type="float"/>
-                <!-- duration中前部分预留多长的空白时间 -->
                 <Property key="blank" value="1.5" type="float"/>
               </Properties>
             </Action>
@@ -183,6 +188,39 @@
                 <Property key="duration" value="3" type="float"/>
                 <!-- duration中后部分预留多长的空白时间 -->
                 <Property key="blank" value="0" type="float"/>
+              </Properties>
+            </Action>
+          </OutActions>
+        </LayerPattern>
+        <LayerPattern name="Stacked" interactable="true">
+          <LayoutActions>
+            <Action name="StackedLayout" disable="false">
+              <Properties>
+                <Property key="duration" value="3" type="float"/>
+                <Property key="span" value="40" type="int"/>
+                <Property key="alphaStep" value="0.2" type="float"/>
+                <Property key="speed" value="30" type="float"/>
+                <Property key="cellMinLength" value="150" type="int"/>
+                <Property key="cellMaxLength" value="300" type="int"/>
+                <Property key="minSpaceX" value="50" type="int"/>
+                <Property key="maxSpaceX" value="100" type="int"/>
+                <Property key="minSpaceY" value="50" type="int"/>
+                <Property key="maxSpaceY" value="100" type="int"/>
+              </Properties>
+            </Action>
+          </LayoutActions>
+          <InActions>
+            <Action name="EdgeFlyInTransition" disable="false">
+              <Properties>
+                <Property key="duration" value="4.5" type="float"/>
+                <Property key="blank" value="1.5" type="float"/>
+              </Properties>
+            </Action>
+          </InActions>
+          <OutActions>
+            <Action name="EdgeFlyOutTransition" disable="false">
+              <Properties>
+                <Property key="duration" value="3" type="float"/>
               </Properties>
             </Action>
           </OutActions>
