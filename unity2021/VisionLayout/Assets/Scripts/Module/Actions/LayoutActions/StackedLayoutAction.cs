@@ -215,20 +215,14 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
         private Cell addCell(Viewport _viewport)
         {
-            var contentUri = contentUriS_[_viewport.contentIndex];
+            var contentUri = _viewport.contentIndex < contentUriS_.Count ? contentUriS_[_viewport.contentIndex] : "";
+            UnityEngine.Texture2D coverTexture = loadContentCover(contentUri);
             Cell cell = new Cell();
 
             cell.contentUri = contentUri;
             cell.surround = false;
 
-            UnityEngine.Texture2D coverTexture = null;
-            object cover;
-            if (myInstance.preloadsRepetition.TryGetValue(contentUri + "/cover.png", out cover))
-            {
-                coverTexture = cover as UnityEngine.Texture2D;
-            }
-
-            cell.target = newCell(layer,  contentUri).GetComponent<UnityEngine.RectTransform>();
+            cell.target = newCell(layer, contentUri).GetComponent<UnityEngine.RectTransform>();
             cell.target.SetParent(_viewport.container.transform);
             cell.target.Find("frame").gameObject.SetActive(_viewport.index == viewports_.Length - 1);
             cell.column = _viewport.columnIndex;

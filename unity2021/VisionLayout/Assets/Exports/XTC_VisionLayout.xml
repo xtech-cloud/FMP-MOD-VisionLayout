@@ -27,8 +27,11 @@
         Style.LayerPattern.Action.Property."speed": 效果的速度
         Style.LayerPattern.Action.Property."surround": 在打开虚拟面板时，节点自动绕开
         Style.LayerPattern.Action.Property."blank": TransitionIn类型的行为，在持续时间的开始预留的空白时间，过了blank时间后才开始动画
-        Style.LayerPattern.Action<name="Stacked">.Property."span": 虚拟列的跨越像素，数值越小越精细
-        Style.LayerPattern.Action<name="Stacked">.Property."alphaStep": 每层的透明值递减
+        Style.LayerPattern.Action<name="StackedLayout">.Property."span": 虚拟列的跨越像素，数值越小越精细
+        Style.LayerPattern.Action<name="StackedLayout">.Property."alphaStep": 每层的透明值递减
+        Style.LayerPattern.Action<name="FenchLayout">.Property."column": 栅栏的列数
+        Style.LayerPattern.Action<name="FenchLayout">.Property."moveInterval": 移动效果的间隔时间（秒）
+        Style.LayerPattern.Action<name="FenchLayout">.Property."moveDuration": 移动效果的持续时间（秒）
     -->
   <Styles>
     <Style name="default">
@@ -206,6 +209,33 @@
                 <Property key="maxSpaceX" value="100" type="int"/>
                 <Property key="minSpaceY" value="50" type="int"/>
                 <Property key="maxSpaceY" value="100" type="int"/>
+              </Properties>
+            </Action>
+          </LayoutActions>
+          <InActions>
+            <Action name="EdgeFlyInTransition" disable="false">
+              <Properties>
+                <Property key="duration" value="4.5" type="float"/>
+                <Property key="blank" value="1.5" type="float"/>
+              </Properties>
+            </Action>
+          </InActions>
+          <OutActions>
+            <Action name="EdgeFlyOutTransition" disable="false">
+              <Properties>
+                <Property key="duration" value="3" type="float"/>
+              </Properties>
+            </Action>
+          </OutActions>
+        </LayerPattern>
+        <LayerPattern name="Fench" interactable="true">
+          <LayoutActions>
+            <Action name="FenchLayout" disable="false">
+              <Properties>
+                <Property key="duration" value="30" type="float"/>
+                <Property key="column" value="6" type="int"/>
+                <Property key="moveInterval" value="5" type="int"/>
+                <Property key="moveDuration" value="1" type="float"/>
               </Properties>
             </Action>
           </LayoutActions>

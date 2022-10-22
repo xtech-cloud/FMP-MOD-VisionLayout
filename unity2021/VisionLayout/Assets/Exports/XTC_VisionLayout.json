@@ -45,5 +45,20 @@
         "ProfileImage": "profile.1.png"
       }
     },
+    {
+      "name": "4",
+      "path": "/4",
+      "instanceS": [
+        "default"
+      ],
+      "contentS": [
+        "XTC.VisionLayout.2/+"
+      ],
+      "kvS": {
+        "LayerPattern": "Fench",
+        "TitleImage": "title.2.png",
+        "ProfileImage": "profile.2.png"
+      }
+    }
   ]
 }

@@ -489,6 +489,25 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 cell.target.gameObject.SetActive(cell.pinVisible);
             }
         }
+
+        /// <summary>
+        /// 加载内容封面图
+        /// </summary>
+        /// <param name="_contentUri">内容的短路径</param>
+        /// <returns></returns>
+        protected UnityEngine.Texture2D loadContentCover(string _contentUri)
+        {
+            if (string.IsNullOrEmpty(_contentUri))
+                return null;
+
+            object cover;
+            UnityEngine.Texture2D coverTexture = null;
+            if (myInstance.preloadsRepetition.TryGetValue(_contentUri + "/cover.png", out cover))
+            {
+                coverTexture = cover as UnityEngine.Texture2D;
+            }
+            return coverTexture;
+        }
     }
 
     /// <summary>

@@ -113,22 +113,13 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 if (columnIndex >= columnCount_)
                     break;
 
-                string contentUri = "";
                 int fitWidth = cellWidth;
                 int fitHeight = cellWidth;
-                UnityEngine.Texture2D coverTexture = null;
-                if (_contentList.Count > 0)
+                string contentUri = _contentList.Count > 0 ? _contentList[cells.Count % _contentList.Count] : "";
+                var coverTexture = loadContentCover(contentUri);
+                if (null != coverTexture)
                 {
-                    contentUri = _contentList[cells.Count % _contentList.Count];
-                    object cover;
-                    if (myInstance.preloadsRepetition.TryGetValue(contentUri + "/cover.png", out cover))
-                    {
-                        coverTexture = cover as UnityEngine.Texture2D;
-                        if (null != coverTexture)
-                        {
-                            fitHeight = (int)((float)coverTexture.height / coverTexture.width * fitWidth);
-                        }
-                    }
+                    fitHeight = (int)((float)coverTexture.height / coverTexture.width * fitWidth);
                 }
 
                 int pinY = lastPinY - space_ * direction - fitHeight / 2 * direction;

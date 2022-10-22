@@ -210,13 +210,13 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     action = _state.NewAction<StackedLayoutAction>();
                     decorateAnimationAction(action);
                     break;
+                case FenchLayoutAction.NAME:
+                    action = _state.NewAction<FenchLayoutAction>();
+                    decorateAnimationAction(action);
+                    break;
                 /*
             case VerticalSplitLayoutAction.NAME:
                 action = _state.NewAction<VerticalSplitLayoutAction>();
-                decorateAnimationAction(action);
-                break;
-            case FenchLayoutAction.NAME:
-                action = _state.NewAction<FenchLayoutAction>();
                 decorateAnimationAction(action);
                 break;
             case FrameLayoutAction.NAME:
