@@ -60,7 +60,8 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// <param name="_layer">层的名称</param>
         public void Display(string _layer)
         {
-            imageS[_layer].gameObject.SetActive(true);
+            var rawImage = imageS[_layer];
+            rawImage.gameObject.SetActive(null != rawImage.texture);
             if (null != coroutinePopup_)
                 mono.StopCoroutine(coroutinePopup_);
             coroutinePopup_ = mono.StartCoroutine(update(_layer));

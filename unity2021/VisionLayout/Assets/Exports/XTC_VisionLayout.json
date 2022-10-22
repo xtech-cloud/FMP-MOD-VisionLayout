@@ -59,6 +59,21 @@
         "TitleImage": "title.2.png",
         "ProfileImage": "profile.2.png"
       }
+    },
+    {
+      "name": "5",
+      "path": "/5",
+      "instanceS": [
+        "default"
+      ],
+      "contentS": [
+        "XTC.VisionLayout.1/+"
+      ],
+      "kvS": {
+        "LayerPattern": "Film",
+        "TitleImage": "",
+        "ProfileImage": ""
+      }
     }
   ]
 }

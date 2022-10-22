@@ -1,6 +1,7 @@
 ﻿using XTC.FMP.LIB.MVCS;
 using XTC.oelFSM;
 using System.Collections.Generic;
+using static XTC.FMP.LIB.MVCS.View;
 
 namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 {
@@ -429,6 +430,12 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             //在派生类中实现逻辑
         }
 
+        /// <summary>
+        /// 在层中创建一个新节点
+        /// </summary>
+        /// <param name="_layer">层的名称</param>
+        /// <param name="_contentUri">内容的短路径</param>
+        /// <returns>创建好的新节点</returns>
         protected UnityEngine.GameObject newCell(string _layer, string _contentUri)
         {
             UnityEngine.GameObject cellTemplate;
@@ -456,7 +463,27 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             return clone;
         }
 
-
+        /// <summary>
+        /// 在层中创建一个空对象
+        /// </summary>
+        /// <param name="_layer">层的名称</param>
+        /// <returns>创建好的空对象</returns>
+        protected UnityEngine.GameObject newBlankObject(string _layer)
+        {
+            UnityEngine.GameObject cellTemplate;
+            if (!runtimeClone.cellTemplateMap.TryGetValue(_layer, out cellTemplate))
+                return null;
+            var clone = new UnityEngine.GameObject();
+            clone.transform.SetParent(cellTemplate.transform.parent);
+            var rtClone = clone.GetComponent<UnityEngine.RectTransform>();
+            if (null == rtClone)
+                rtClone = clone.AddComponent<UnityEngine.RectTransform>();
+            rtClone.localPosition = UnityEngine.Vector3.zero;
+            rtClone.localScale = UnityEngine.Vector3.one;
+            rtClone.localRotation = UnityEngine.Quaternion.identity;
+            rtClone.anchoredPosition = UnityEngine.Vector2.zero;
+            return clone;
+        }
         /// <summary>
         /// 禁用节点的交互
         /// </summary>

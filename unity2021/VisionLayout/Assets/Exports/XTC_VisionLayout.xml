@@ -25,13 +25,38 @@
         Style.LayerPattern.Action.Properties: 行为的属性列表
         Style.LayerPattern.Action.Property."duration": 行为持续的时间
         Style.LayerPattern.Action.Property."speed": 效果的速度
+        Style.LayerPattern.Action.Property."space": 节点间的间隔
         Style.LayerPattern.Action.Property."surround": 在打开虚拟面板时，节点自动绕开
         Style.LayerPattern.Action.Property."blank": TransitionIn类型的行为，在持续时间的开始预留的空白时间，过了blank时间后才开始动画
+        Style.LayerPattern.Action<name="HorizontalFlowLayout">: 横向流动布局
+        Style.LayerPattern.Action<name="HorizontalFlowLayout">.Property."row": 行的数目
+        Style.LayerPattern.Action<name="VerticalFlowLayout">: 纵向流动布局
+        Style.LayerPattern.Action<name="VerticalFlowLayout">.Property."column": 列的数目
+        Style.LayerPattern.Action<name="StackedLayout">: 堆叠布局
         Style.LayerPattern.Action<name="StackedLayout">.Property."span": 虚拟列的跨越像素，数值越小越精细
         Style.LayerPattern.Action<name="StackedLayout">.Property."alphaStep": 每层的透明值递减
+        Style.LayerPattern.Action<name="FenchLayout">: 栅栏布局
         Style.LayerPattern.Action<name="FenchLayout">.Property."column": 栅栏的列数
         Style.LayerPattern.Action<name="FenchLayout">.Property."moveInterval": 移动效果的间隔时间（秒）
         Style.LayerPattern.Action<name="FenchLayout">.Property."moveDuration": 移动效果的持续时间（秒）
+        Style.LayerPattern.Action<name="Film">: 胶卷布局
+        Style.LayerPattern.Action<name="Film">.Property."space": 胶卷中胶片之间的间隔
+        Style.LayerPattern.Action<name="Film">.Property."trackCount": 胶卷轨道的数量，轨道的顺序从屏幕后方往前按照轨道的序号排列
+        Style.LayerPattern.Action<name="Film">.Property."pictureWidth": 胶卷内部图片的宽度
+        Style.LayerPattern.Action<name="Film">.Property."trackWidth": 胶卷轨道的宽度
+        Style.LayerPattern.Action<name="Film">.Property."bgImage": 位于themes目录的背景图片
+        Style.LayerPattern.Action<name="Film">.Property."trackImage": 位于themes目录的轨道图片，图片宽度需要匹配trackWidth
+        Style.LayerPattern.Action<name="Film">.Property."maskImage": 位于themes目录的轨道遮罩图片，图片宽度需要匹配trackWidth
+        Style.LayerPattern.Action<name="Film">.Property."track_{n}_x": 轨道n的坐标位置，屏幕左方为-1.0，屏幕右方为1.0，允许设置到屏幕外的范围
+        Style.LayerPattern.Action<name="Film">.Property."track_{n}_length": 轨道n的长度，推荐值为虚拟分辨率（默认为1920x1080）高度的6倍左右
+        Style.LayerPattern.Action<name="Film">.Property."track_{n}_scale": 轨道n的大小缩放
+        Style.LayerPattern.Action<name="Film">.Property."track_{n}_alpha": 轨道n的透明度，范围为[0.0, 1.0]闭区间
+        Style.LayerPattern.Action<name="Film">.Property."track_{n}_direction": 轨道n的初始移动方向，1为往屏幕上方，-1为往屏幕下方
+        Style.LayerPattern.Action<name="Film">.Property."track_{n}_speed": 轨道n的移动速度
+        Style.LayerPattern.Action<name="Film">.Property."track_{n}_angle_z": 轨道n的z轴旋转角度, 垂直方向左方为正数，右方为负
+        Style.LayerPattern.Action<name="Film">.Property."track_{n}_angle_x": 轨道n的x轴旋转角度
+        Style.LayerPattern.Action<name="Film">.Property."track_{n}_angle_y": 轨道n的y轴旋转角度
+        Style.LayerPattern.Action<name="Film">.Property."track_{n}_mask": 轨道n的遮罩透明值，范围为[0.0, 1.0]闭区间
     -->
   <Styles>
     <Style name="default">
@@ -83,17 +108,16 @@
         </LayerPattern>
         <LayerPattern name="Film" interactable="true">
           <LayoutActions>
-            <!-- 胶卷布局 -->
             <Action name="FilmLayout" disable="false">
               <Properties>
-                <!-- 整个布局的持续时间 -->
-                <Property key="duration" value="3000" type="float"/>
-                <!-- 间隔 -->
+                <Property key="duration" value="30" type="float"/>
                 <Property key="space" value="20" type="int"/>
-                <!-- 轨道的数目 -->
+                <Property key="bgImage" value="layout.film.bg.jpg" type="string"/>
+                <Property key="trackImage" value="layout.film.track.png" type="string"/>
+                <Property key="maskImage" value="layout.film.mask.png" type="string"/>
                 <Property key="trackCount" value="7" type="int"/>
-                <!-- 各个轨道的数据，轨道的顺序为从屏幕后方往前 -->
-                <!-- 轨道的x坐标位置, 屏幕左方为-1.0,屏幕右方为1.0，可在屏幕外 -->
+                <Property key="pictureWidth" value="352" type="int"/>
+                <Property key="trackWidth" value="552" type="int"/>
                 <Property key="track_0_x" value="-0.25" type="float"/>
                 <Property key="track_1_x" value="0.35" type="float"/>
                 <Property key="track_2_x" value="-0.35" type="float"/>
@@ -101,7 +125,6 @@
                 <Property key="track_4_x" value="0.05" type="float"/>
                 <Property key="track_5_x" value="-0.78" type="float"/>
                 <Property key="track_6_x" value="0.88" type="float"/>
-                <!-- 轨道的长度, 推荐值为屏幕高度的6倍-->
                 <Property key="track_0_length" value="6000" type="int"/>
                 <Property key="track_1_length" value="6000" type="int"/>
                 <Property key="track_2_length" value="6000" type="int"/>
@@ -109,7 +132,6 @@
                 <Property key="track_4_length" value="6000" type="int"/>
                 <Property key="track_5_length" value="6000" type="int"/>
                 <Property key="track_6_length" value="6000" type="int"/>
-                <!-- 轨道的缩放 -->
                 <Property key="track_0_scale" value="0.4" type="float"/>
                 <Property key="track_1_scale" value="0.45" type="float"/>
                 <Property key="track_2_scale" value="0.6" type="float"/>
@@ -117,7 +139,6 @@
                 <Property key="track_4_scale" value="0.8" type="float"/>
                 <Property key="track_5_scale" value="0.9" type="float"/>
                 <Property key="track_6_scale" value="0.8" type="float"/>
-                <!-- 轨道的透明值 -->
                 <Property key="track_0_alpha" value="0.2" type="float"/>
                 <Property key="track_1_alpha" value="0.4" type="float"/>
                 <Property key="track_2_alpha" value="0.6" type="float"/>
@@ -125,7 +146,6 @@
                 <Property key="track_4_alpha" value="0.9" type="float"/>
                 <Property key="track_5_alpha" value="1.0" type="float"/>
                 <Property key="track_6_alpha" value="1.0" type="float"/>
-                <!-- 移动的方向 -->
                 <Property key="track_0_direction" value="-1" type="float"/>
                 <Property key="track_1_direction" value="1" type="float"/>
                 <Property key="track_2_direction" value="-1" type="float"/>
@@ -133,7 +153,6 @@
                 <Property key="track_4_direction" value="-1" type="float"/>
                 <Property key="track_5_direction" value="1" type="float"/>
                 <Property key="track_6_direction" value="-1" type="float"/>
-                <!-- 移动的速度 -->
                 <Property key="track_0_speed" value="20" type="float"/>
                 <Property key="track_1_speed" value="20" type="float"/>
                 <Property key="track_2_speed" value="20" type="float"/>
@@ -141,7 +160,6 @@
                 <Property key="track_4_speed" value="20" type="float"/>
                 <Property key="track_5_speed" value="20" type="float"/>
                 <Property key="track_6_speed" value="20" type="float"/>
-                <!-- 轨道的z轴旋转角度, 垂直方向左方为正数，右方为负 -->
                 <Property key="track_0_angle_z" value="-13" type="float"/>
                 <Property key="track_1_angle_z" value="14" type="float"/>
                 <Property key="track_2_angle_z" value="45" type="float"/>
@@ -149,7 +167,6 @@
                 <Property key="track_4_angle_z" value="-46" type="float"/>
                 <Property key="track_5_angle_z" value="-10" type="float"/>
                 <Property key="track_6_angle_z" value="19" type="float"/>
-                <!-- 轨道的x轴旋转角度 -->
                 <Property key="track_0_angle_x" value="0" type="float"/>
                 <Property key="track_1_angle_x" value="0" type="float"/>
                 <Property key="track_2_angle_x" value="0" type="float"/>
@@ -157,7 +174,6 @@
                 <Property key="track_4_angle_x" value="0" type="float"/>
                 <Property key="track_5_angle_x" value="0" type="float"/>
                 <Property key="track_6_angle_x" value="0" type="float"/>
-                <!-- 轨道的y轴旋转角度 -->
                 <Property key="track_0_angle_y" value="0" type="float"/>
                 <Property key="track_1_angle_y" value="0" type="float"/>
                 <Property key="track_2_angle_y" value="0" type="float"/>
@@ -165,7 +181,6 @@
                 <Property key="track_4_angle_y" value="0" type="float"/>
                 <Property key="track_5_angle_y" value="0" type="float"/>
                 <Property key="track_6_angle_y" value="0" type="float"/>
-                <!-- 轨道的遮罩透明值 -->
                 <Property key="track_0_mask" value="0.1" type="float"/>
                 <Property key="track_1_mask" value="0.1" type="float"/>
                 <Property key="track_2_mask" value="0.1" type="float"/>
@@ -180,7 +195,6 @@
             <Action name="FilmInTransition" disable="false">
               <Properties>
                 <Property key="duration" value="3" type="float"/>
-                <!-- duration中前部分预留多长的空白时间 -->
                 <Property key="blank" value="0" type="float"/>
               </Properties>
             </Action>
@@ -189,7 +203,6 @@
             <Action name="FilmOutTransition" disable="false">
               <Properties>
                 <Property key="duration" value="3" type="float"/>
-                <!-- duration中后部分预留多长的空白时间 -->
                 <Property key="blank" value="0" type="float"/>
               </Properties>
             </Action>

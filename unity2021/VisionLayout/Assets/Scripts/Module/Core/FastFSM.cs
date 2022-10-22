@@ -214,6 +214,10 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     action = _state.NewAction<FenchLayoutAction>();
                     decorateAnimationAction(action);
                     break;
+                case FilmLayoutAction.NAME:
+                    action = _state.NewAction<FilmLayoutAction>();
+                    decorateAnimationAction(action);
+                    break;
                 /*
             case VerticalSplitLayoutAction.NAME:
                 action = _state.NewAction<VerticalSplitLayoutAction>();
@@ -225,10 +229,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 break;
             case ExhibitLayoutAction.NAME:
                 action = _state.NewAction<ExhibitLayoutAction>();
-                decorateAnimationAction(action);
-                break;
-            case FilmLayoutAction.NAME:
-                action = _state.NewAction<FilmLayoutAction>();
                 decorateAnimationAction(action);
                 break;
             case DragTransitionAction.NAME:
@@ -246,6 +246,14 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     break;
                 case EdgeFlyOutTransitionAction.NAME:
                     action = _state.NewAction<EdgeFlyOutTransitionAction>();
+                    decorateAnimationAction(action);
+                    break;
+                case FilmInTransitionAction.NAME:
+                    action = _state.NewAction<FilmInTransitionAction>();
+                    decorateAnimationAction(action);
+                    break;
+                case FilmOutTransitionAction.NAME:
+                    action = _state.NewAction<FilmOutTransitionAction>();
                     decorateAnimationAction(action);
                     break;
                 /*
@@ -279,14 +287,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 break;
             case MaskOutTransitionAction.NAME:
                 action = _state.NewAction<MaskOutTransitionAction>();
-                decorateAnimationAction(action);
-                break;
-            case FilmInTransitionAction.NAME:
-                action = _state.NewAction<FilmInTransitionAction>();
-                decorateAnimationAction(action);
-                break;
-            case FilmOutTransitionAction.NAME:
-                action = _state.NewAction<FilmOutTransitionAction>();
                 decorateAnimationAction(action);
                 break;
                 */

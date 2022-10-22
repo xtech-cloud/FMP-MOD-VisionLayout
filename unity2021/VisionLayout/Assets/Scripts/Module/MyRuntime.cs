@@ -151,7 +151,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 _onFinish();
             }, _onError);
         }
-
     }
 }
 
