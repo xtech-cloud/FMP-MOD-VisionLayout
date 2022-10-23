@@ -44,13 +44,13 @@
                 return;
 
             UnityEngine.Vector2 pos = UnityEngine.Vector2.zero;
-            // 移动所有目标节点到动画结束位置
             foreach (var cell in animCells)
             {
-                pos.x = cell.animEndPos.x;
-                pos.y = cell.animEndPos.y;
-                cell.target.anchoredPosition = pos;
                 cell.target.gameObject.SetActive(false);
+                // 动画结束时将状态设置为动画开始前的原始状态
+                pos.x = cell.dynamicX;
+                pos.y = cell.dynamicY;
+                cell.target.anchoredPosition = pos;
             }
         }
 

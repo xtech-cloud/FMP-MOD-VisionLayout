@@ -109,7 +109,7 @@
             </Action>
           </LayoutActions>
           <InActions>
-            <Action name="EdgeFlyInTransition" disable="false">
+            <Action name="FadeInTransition" disable="false">
               <Properties>
                 <Property key="duration" value="4.5" type="float"/>
                 <Property key="blank" value="1.5" type="float"/>
@@ -117,7 +117,7 @@
             </Action>
           </InActions>
           <OutActions>
-            <Action name="EdgeFlyOutTransition" disable="false">
+            <Action name="FadeOutTransition" disable="false">
               <Properties>
                 <Property key="duration" value="3" type="float"/>
               </Properties>
@@ -246,7 +246,7 @@
           <InActions>
             <Action name="BreatheInTransition" disable="false">
               <Properties>
-                <Property key="duration" value="3" type="float"/>
+                <Property key="duration" value="4.5" type="float"/>
                 <Property key="blank" value="1.5" type="float"/>
               </Properties>
             </Action>
@@ -254,7 +254,7 @@
           <OutActions>
             <Action name="BreatheOutTransition" disable="false">
               <Properties>
-                <Property key="duration" value="1.5" type="float"/>
+                <Property key="duration" value="3" type="float"/>
               </Properties>
             </Action>
           </OutActions>
@@ -309,7 +309,7 @@
             </Action>
           </LayoutActions>
           <InActions>
-            <Action name="DragTransition" disable="false">
+            <Action name="FrameInTransition" disable="false">
               <Properties>
                 <Property key="duration" value="4.5" type="float"/>
                 <Property key="blank" value="1.5" type="float"/>
@@ -317,7 +317,7 @@
             </Action>
           </InActions>
           <OutActions>
-            <Action name="DropTransition" disable="false">
+            <Action name="FrameOutTransition" disable="false">
               <Properties>
                 <Property key="duration" value="3" type="float"/>
               </Properties>

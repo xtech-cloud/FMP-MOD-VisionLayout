@@ -264,15 +264,23 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     action = _state.NewAction<BreatheOutTransitionAction>();
                     decorateAnimationAction(action);
                     break;
+                case FadeInTransitionAction.NAME:
+                    action = _state.NewAction<FadeInTransitionAction>();
+                    decorateAnimationAction(action);
+                    break;
+                case FadeOutTransitionAction.NAME:
+                    action = _state.NewAction<FadeOutTransitionAction>();
+                    decorateAnimationAction(action);
+                    break;
+                case FrameInTransitionAction.NAME:
+                    action = _state.NewAction<FrameInTransitionAction>();
+                    decorateAnimationAction(action);
+                    break;
+                case FrameOutTransitionAction.NAME:
+                    action = _state.NewAction<FrameOutTransitionAction>();
+                    decorateAnimationAction(action);
+                    break;
                 /*
-            case FadeInTransitionAction.NAME:
-                action = _state.NewAction<FadeInTransitionAction>();
-                decorateAnimationAction(action);
-                break;
-            case FadeOutTransitionAction.NAME:
-                action = _state.NewAction<FadeOutTransitionAction>();
-                decorateAnimationAction(action);
-                break;
             case DissolveInTransitionAction.NAME:
                 action = _state.NewAction<DissolveInTransitionAction>();
                 decorateAnimationAction(action);

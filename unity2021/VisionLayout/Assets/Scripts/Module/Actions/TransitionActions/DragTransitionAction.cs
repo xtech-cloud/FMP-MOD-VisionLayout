@@ -33,7 +33,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 cell.animEndPos.x = currentX;
                 cell.animEndPos.y = currentY;
                 cell.target.anchoredPosition = cell.animStartPos;
-                cell.target.gameObject.SetActive(cell.pinVisible && isCellInCanvasRect(cell, canvasWidth_, canvasHeight_));
+                cell.target.gameObject.SetActive(cell.pinVisible);
             }
         }
 
@@ -47,11 +47,11 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 return;
 
             UnityEngine.Vector2 pos = UnityEngine.Vector2.zero;
-            // 移动所有目标节点到动画结束位置
             foreach (var cell in animCells)
             {
-                pos.x = cell.animEndPos.x;
-                pos.y = cell.animEndPos.y;
+                // 动画结束时将状态设置为动画开始前的原始状态
+                pos.x = cell.dynamicX;
+                pos.y = cell.dynamicY;
                 cell.target.anchoredPosition = pos;
             }
         }

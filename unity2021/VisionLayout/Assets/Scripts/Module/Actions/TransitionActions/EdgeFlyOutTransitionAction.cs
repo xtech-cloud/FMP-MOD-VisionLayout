@@ -71,14 +71,14 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 return;
 
             UnityEngine.Vector2 pos = UnityEngine.Vector2.zero;
-            // 移动所有目标节点到动画结束位置
             foreach (var cell in animCells)
             {
-                pos.x = cell.animEndPos.x;
-                pos.y = cell.animEndPos.y;
-                cell.target.anchoredPosition = pos;
-                cell.image.color = new UnityEngine.Color(1, 1, 1, cell.pinAlpha);
                 cell.target.gameObject.SetActive(false);
+                // 动画结束时将状态设置为动画开始前的原始状态
+                pos.x = cell.dynamicX;
+                pos.y = cell.dynamicY;
+                cell.target.anchoredPosition = pos;
+                cell.canvasGroup.alpha = 1;
             }
 
         }
@@ -96,7 +96,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     continue;
                 float percent = (timer_ - cell.animDelay) / cell.animDuration;
                 pos = UnityEngine.Vector2.Lerp(cell.animStartPos, cell.animEndPos, percent);
-                var alpha = UnityEngine.Mathf.Lerp(cell.pinAlpha, 0, percent);
+                var alpha = UnityEngine.Mathf.Lerp(1, 0, percent);
                 cell.target.anchoredPosition = pos;
                 cell.canvasGroup.alpha = alpha;
             }

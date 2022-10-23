@@ -160,10 +160,10 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     cell.animStartPos.y = cell.pinY;
                     cell.animEndPos.x = cell.pinX;
                     cell.animEndPos.y = cell.pinY;
-                    cell.row = 0;
-                    cell.column = 0;
-                    cell.directionX = 0;
-                    cell.directionY = 0;
+                    cell.row = 0; // 此布局无行的概念
+                    cell.column = 0; // 此布局无列的概念
+                    cell.directionX = 0; // 此布局无行的方向的概念
+                    cell.directionY = 0; // 此布局无列的方向的概念
                     cell.contentUri = contentUri;
                     cell.surround = false;
                     cell.target = newCell(layer, contentUri).GetComponent<RectTransform>();
