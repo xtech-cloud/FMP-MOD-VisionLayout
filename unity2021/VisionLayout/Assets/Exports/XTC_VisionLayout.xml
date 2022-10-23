@@ -265,7 +265,7 @@
             </Action>
           </LayoutActions>
           <InActions>
-            <Action name="EdgeFlyInTransition" disable="false">
+            <Action name="DragTransition" disable="false">
               <Properties>
                 <Property key="duration" value="4.5" type="float"/>
                 <Property key="blank" value="1.5" type="float"/>
@@ -273,7 +273,7 @@
             </Action>
           </InActions>
           <OutActions>
-            <Action name="EdgeFlyOutTransition" disable="false">
+            <Action name="DropTransition" disable="false">
               <Properties>
                 <Property key="duration" value="3" type="float"/>
               </Properties>
@@ -303,7 +303,7 @@
             </Action>
           </LayoutActions>
           <InActions>
-            <Action name="EdgeFlyInTransition" disable="false">
+            <Action name="DragTransition" disable="false">
               <Properties>
                 <Property key="duration" value="4.5" type="float"/>
                 <Property key="blank" value="1.5" type="float"/>
@@ -311,7 +311,7 @@
             </Action>
           </InActions>
           <OutActions>
-            <Action name="EdgeFlyOutTransition" disable="false">
+            <Action name="DropTransition" disable="false">
               <Properties>
                 <Property key="duration" value="3" type="float"/>
               </Properties>

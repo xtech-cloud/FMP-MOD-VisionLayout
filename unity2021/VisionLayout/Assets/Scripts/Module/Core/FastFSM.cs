@@ -231,14 +231,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 action = _state.NewAction<ExhibitLayoutAction>();
                 decorateAnimationAction(action);
                 break;
-            case DragTransitionAction.NAME:
-                action = _state.NewAction<DragTransitionAction>();
-                decorateAnimationAction(action);
-                break;
-            case DropTransitionAction.NAME:
-                action = _state.NewAction<DropTransitionAction>();
-                decorateAnimationAction(action);
-                break;
                 */
                 case EdgeFlyInTransitionAction.NAME:
                     action = _state.NewAction<EdgeFlyInTransitionAction>();
@@ -254,6 +246,14 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     break;
                 case FilmOutTransitionAction.NAME:
                     action = _state.NewAction<FilmOutTransitionAction>();
+                    decorateAnimationAction(action);
+                    break;
+                case DragTransitionAction.NAME:
+                    action = _state.NewAction<DragTransitionAction>();
+                    decorateAnimationAction(action);
+                    break;
+                case DropTransitionAction.NAME:
+                    action = _state.NewAction<DropTransitionAction>();
                     decorateAnimationAction(action);
                     break;
                 /*
