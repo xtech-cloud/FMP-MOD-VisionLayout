@@ -218,13 +218,13 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     action = _state.NewAction<FilmLayoutAction>();
                     decorateAnimationAction(action);
                     break;
+                case FrameLayoutAction.NAME:
+                    action = _state.NewAction<FrameLayoutAction>();
+                    decorateAnimationAction(action);
+                    break;
                 /*
             case VerticalSplitLayoutAction.NAME:
                 action = _state.NewAction<VerticalSplitLayoutAction>();
-                decorateAnimationAction(action);
-                break;
-            case FrameLayoutAction.NAME:
-                action = _state.NewAction<FrameLayoutAction>();
                 decorateAnimationAction(action);
                 break;
             case ExhibitLayoutAction.NAME:

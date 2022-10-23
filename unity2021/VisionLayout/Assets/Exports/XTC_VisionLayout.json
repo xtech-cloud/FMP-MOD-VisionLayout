@@ -74,6 +74,21 @@
         "TitleImage": "",
         "ProfileImage": ""
       }
+    },
+    {
+      "name": "6",
+      "path": "/6",
+      "instanceS": [
+        "default"
+      ],
+      "contentS": [
+        "XTC.VisionLayout.1/+"
+      ],
+      "kvS": {
+        "LayerPattern": "Frame",
+        "TitleImage": "",
+        "ProfileImage": ""
+      }
     }
   ]
 }
