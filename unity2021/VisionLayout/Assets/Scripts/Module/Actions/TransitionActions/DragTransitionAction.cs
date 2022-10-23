@@ -46,15 +46,12 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             if (null == animCells)
                 return;
 
-           // var dummyBoards = model.DummyBoards;
             UnityEngine.Vector2 pos = UnityEngine.Vector2.zero;
             // 移动所有目标节点到动画结束位置
             foreach (var cell in animCells)
             {
                 pos.x = cell.animEndPos.x;
                 pos.y = cell.animEndPos.y;
-                //if(cell.surround)
-                //   pos.x = roundWorckbenchFitX(dummyBoards, config.dummyBoard.radius, pos);
                 cell.target.anchoredPosition = pos;
             }
         }
@@ -65,7 +62,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             if (null == animCells)
                 return;
 
-            //var dummyBoards = model.DummyBoards;
             UnityEngine.Vector2 pos = UnityEngine.Vector2.zero;
             foreach (var cell in animCells)
             {
@@ -73,8 +69,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     continue;
                 float percent = (timer_ - cell.animDelay) / cell.animDuration;
                 pos = UnityEngine.Vector2.Lerp(cell.animStartPos, cell.animEndPos, percent);
-                //if (cell.surround)
-                //    pos.x = roundWorckbenchFitX(dummyBoards, config.dummyBoard.radius, pos);
                 cell.target.anchoredPosition = pos;
             }
         }

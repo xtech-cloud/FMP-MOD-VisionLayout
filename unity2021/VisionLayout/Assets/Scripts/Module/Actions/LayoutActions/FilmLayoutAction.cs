@@ -168,6 +168,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     cell.surround = false;
                     cell.target = newCell(layer, contentUri).GetComponent<RectTransform>();
                     cell.image = cell.target.gameObject.GetComponent<RawImage>();
+                    cell.canvasGroup = cell.target.gameObject.GetComponent<UnityEngine.CanvasGroup>();
 
                     if (null != coverTexture)
                         cell.image.texture = coverTexture;

@@ -23,7 +23,6 @@
             // 计算动画开始的位置
             // 并移动所有目标节点到动画开始位置
             float blank = parseFloatFromProperty("blank");
-            UnityEngine.Color color = new UnityEngine.Color(1, 1, 1, 0);
             float margin = 10;
 
             animCells = filterInCanvasRectCells();
@@ -61,7 +60,7 @@
                 cell.animEndPos.x = currentX;
                 cell.animEndPos.y = currentY;
                 cell.target.anchoredPosition = cell.animStartPos;
-                cell.image.color = color;
+                cell.canvasGroup.alpha = 0;
                 cell.target.gameObject.SetActive(cell.pinVisible);
             }
         }
@@ -75,18 +74,14 @@
             if (null == animCells)
                 return;
 
-            //TODO DummyBoards
-            //var dummyBoards = model.DummyBoards;
             UnityEngine.Vector2 pos = UnityEngine.Vector2.zero;
             // 移动所有目标节点到动画结束位置
             foreach (var cell in animCells)
             {
                 pos.x = cell.animEndPos.x;
                 pos.y = cell.animEndPos.y;
-                //if(cell.surround)
-                //   pos.x = roundWorckbenchFitX(dummyBoards, config.dummyBoard.radius, pos);
                 cell.target.anchoredPosition = pos;
-                cell.image.color = new UnityEngine.Color(1, 1, 1, cell.pinAlpha);
+                cell.canvasGroup.alpha = 1;
             }
 
         }
@@ -97,22 +92,16 @@
             if (null == animCells)
                 return;
 
-            //var dummyBoards = model.DummyBoards;
             UnityEngine.Vector2 pos = UnityEngine.Vector2.zero;
-            UnityEngine.Color color;
             foreach (var cell in animCells)
             {
                 if (timer_ < cell.animDelay)
                     continue;
                 float percent = (timer_ - cell.animDelay) / cell.animDuration;
                 pos = UnityEngine.Vector2.Lerp(cell.animStartPos, cell.animEndPos, percent);
-                var alpha = UnityEngine.Mathf.Lerp(0, cell.pinAlpha, percent);
-                //if (cell.surround)
-                //    pos.x = roundWorckbenchFitX(dummyBoards, config.dummyBoard.radius, pos);
+                var alpha = UnityEngine.Mathf.Lerp(0, 1, percent);
                 cell.target.anchoredPosition = pos;
-                color = cell.image.color;
-                color.a = alpha;
-                cell.image.color = color;
+                cell.canvasGroup.alpha = alpha;
             }
         }
     }

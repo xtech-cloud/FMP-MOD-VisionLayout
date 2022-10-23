@@ -155,6 +155,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 cell.surround = false;
                 cell.target = newCell(layer, contentUri).GetComponent<UnityEngine.RectTransform>();
                 cell.image = cell.target.gameObject.GetComponent<UnityEngine.UI.RawImage>();
+                cell.canvasGroup = cell.target.gameObject.GetComponent<UnityEngine.CanvasGroup>();
                 cell.pinVisible = true;
                 cell.target.gameObject.SetActive(false);
 

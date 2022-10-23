@@ -256,6 +256,14 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     action = _state.NewAction<DropTransitionAction>();
                     decorateAnimationAction(action);
                     break;
+                case BreatheInTransitionAction.NAME:
+                    action = _state.NewAction<BreatheInTransitionAction>();
+                    decorateAnimationAction(action);
+                    break;
+                case BreatheOutTransitionAction.NAME:
+                    action = _state.NewAction<BreatheOutTransitionAction>();
+                    decorateAnimationAction(action);
+                    break;
                 /*
             case FadeInTransitionAction.NAME:
                 action = _state.NewAction<FadeInTransitionAction>();
@@ -263,14 +271,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 break;
             case FadeOutTransitionAction.NAME:
                 action = _state.NewAction<FadeOutTransitionAction>();
-                decorateAnimationAction(action);
-                break;
-            case ExplodeInTransitionAction.NAME:
-                action = _state.NewAction<ExplodeInTransitionAction>();
-                decorateAnimationAction(action);
-                break;
-            case ExplodeOutTransitionAction.NAME:
-                action = _state.NewAction<ExplodeOutTransitionAction>();
                 decorateAnimationAction(action);
                 break;
             case DissolveInTransitionAction.NAME:

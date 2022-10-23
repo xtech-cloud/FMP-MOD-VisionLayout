@@ -229,6 +229,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             // 赋值图片
             cell.pinAlpha = _viewport.index == viewports_.Length - 1 ? 1.0f : alphaStep_ * (_viewport.index + 1);
             cell.image = cell.target.gameObject.GetComponent<UnityEngine.UI.RawImage>();
+            cell.canvasGroup = cell.target.gameObject.GetComponent<UnityEngine.CanvasGroup>();
             var color = cell.image.color;
             color.a = cell.pinAlpha;
             cell.image.color = color;

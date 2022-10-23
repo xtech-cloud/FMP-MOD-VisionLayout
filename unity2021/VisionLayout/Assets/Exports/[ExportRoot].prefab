@@ -1653,6 +1653,7 @@ GameObject:
   - component: {fileID: 6126201667852900538}
   - component: {fileID: 347340953521150505}
   - component: {fileID: 6155643288878408921}
+  - component: {fileID: 5626652198102873159}
   m_Layer: 5
   m_Name: CellTemplate
   m_TagString: Untagged
@@ -1760,6 +1761,18 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!225 &5626652198102873159
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5348289072215477682}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5781707042083000767
 GameObject:
   m_ObjectHideFlags: 0

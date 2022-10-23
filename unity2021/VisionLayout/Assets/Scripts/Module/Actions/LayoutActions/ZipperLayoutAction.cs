@@ -50,7 +50,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             List<Cell> cells = new List<Cell>();
             // 按从左往右，从上到下的顺序排列
             int direction = 1;
-            for (int i = 0; i < _contentList.Count || i < columnCount*2; i++)
+            for (int i = 0; i < _contentList.Count || i < columnCount * 2; i++)
             {
                 string contentUri = _contentList.Count > 0 ? _contentList[cells.Count % _contentList.Count] : "";
                 int fitWidth = cellWidth;
@@ -85,6 +85,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 cell.surround = false;
                 cell.target = newCell(layer, contentUri).GetComponent<UnityEngine.RectTransform>();
                 cell.image = cell.target.gameObject.GetComponent<UnityEngine.UI.RawImage>();
+                cell.canvasGroup = cell.target.gameObject.GetComponent<UnityEngine.CanvasGroup>();
 
                 cell.target.anchoredPosition = new UnityEngine.Vector2(cell.pinX, cell.pinY);
                 cell.target.sizeDelta = new UnityEngine.Vector2(cell.width, cell.height);

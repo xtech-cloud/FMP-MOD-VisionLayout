@@ -167,6 +167,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 cell.surround = surround;
                 cell.target = newCell(layer, contentUri).GetComponent<UnityEngine.RectTransform>();
                 cell.image = cell.target.gameObject.GetComponent<UnityEngine.UI.RawImage>();
+                cell.canvasGroup = cell.target.gameObject.GetComponent<UnityEngine.CanvasGroup>();
 
                 cell.target.anchoredPosition = new UnityEngine.Vector2(cell.pinX, cell.pinY);
                 cell.target.sizeDelta = new UnityEngine.Vector2(cell.width, cell.height);

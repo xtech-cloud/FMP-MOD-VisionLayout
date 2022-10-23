@@ -102,6 +102,11 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// 节点的图像组件
         /// </summary>
         public UnityEngine.UI.RawImage image;
+
+        /// <summary>
+        /// 节点的画布组组件
+        /// </summary>
+        public UnityEngine.CanvasGroup canvasGroup;
     }
 
 }
