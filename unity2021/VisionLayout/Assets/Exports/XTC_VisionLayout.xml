@@ -73,8 +73,12 @@
         Style.LayerPattern.Action<name="EdgeFlyOutTraision">: 边界飞出
         Style.LayerPattern.Action<name="DragTraision">: 上方掉入
         Style.LayerPattern.Action<name="DropTraision">: 下方掉出
-        Style.LayerPattern.Action<name="ExplodeInTraision">: 爆炸飞入
-        Style.LayerPattern.Action<name="ExplodeOutTraision">: 爆炸飞出
+        Style.LayerPattern.Action<name="BreatheInTraision">: 呼入
+        Style.LayerPattern.Action<name="BreatheOutTraision">: 吸出
+        Style.LayerPattern.Action<name="FilmInTraision">: 胶卷布局进入，胶卷布局专用
+        Style.LayerPattern.Action<name="FilmOutTraision">: 胶卷布局退出，胶卷布局专用
+        Style.LayerPattern.Action<name="FrameInTraision">: 画框布局进入，画框布局专用
+        Style.LayerPattern.Action<name="FilmOutTraision">: 画框布局退出，画框布局专用
     -->
   <Styles>
     <Style name="default">
