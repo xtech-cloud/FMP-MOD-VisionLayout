@@ -67,6 +67,8 @@
         Style.LayerPattern.Action<name="Film">.Property."track_{n}_angle_x": 轨道n的x轴旋转角度
         Style.LayerPattern.Action<name="Film">.Property."track_{n}_angle_y": 轨道n的y轴旋转角度
         Style.LayerPattern.Action<name="Film">.Property."track_{n}_mask": 轨道n的遮罩透明值，范围为[0.0, 1.0]闭区间
+        Style.LayerPattern.Action<name="ZipperLayout">: 拉链的布局
+        Style.LayerPattern.Action<name="ZipperLayout">.Property."column": 竖栏的数量
     -->
   <Styles>
     <Style name="default">
@@ -299,7 +301,32 @@
                 <Property key="maxHeight" value="700" type="int"/>
               </Properties>
             </Action>
-
+          </LayoutActions>
+          <InActions>
+            <Action name="EdgeFlyInTransition" disable="false">
+              <Properties>
+                <Property key="duration" value="4.5" type="float"/>
+                <Property key="blank" value="1.5" type="float"/>
+              </Properties>
+            </Action>
+          </InActions>
+          <OutActions>
+            <Action name="EdgeFlyOutTransition" disable="false">
+              <Properties>
+                <Property key="duration" value="3" type="float"/>
+              </Properties>
+            </Action>
+          </OutActions>
+        </LayerPattern>
+        <LayerPattern name="Zipper" interactable="true">
+          <LayoutActions>
+            <Action name="ZipperLayout" disable="false">
+              <Properties>
+                <Property key="duration" value="30" type="float"/>
+                <Property key="column" value="12" type="int"/>
+                <Property key="space" value="36" type="int"/>
+              </Properties>
+            </Action>
           </LayoutActions>
           <InActions>
             <Action name="EdgeFlyInTransition" disable="false">

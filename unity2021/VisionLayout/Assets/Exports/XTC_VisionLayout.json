@@ -89,6 +89,21 @@
         "TitleImage": "",
         "ProfileImage": ""
       }
+    },
+    {
+      "name": "7",
+      "path": "/7",
+      "instanceS": [
+        "default"
+      ],
+      "contentS": [
+        "XTC.VisionLayout.1/+"
+      ],
+      "kvS": {
+        "LayerPattern": "Zipper",
+        "TitleImage": "",
+        "ProfileImage": ""
+      }
     }
   ]
 }

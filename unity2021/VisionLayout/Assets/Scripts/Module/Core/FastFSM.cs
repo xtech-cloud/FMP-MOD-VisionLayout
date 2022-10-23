@@ -222,11 +222,11 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     action = _state.NewAction<FrameLayoutAction>();
                     decorateAnimationAction(action);
                     break;
+                case ZipperLayoutAction.NAME:
+                    action = _state.NewAction<ZipperLayoutAction>();
+                    decorateAnimationAction(action);
+                    break;
                 /*
-            case VerticalSplitLayoutAction.NAME:
-                action = _state.NewAction<VerticalSplitLayoutAction>();
-                decorateAnimationAction(action);
-                break;
             case ExhibitLayoutAction.NAME:
                 action = _state.NewAction<ExhibitLayoutAction>();
                 decorateAnimationAction(action);
