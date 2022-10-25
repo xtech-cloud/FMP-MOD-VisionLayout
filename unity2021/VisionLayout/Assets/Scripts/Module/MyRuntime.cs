@@ -92,7 +92,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     }
                     if (null != bundleMeta)
                     {
-                        foreach (var content in bundleMeta.Contents)
+                        foreach (var content in bundleMeta.foreign_content_uuidS)
                         {
                             string contentUri = string.Format("{0}/{1}", bundle, content);
                             foreach (var contentPattern in contentS[bundle])

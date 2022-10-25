@@ -66,6 +66,8 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
             [XmlArray("OutActions"), XmlArrayItem("Action")]
             public Action[] outActionS { get; set; }
+            [XmlArray("Subjects"), XmlArrayItem("Subject")]
+            public Subject[] subjects { get; set; } = new Subject[0];
         }
 
         public class Style

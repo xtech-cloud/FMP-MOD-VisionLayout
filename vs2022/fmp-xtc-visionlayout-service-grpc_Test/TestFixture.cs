@@ -6,9 +6,12 @@ using XTC.FMP.MOD.VisionLayout.App.Service;
 /// </summary>
 public class TestFixture : TestFixtureBase
 {
+    //private SingletonServices singletonServices_;
+
     public TestFixture()
         : base()
     {
+        //singletonServices_ = new SingletonServices(new DatabaseOptions());
     }
 
     public override void Dispose()
@@ -20,7 +23,7 @@ public class TestFixture : TestFixtureBase
     protected override void newHealthyService()
     {
         throw new NotImplementedException();
-        //serviceHealthy_ = new HealthyService(new HealthyDAO(new DatabaseOptions()));
+        //serviceHealthy_ = new HealthyService(singletonServices_);
     }
 
 }

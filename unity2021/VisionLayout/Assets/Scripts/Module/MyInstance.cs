@@ -34,6 +34,11 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             return catalog_;
         }
 
+        public MyEntry getMyEntry()
+        {
+            return entry_ as MyEntry;
+        }
+
 
         public MyInstance(string _uid, string _style, MyConfig _config, MyCatalog _catalog, LibMVCS.Logger _logger, Dictionary<string, LibMVCS.Any> _settings, MyEntryBase _entry, MonoBehaviour _mono, GameObject _rootAttachments)
             : base(_uid, _style, _config, _catalog, _logger, _settings, _entry, _mono, _rootAttachments)

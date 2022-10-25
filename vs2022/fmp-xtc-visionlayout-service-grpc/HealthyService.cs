@@ -7,21 +7,18 @@ namespace XTC.FMP.MOD.VisionLayout.App.Service
 {
     public class HealthyService : HealthyServiceBase
     {
-        // 解开以下代码的注释，可支持数据库操作
-        /*
-        private readonly YourDAO yourDAO_;
+        private readonly SingletonServices singletonServices_;
 
-         /// <summary>
+        /// <summary>
         /// 构造函数
         /// </summary>
         /// <remarks>
         /// 支持多个参数，均为自动注入，注入点位于MyProgram.PreBuild
         /// </remarks>
-        /// <param name="_yourDAO">自动注入的数据操作对象</param>
-        public HealthyService(YourDAO _yourDAO)
+        /// <param name="_singletonServices">自动注入的单例服务</param>
+        public HealthyService(SingletonServices _singletonServices)
         {
-            yourDAO_ = _yourDAO;
+            singletonServices_ = _singletonServices;
         }
-        */
     }
 }

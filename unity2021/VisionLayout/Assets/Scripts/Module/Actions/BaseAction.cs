@@ -445,19 +445,36 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             clone.name = _contentUri;
             var button = clone.GetComponent<UnityEngine.UI.Button>();
             string layer = _layer;
+            string contentUri = _contentUri;
             button.onClick.AddListener(() =>
             {
                 extendFeatures.toolbar.ClickHiddenArea(clone);
-                /*
-                Dictionary<string, object> data = new Dictionary<string, object>();
-                UnityEngine.Vector2 pos = button.GetComponent<UnityEngine.RectTransform>().anchoredPosition;
-                data["posX"] = pos.x;
-                data["posY"] = pos.y;
-                data["style"] = config.workbench.style;
-                data["contentUri"] = clone.name;
-                data["timeout"] = config.workbench.timeout;
-                model.Broadcast("/Workbench/Open", LitJson.JsonMapper.ToJson(data));
-                */
+                foreach (var subject in layerPattern.subjects)
+                {
+                    Dictionary<string, object> data = new Dictionary<string, object>();
+                    foreach (var parameter in subject.parameters)
+                    {
+                        if (parameter.type == "string")
+                        {
+                            string val = parameter.value.Replace("{{content_uri}}", contentUri);
+                            val = val.Replace("{{dummyboard_uid}}", System.Guid.NewGuid().ToString());
+                            data[parameter.key] = val;
+                        }
+                        else if (parameter.type == "int")
+                        {
+                            data[parameter.key] = int.Parse(parameter.value);
+                        }
+                        else if (parameter.type == "float")
+                        {
+                            data[parameter.key] = float.Parse(parameter.value);
+                        }
+                        else if (parameter.type == "bool")
+                        {
+                            data[parameter.key] = bool.Parse(parameter.value);
+                        }
+                    }
+                    myInstance.getMyEntry().getDummyModel().Publish(subject.message, data);
+                }
             });
             button.interactable = false;
             return clone;

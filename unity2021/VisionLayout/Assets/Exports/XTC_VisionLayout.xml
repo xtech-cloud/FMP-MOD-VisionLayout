@@ -20,6 +20,7 @@
         Style.LayerPattern.LayoutActions: 布局的行为列表
         Style.LayerPattern.InActions: 布局进入时的变换的行为列表
         Style.LayerPattern.OutActions: 布局退出时的变换的行为列表
+        Style.LayerPattern.Subjects: 当可交互的节点被点击后发布的消息列表
         Style.LayerPattern.Action.name: 行为的名称
         Style.LayerPattern.Action.disable: 行为是否禁用
         Style.LayerPattern.Action.Properties: 行为的属性列表
@@ -78,7 +79,7 @@
         Style.LayerPattern.Action<name="FilmInTraision">: 胶卷布局进入，胶卷布局专用
         Style.LayerPattern.Action<name="FilmOutTraision">: 胶卷布局退出，胶卷布局专用
         Style.LayerPattern.Action<name="FrameInTraision">: 画框布局进入，画框布局专用
-        Style.LayerPattern.Action<name="FilmOutTraision">: 画框布局退出，画框布局专用
+        Style.LayerPattern.Action<name="FrameOutTraision">: 画框布局退出，画框布局专用
     -->
   <Styles>
     <Style name="default">
@@ -90,6 +91,22 @@
       <Profile duration="5">
         <Anchor horizontal="left" vertical="center" marginH="64" marginV="0" width="506" height="788"/>
       </Profile>
+      <Subjects>
+        <Subject message="/XTC/IntegrationBoard/Create">
+          <Parameters>
+            <Parameter key="uid" value="{{uid}}" type="string"/>
+            <Parameter key="style" value="{{stype}}" type="string"/>
+          </Parameters>
+        </Subject>
+        <Subject message="/XTC/IntegrationBoard/Open">
+          <Parameters>
+            <Parameter key="uid" value="{{uid}}" type="string"/>
+            <Parameter key="source" value="assloud://" type="string"/>
+            <Parameter key="uri" value="{{content_uri}}" type="string"/>
+            <Parameter key="delay" value="0" type="float"/>
+          </Parameters>
+        </Subject>
+      </Subjects>
       <LayerPatterns>
         <LayerPattern name="Flow" interactable="true">
           <LayoutActions>
@@ -127,6 +144,17 @@
               </Properties>
             </Action>
           </OutActions>
+          <Subjects>
+            <Subject message="/XTC/IntegrationBoard/Upsert">
+              <Parameters>
+                <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
+                <Parameter key="style" value="circular" type="string"/>
+                <Parameter key="source" value="assloud://" type="string"/>
+                <Parameter key="uri" value="{{content_uri}}" type="string"/>
+                <Parameter key="delay" value="0" type="float"/>
+              </Parameters>
+            </Subject>
+          </Subjects>
         </LayerPattern>
         <LayerPattern name="Film" interactable="true">
           <LayoutActions>
@@ -229,6 +257,17 @@
               </Properties>
             </Action>
           </OutActions>
+          <Subjects>
+            <Subject message="/XTC/IntegrationBoard/Upsert">
+              <Parameters>
+                <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
+                <Parameter key="style" value="circular" type="string"/>
+                <Parameter key="source" value="assloud://" type="string"/>
+                <Parameter key="uri" value="{{content_uri}}" type="string"/>
+                <Parameter key="delay" value="0" type="float"/>
+              </Parameters>
+            </Subject>
+          </Subjects>
         </LayerPattern>
         <LayerPattern name="Stacked" interactable="true">
           <LayoutActions>
@@ -262,6 +301,17 @@
               </Properties>
             </Action>
           </OutActions>
+          <Subjects>
+            <Subject message="/XTC/IntegrationBoard/Upsert">
+              <Parameters>
+                <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
+                <Parameter key="style" value="circular" type="string"/>
+                <Parameter key="source" value="assloud://" type="string"/>
+                <Parameter key="uri" value="{{content_uri}}" type="string"/>
+                <Parameter key="delay" value="0" type="float"/>
+              </Parameters>
+            </Subject>
+          </Subjects>
         </LayerPattern>
         <LayerPattern name="Fench" interactable="true">
           <LayoutActions>
@@ -289,6 +339,17 @@
               </Properties>
             </Action>
           </OutActions>
+          <Subjects>
+            <Subject message="/XTC/IntegrationBoard/Upsert">
+              <Parameters>
+                <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
+                <Parameter key="style" value="circular" type="string"/>
+                <Parameter key="source" value="assloud://" type="string"/>
+                <Parameter key="uri" value="{{content_uri}}" type="string"/>
+                <Parameter key="delay" value="0" type="float"/>
+              </Parameters>
+            </Subject>
+          </Subjects>
         </LayerPattern>
         <LayerPattern name="Frame" interactable="true">
           <LayoutActions>
@@ -327,6 +388,17 @@
               </Properties>
             </Action>
           </OutActions>
+          <Subjects>
+            <Subject message="/XTC/IntegrationBoard/Upsert">
+              <Parameters>
+                <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
+                <Parameter key="style" value="circular" type="string"/>
+                <Parameter key="source" value="assloud://" type="string"/>
+                <Parameter key="uri" value="{{content_uri}}" type="string"/>
+                <Parameter key="delay" value="0" type="float"/>
+              </Parameters>
+            </Subject>
+          </Subjects>
         </LayerPattern>
         <LayerPattern name="Zipper" interactable="true">
           <LayoutActions>
@@ -353,6 +425,17 @@
               </Properties>
             </Action>
           </OutActions>
+          <Subjects>
+            <Subject message="/XTC/IntegrationBoard/Upsert">
+              <Parameters>
+                <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
+                <Parameter key="style" value="circular" type="string"/>
+                <Parameter key="source" value="assloud://" type="string"/>
+                <Parameter key="uri" value="{{content_uri}}" type="string"/>
+                <Parameter key="delay" value="0" type="float"/>
+              </Parameters>
+            </Subject>
+          </Subjects>
         </LayerPattern>
       </LayerPatterns>
     </Style>
