@@ -91,29 +91,13 @@
       <Profile duration="5">
         <Anchor horizontal="left" vertical="center" marginH="64" marginV="0" width="506" height="788"/>
       </Profile>
-      <Subjects>
-        <Subject message="/XTC/IntegrationBoard/Create">
-          <Parameters>
-            <Parameter key="uid" value="{{uid}}" type="string"/>
-            <Parameter key="style" value="{{stype}}" type="string"/>
-          </Parameters>
-        </Subject>
-        <Subject message="/XTC/IntegrationBoard/Open">
-          <Parameters>
-            <Parameter key="uid" value="{{uid}}" type="string"/>
-            <Parameter key="source" value="assloud://" type="string"/>
-            <Parameter key="uri" value="{{content_uri}}" type="string"/>
-            <Parameter key="delay" value="0" type="float"/>
-          </Parameters>
-        </Subject>
-      </Subjects>
       <LayerPatterns>
         <LayerPattern name="Flow" interactable="true">
           <LayoutActions>
             <Action name="HorizontalFlowLayout" disable="false">
               <Properties>
                 <Property key="duration" value="30" type="float"/>
-                <Property key="speed" value="100" type="float"/>
+                <Property key="speed" value="10" type="float"/>
                 <Property key="row" value="8" type="int"/>
                 <Property key="space" value="10" type="int"/>
                 <Property key="surround" value="true" type="bool"/>
@@ -122,7 +106,7 @@
             <Action name="VerticalFlowLayout" disable="false">
               <Properties>
                 <Property key="duration" value="30" type="float"/>
-                <Property key="speed" value="100" type="float"/>
+                <Property key="speed" value="10" type="float"/>
                 <Property key="column" value="14" type="int"/>
                 <Property key="space" value="10" type="int"/>
                 <Property key="surround" value="true" type="bool"/>
@@ -145,12 +129,14 @@
             </Action>
           </OutActions>
           <Subjects>
-            <Subject message="/XTC/IntegrationBoard/Upsert">
+            <Subject message="/XTC/IntegrationBoard/Popup">
               <Parameters>
                 <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
                 <Parameter key="style" value="circular" type="string"/>
                 <Parameter key="source" value="assloud://" type="string"/>
                 <Parameter key="uri" value="{{content_uri}}" type="string"/>
+                <Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
+                <Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
                 <Parameter key="delay" value="0" type="float"/>
               </Parameters>
             </Subject>
@@ -258,12 +244,14 @@
             </Action>
           </OutActions>
           <Subjects>
-            <Subject message="/XTC/IntegrationBoard/Upsert">
+            <Subject message="/XTC/IntegrationBoard/Popup">
               <Parameters>
                 <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
                 <Parameter key="style" value="circular" type="string"/>
                 <Parameter key="source" value="assloud://" type="string"/>
                 <Parameter key="uri" value="{{content_uri}}" type="string"/>
+                <Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
+                <Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
                 <Parameter key="delay" value="0" type="float"/>
               </Parameters>
             </Subject>
@@ -302,12 +290,14 @@
             </Action>
           </OutActions>
           <Subjects>
-            <Subject message="/XTC/IntegrationBoard/Upsert">
+            <Subject message="/XTC/IntegrationBoard/Popup">
               <Parameters>
                 <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
                 <Parameter key="style" value="circular" type="string"/>
                 <Parameter key="source" value="assloud://" type="string"/>
                 <Parameter key="uri" value="{{content_uri}}" type="string"/>
+                <Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
+                <Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
                 <Parameter key="delay" value="0" type="float"/>
               </Parameters>
             </Subject>
@@ -340,12 +330,14 @@
             </Action>
           </OutActions>
           <Subjects>
-            <Subject message="/XTC/IntegrationBoard/Upsert">
+            <Subject message="/XTC/IntegrationBoard/Popup">
               <Parameters>
                 <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
                 <Parameter key="style" value="circular" type="string"/>
                 <Parameter key="source" value="assloud://" type="string"/>
                 <Parameter key="uri" value="{{content_uri}}" type="string"/>
+                <Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
+                <Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
                 <Parameter key="delay" value="0" type="float"/>
               </Parameters>
             </Subject>
@@ -389,12 +381,14 @@
             </Action>
           </OutActions>
           <Subjects>
-            <Subject message="/XTC/IntegrationBoard/Upsert">
+            <Subject message="/XTC/IntegrationBoard/Popup">
               <Parameters>
                 <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
                 <Parameter key="style" value="circular" type="string"/>
                 <Parameter key="source" value="assloud://" type="string"/>
                 <Parameter key="uri" value="{{content_uri}}" type="string"/>
+                <Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
+                <Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
                 <Parameter key="delay" value="0" type="float"/>
               </Parameters>
             </Subject>
@@ -426,12 +420,14 @@
             </Action>
           </OutActions>
           <Subjects>
-            <Subject message="/XTC/IntegrationBoard/Upsert">
+            <Subject message="/XTC/IntegrationBoard/Popup">
               <Parameters>
                 <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
                 <Parameter key="style" value="circular" type="string"/>
                 <Parameter key="source" value="assloud://" type="string"/>
                 <Parameter key="uri" value="{{content_uri}}" type="string"/>
+                <Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
+                <Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
                 <Parameter key="delay" value="0" type="float"/>
               </Parameters>
             </Subject>

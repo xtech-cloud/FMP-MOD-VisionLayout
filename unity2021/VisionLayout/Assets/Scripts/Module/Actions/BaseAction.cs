@@ -2,6 +2,7 @@
 using XTC.oelFSM;
 using System.Collections.Generic;
 using static XTC.FMP.LIB.MVCS.View;
+using UnityEngine;
 
 namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 {
@@ -449,6 +450,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             button.onClick.AddListener(() =>
             {
                 extendFeatures.toolbar.ClickHiddenArea(clone);
+                var pos = button.GetComponent<RectTransform>().anchoredPosition;
                 foreach (var subject in layerPattern.subjects)
                 {
                     Dictionary<string, object> data = new Dictionary<string, object>();
@@ -466,7 +468,12 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                         }
                         else if (parameter.type == "float")
                         {
-                            data[parameter.key] = float.Parse(parameter.value);
+                            if (parameter.value == "{{dummyboard_position_x}}")
+                                data[parameter.key] = pos.x;
+                            else if (parameter.value == "{{dummyboard_position_y}}")
+                                data[parameter.key] = pos.y;
+                            else
+                                data[parameter.key] = float.Parse(parameter.value);
                         }
                         else if (parameter.type == "bool")
                         {
