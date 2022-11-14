@@ -55,6 +55,11 @@ public class Root : RootBase
         {
             entry_.__DebugDelete("test");
         }
+
+        if (GUI.Button(new Rect(0, 180, 60, 30), "Popup ToolBar"))
+        {
+            entry_.__DebugPopupToolBar("test");
+        }
     }
 }
 

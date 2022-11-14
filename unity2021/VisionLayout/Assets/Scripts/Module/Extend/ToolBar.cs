@@ -56,6 +56,12 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             entryTemplate_.SetActive(false);
         }
 
+        public void Popup()
+        {
+            rootGameObject_.SetActive(true);
+            toggles_[activeLayer].isOn = true;
+        }
+
         /// <summary>
         /// 处理层创建后
         /// </summary>

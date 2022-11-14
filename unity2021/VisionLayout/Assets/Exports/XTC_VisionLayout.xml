@@ -129,7 +129,7 @@
             </Action>
           </OutActions>
           <Subjects>
-            <Subject message="/XTC/IntegrationBoard/Popup">
+            <Subject message="/XTC/IntegrationBoard/DirectOpen">
               <Parameters>
                 <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
                 <Parameter key="style" value="circular" type="string"/>
@@ -244,7 +244,7 @@
             </Action>
           </OutActions>
           <Subjects>
-            <Subject message="/XTC/IntegrationBoard/Popup">
+            <Subject message="/XTC/IntegrationBoard/DirectOpen">
               <Parameters>
                 <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
                 <Parameter key="style" value="circular" type="string"/>
@@ -290,7 +290,7 @@
             </Action>
           </OutActions>
           <Subjects>
-            <Subject message="/XTC/IntegrationBoard/Popup">
+            <Subject message="/XTC/IntegrationBoard/DirectOpen">
               <Parameters>
                 <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
                 <Parameter key="style" value="circular" type="string"/>
@@ -330,7 +330,7 @@
             </Action>
           </OutActions>
           <Subjects>
-            <Subject message="/XTC/IntegrationBoard/Popup">
+            <Subject message="/XTC/IntegrationBoard/DirectOpen">
               <Parameters>
                 <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
                 <Parameter key="style" value="circular" type="string"/>
@@ -381,7 +381,7 @@
             </Action>
           </OutActions>
           <Subjects>
-            <Subject message="/XTC/IntegrationBoard/Popup">
+            <Subject message="/XTC/IntegrationBoard/DirectOpen">
               <Parameters>
                 <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
                 <Parameter key="style" value="circular" type="string"/>
@@ -420,7 +420,7 @@
             </Action>
           </OutActions>
           <Subjects>
-            <Subject message="/XTC/IntegrationBoard/Popup">
+            <Subject message="/XTC/IntegrationBoard/DirectOpen">
               <Parameters>
                 <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
                 <Parameter key="style" value="circular" type="string"/>

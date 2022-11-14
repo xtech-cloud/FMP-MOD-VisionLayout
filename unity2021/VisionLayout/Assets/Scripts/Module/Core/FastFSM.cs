@@ -15,6 +15,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         public MyInstance myInstance { get; set; }
 
         public UnityEngine.Vector2 virtualResolution { get; set; }
+        public ExtendFeatures extendFeatures { get; private set; } = new ExtendFeatures();
 
         private Machine machine_ { get; set; }
         private State stateLayout_ { get; set; }
@@ -22,7 +23,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         private SelectLayoutAction selectLayoutAction_ { get; set; }
         private SelectTransitionAction selectTransitionAction_ { get; set; }
         private RuntimeClone runtimeClone_ = new RuntimeClone();
-        private ExtendFeatures extendFeatures_ = new ExtendFeatures();
 
         /// <summary>
         /// 初始化
@@ -304,7 +304,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
             action.myInstance = myInstance;
             action.runtimeClone = runtimeClone_;
-            action.extendFeatures = extendFeatures_;
+            action.extendFeatures = extendFeatures;
             return action;
         }
 
@@ -325,24 +325,24 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             goCellTemplate.SetActive(false);
             runtimeClone_.cellTemplateMap[_layer] = goCellTemplate;
 
-            extendFeatures_.toolbar.HandleLayerCreated(_layer, _alias);
-            extendFeatures_.imageTitle.HandleLayerCreated(cloneLayer, _catalogSection);
-            extendFeatures_.imageProfile.HandleLayerCreated(cloneLayer, _catalogSection);
+            extendFeatures.toolbar.HandleLayerCreated(_layer, _alias);
+            extendFeatures.imageTitle.HandleLayerCreated(cloneLayer, _catalogSection);
+            extendFeatures.imageProfile.HandleLayerCreated(cloneLayer, _catalogSection);
         }
 
         private void initializeExtendFeatures()
         {
-            extendFeatures_.toolbar.BindRootGameObject(myInstance.rootUI.transform.Find("ToolBar").gameObject);
-            extendFeatures_.toolbar.clickTrigger = myInstance.getStyle().toolBar.clickTrigger;
-            extendFeatures_.toolbar.OnSwitch = () =>
+            extendFeatures.toolbar.BindRootGameObject(myInstance.rootUI.transform.Find("ToolBar").gameObject);
+            extendFeatures.toolbar.clickTrigger = myInstance.getStyle().toolBar.clickTrigger;
+            extendFeatures.toolbar.OnSwitch = () =>
             {
                 //强制切换到Switch状态
                 machine_.InvokeCommand("GotoSwitch");
             };
 
-            extendFeatures_.imageTitle.myInstance = myInstance;
-            extendFeatures_.imageProfile.myInstance = myInstance;
-            extendFeatures_.imageProfile.mono = myInstance.getMono();
+            extendFeatures.imageTitle.myInstance = myInstance;
+            extendFeatures.imageProfile.myInstance = myInstance;
+            extendFeatures.imageProfile.mono = myInstance.getMono();
         }
     }
 }

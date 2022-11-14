@@ -449,7 +449,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             string contentUri = _contentUri;
             button.onClick.AddListener(() =>
             {
-                extendFeatures.toolbar.ClickHiddenArea(clone);
+                //extendFeatures.toolbar.ClickHiddenArea(clone);
                 var pos = button.GetComponent<RectTransform>().anchoredPosition;
                 foreach (var subject in layerPattern.subjects)
                 {

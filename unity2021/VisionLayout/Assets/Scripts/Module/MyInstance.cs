@@ -121,5 +121,10 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         {
             loadTextureFromTheme(_file, _onFinish, _onError);
         }
+
+        public void PopupToolBar()
+        {
+            fastFSM_.extendFeatures.toolbar.Popup();
+        }
     }
 }

@@ -108,5 +108,16 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             data["uid"] = _uid;
             modelDummy_.Publish(MySubjectBase.Delete, data);
         }
+
+        /// <summary>
+        /// 调试打开工具栏
+        /// </summary>
+        /// <param name="_uid">实例的uid</param>
+        public void __DebugPopupToolBar(string _uid)
+        {
+            var data = new Dictionary<string, object>();
+            data["uid"] = _uid;
+            modelDummy_.Publish(MySubject.ToolBarPopup, data);
+        }
     }
 }
