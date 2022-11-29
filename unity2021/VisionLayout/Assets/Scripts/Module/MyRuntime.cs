@@ -36,9 +36,9 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             sequenceBundleMeta.OnFinish = () =>
             {
                 preloads_["ContentUriS"] = preloadContentUriS_;
-                CounterSequence sequenceContentCover = new CounterSequence(0);
-                sequenceContentCover.OnFinish = _onFinish;
-                preloadAllContentCover(sequenceContentCover);
+                CounterSequence sequenceContentFiles = new CounterSequence(0);
+                sequenceContentFiles.OnFinish = _onFinish;
+                preloadAllContentFiles(sequenceContentFiles);
             };
             preloadAllBundleMeta(sequenceBundleMeta);
         }
@@ -113,11 +113,14 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             }
         }
 
-        private void preloadAllContentCover(CounterSequence _sequence)
+        private void preloadAllContentFiles(CounterSequence _sequence)
         {
-            logger_.Info("Ready to preload {0} content/meta.json", preloadContentUriS_.Count);
+            logger_.Info("Ready to preload {0} contents", preloadContentUriS_.Count);
             foreach (var contentUri in preloadContentUriS_)
             {
+                //meta.json
+                _sequence.Dial();
+                //cover.png
                 _sequence.Dial();
             }
             foreach (var contentUri in preloadContentUriS_)
@@ -129,6 +132,15 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 {
                     _sequence.Tick();
                 });
+
+                preloadContentMeta(contentUri, () =>
+                {
+                    _sequence.Tick();
+                }, () =>
+                {
+                    _sequence.Tick();
+                });
+
             }
         }
 
@@ -148,6 +160,28 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             preloadObjectsPool_.LoadTexture(filefullpath, null, (_texture) =>
             {
                 preloads_[_contentUri + "/cover.png"] = _texture;
+                _onFinish();
+            }, _onError);
+        }
+
+        protected void preloadContentMeta(string _contentUri, Action _onFinish, Action _onError)
+        {
+            string assetRootPath = settings_["path.assets"].AsString();
+            string dir = Path.Combine(assetRootPath, _contentUri);
+            string filefullpath = Path.Combine(dir, "meta.json");
+            preloadObjectsPool_.LoadText(filefullpath, null, (_bytes) =>
+            {
+                try
+                {
+                    var contentMeta = JsonConvert.DeserializeObject<ContentMetaSchema>(Encoding.UTF8.GetString(_bytes));
+                    preloads_[_contentUri + "/meta.json"] = contentMeta;
+                }
+                catch (System.Exception ex)
+                {
+                    logger_.Error("deserialize {0}/meta.json failed!", _contentUri);
+                    logger_.Exception(ex);
+                }
+
                 _onFinish();
             }, _onError);
         }

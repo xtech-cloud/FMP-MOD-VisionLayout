@@ -1,1 +1,29 @@
-{"name":"王书茂","kvS":{},"alias":"王书茂","title":"王书茂","caption":"","label":"七一勋章","topic":"为国护海寸步不让 带领群众共同致富","description":"","alias_i18nS":{},"title_i18nS":{},"caption_i18nS":{},"label_i18nS":{},"topic_i18nS":{},"description_i18nS":{},"labelS":[],"tagS":[],"foreign_bundle_uuid":"b359b77a-fb45-4845-8455-27f57ddaeed8","AttachmentS":[{"path":"cover.png","hash":"17c886e3a0888a4cc3b18ab055573345","Size":890737,"Url":""}],"Uuid":"b2fbd138-3706-4920-b474-01d8f6c5a5a3"}
+{
+    "name": "王书茂",
+    "kvS": {
+        "XTC_VisionLayout_Hotspot_x": "0",
+        "XTC_VisionLayout_Hotspot_y": "0"
+    },
+    "alias": "王书茂",
+    "title": "王书茂",
+    "caption": "",
+    "label": "七一勋章",
+    "topic": "为国护海寸步不让 带领群众共同致富",
+    "description": "",
+    "alias_i18nS": {},
+    "title_i18nS": {},
+    "caption_i18nS": {},
+    "label_i18nS": {},
+    "topic_i18nS": {},
+    "description_i18nS": {},
+    "labelS": [],
+    "tagS": [],
+    "foreign_bundle_uuid": "b359b77a-fb45-4845-8455-27f57ddaeed8",
+    "AttachmentS": [{
+        "path": "cover.png",
+        "hash": "17c886e3a0888a4cc3b18ab055573345",
+        "Size": 890737,
+        "Url": ""
+    }],
+    "Uuid": "b2fbd138-3706-4920-b474-01d8f6c5a5a3"
+}

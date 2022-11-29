@@ -83,7 +83,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 cell.target.anchoredPosition = pos;
             }
         }
-        protected override void layout(List<string> _contentList)
+        protected override void layout(List<string> _contentList, Dictionary<string, string> _kvS)
         {
             canvasWidth_ = getParameter(ParameterDefine.Virtual_Resolution_Width).AsInt;
             canvasHeight_ = getParameter(ParameterDefine.Virtual_Resolution_Height).AsInt;

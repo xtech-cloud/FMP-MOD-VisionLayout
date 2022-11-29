@@ -1,1 +1,29 @@
-{"name":"艾爱国","kvS":{},"alias":"艾爱国","title":"艾爱国","caption":"七一勋章","label":"七一勋章","topic":"“做工人要做到最好” 我国焊接领域“领军人”","description":"","alias_i18nS":{},"title_i18nS":{},"caption_i18nS":{},"label_i18nS":{},"topic_i18nS":{},"description_i18nS":{},"labelS":[],"tagS":[],"foreign_bundle_uuid":"b359b77a-fb45-4845-8455-27f57ddaeed8","AttachmentS":[{"path":"cover.png","hash":"5354b28c700ae6ab356b619eea6e3e00","Size":1016048,"Url":""}],"Uuid":"9fd295ef-5a0e-4607-b247-04f0fb43be97"}
+{
+    "name": "艾爱国",
+    "kvS": {
+        "XTC_VisionLayout_Hotspot_x": "100",
+        "XTC_VisionLayout_Hotspot_y": "-100"
+    },
+    "alias": "艾爱国",
+    "title": "艾爱国",
+    "caption": "七一勋章",
+    "label": "七一勋章",
+    "topic": "“做工人要做到最好” 我国焊接领域“领军人”",
+    "description": "",
+    "alias_i18nS": {},
+    "title_i18nS": {},
+    "caption_i18nS": {},
+    "label_i18nS": {},
+    "topic_i18nS": {},
+    "description_i18nS": {},
+    "labelS": [],
+    "tagS": [],
+    "foreign_bundle_uuid": "b359b77a-fb45-4845-8455-27f57ddaeed8",
+    "AttachmentS": [{
+        "path": "cover.png",
+        "hash": "5354b28c700ae6ab356b619eea6e3e00",
+        "Size": 1016048,
+        "Url": ""
+    }],
+    "Uuid": "9fd295ef-5a0e-4607-b247-04f0fb43be97"
+}

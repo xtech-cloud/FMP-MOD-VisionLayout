@@ -70,6 +70,10 @@
         Style.LayerPattern.Action<name="Film">.Property."track_{n}_mask": 轨道n的遮罩透明值，范围为[0.0, 1.0]闭区间
         Style.LayerPattern.Action<name="ZipperLayout">: 拉链的布局
         Style.LayerPattern.Action<name="ZipperLayout">.Property."column": 竖栏的数量
+        Style.LayerPattern.Action<name="ScrollLayout">: 卷轴的布局
+        Style.LayerPattern.Action<name="ScrollLayout">.Property."hotspot_size": 热点图片的尺寸
+        Style.LayerPattern.Action<name="ScrollLayout">.Property."hotspot_animation_interval_min": 热点图片动画的最小间隔时间
+        Style.LayerPattern.Action<name="ScrollLayout">.Property."hotspot_animation_interval_max": 热点图片动画的最大间隔时间
         Style.LayerPattern.Action<name="EdgeFlyInTraision">: 边界飞入
         Style.LayerPattern.Action<name="EdgeFlyOutTraision">: 边界飞出
         Style.LayerPattern.Action<name="DragTraision">: 上方掉入
@@ -80,6 +84,8 @@
         Style.LayerPattern.Action<name="FilmOutTraision">: 胶卷布局退出，胶卷布局专用
         Style.LayerPattern.Action<name="FrameInTraision">: 画框布局进入，画框布局专用
         Style.LayerPattern.Action<name="FrameOutTraision">: 画框布局退出，画框布局专用
+        Style.LayerPattern.Action<name="ScrollInTraision">: 卷轴布局进入，卷轴布局专用
+        Style.LayerPattern.Action<name="ScrollOutTraision">: 卷轴布局退出，卷轴布局专用
     -->
   <Styles>
     <Style name="default">
@@ -414,6 +420,46 @@
           </InActions>
           <OutActions>
             <Action name="EdgeFlyOutTransition" disable="false">
+              <Properties>
+                <Property key="duration" value="3" type="float"/>
+              </Properties>
+            </Action>
+          </OutActions>
+          <Subjects>
+            <Subject message="/XTC/IntegrationBoard/DirectOpen">
+              <Parameters>
+                <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
+                <Parameter key="style" value="circular" type="string"/>
+                <Parameter key="source" value="assloud://" type="string"/>
+                <Parameter key="uri" value="{{content_uri}}" type="string"/>
+                <Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
+                <Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
+                <Parameter key="delay" value="0" type="float"/>
+              </Parameters>
+            </Subject>
+          </Subjects>
+        </LayerPattern>
+        <LayerPattern name="Scroll" interactable="true">
+          <LayoutActions>
+            <Action name="ScrollLayout" disable="false">
+              <Properties>
+                <Property key="duration" value="30" type="float"/>
+                <Property key="hotspot_size" value="64" type="int"/>
+                <Property key="hotspot_animation_interval_min" value="5" type="int"/>
+                <Property key="hotspot_animation_interval_max" value="10" type="int"/>
+              </Properties>
+            </Action>
+          </LayoutActions>
+          <InActions>
+            <Action name="ScrollInTransition" disable="false">
+              <Properties>
+                <Property key="duration" value="4.5" type="float"/>
+                <Property key="blank" value="1.5" type="float"/>
+              </Properties>
+            </Action>
+          </InActions>
+          <OutActions>
+            <Action name="ScrollOutTransition" disable="false">
               <Properties>
                 <Property key="duration" value="3" type="float"/>
               </Properties>

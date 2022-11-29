@@ -1,1 +1,29 @@
-{"name":"黄文秀","kvS":{},"alias":"黄文秀","title":"黄文秀","caption":"","label":"七一勋章","topic":"将青春和生命奉献给脱贫攻坚事业","description":"","alias_i18nS":{},"title_i18nS":{},"caption_i18nS":{},"label_i18nS":{},"topic_i18nS":{},"description_i18nS":{},"labelS":[],"tagS":[],"foreign_bundle_uuid":"b359b77a-fb45-4845-8455-27f57ddaeed8","AttachmentS":[{"path":"cover.png","hash":"7065ccf10aeed15ac5b0665e1c946b26","Size":874272,"Url":""}],"Uuid":"c56217f6-555d-4e11-8b23-db260160c8b7"}
+{
+    "name": "黄文秀",
+    "kvS": {
+        "XTC_VisionLayout_Hotspot_x": "-200",
+        "XTC_VisionLayout_Hotspot_y": "-200"
+    },
+    "alias": "黄文秀",
+    "title": "黄文秀",
+    "caption": "",
+    "label": "七一勋章",
+    "topic": "将青春和生命奉献给脱贫攻坚事业",
+    "description": "",
+    "alias_i18nS": {},
+    "title_i18nS": {},
+    "caption_i18nS": {},
+    "label_i18nS": {},
+    "topic_i18nS": {},
+    "description_i18nS": {},
+    "labelS": [],
+    "tagS": [],
+    "foreign_bundle_uuid": "b359b77a-fb45-4845-8455-27f57ddaeed8",
+    "AttachmentS": [{
+        "path": "cover.png",
+        "hash": "7065ccf10aeed15ac5b0665e1c946b26",
+        "Size": 874272,
+        "Url": ""
+    }],
+    "Uuid": "c56217f6-555d-4e11-8b23-db260160c8b7"
+}

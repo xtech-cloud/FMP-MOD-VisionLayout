@@ -127,7 +127,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             }
         }
 
-        protected override void layout(List<string> _contentList)
+        protected override void layout(List<string> _contentList, Dictionary<string, string> _kvS)
         {
             contentUriS_ = _contentList;
             /*

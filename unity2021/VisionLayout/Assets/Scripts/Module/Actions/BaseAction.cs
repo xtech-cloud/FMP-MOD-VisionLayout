@@ -386,9 +386,10 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// 根据配置文件和资源进行布局
         /// </summary>
         /// <param name="_contentList">内容的列表</param>
-        public void Layout(List<string> _contentList)
+        /// <param name="_kvS">catalog的kvS</param>
+        public void Layout(List<string> _contentList, Dictionary<string, string> _kvS)
         {
-            layout(_contentList);
+            layout(_contentList, _kvS);
         }
 
         protected override void baseEnter(string _actionName)
@@ -426,7 +427,8 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// 根据配置文件和资源进行布局
         /// </summary>
         /// <param name="_contentList">内容的列表</param>
-        protected virtual void layout(List<string> _contentList)
+        /// <param name="_kvS">catalog的kvS</param>
+        protected virtual void layout(List<string> _contentList, Dictionary<string, string> _kvS)
         {
             //在派生类中实现逻辑
         }
@@ -559,6 +561,26 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             }
             return coverTexture;
         }
+
+        /// <summary>
+        /// 加载内容元数据
+        /// </summary>
+        /// <param name="_contentUri">内容的短路径</param>
+        /// <returns></returns>
+        protected ContentMetaSchema loadContentMeta(string _contentUri)
+        {
+            if (string.IsNullOrEmpty(_contentUri))
+                return null;
+
+            object obj;
+            ContentMetaSchema meta = null;
+            if (myInstance.preloadsRepetition.TryGetValue(_contentUri + "/meta.json", out obj))
+            {
+                meta = obj as ContentMetaSchema;
+            }
+            return meta;
+        }
+
     }
 
     /// <summary>

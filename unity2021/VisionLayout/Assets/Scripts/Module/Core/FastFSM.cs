@@ -76,7 +76,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             stateLayout_.onFinish.state = stateSwitch;
 
             // 装饰层的函数
-            System.Action<string, MyConfig.LayerPattern, List<string>> decorateLayer = (_layerName, _layerPattern, _contentList) =>
+            System.Action<string, MyConfig.LayerPattern, List<string>, Dictionary<string, string>> decorateLayer = (_layerName, _layerPattern, _contentList, _kvS) =>
             {
                 selectLayoutAction_.layers.Add(_layerName);
                 // 实例化布局的行为
@@ -88,7 +88,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                         selectLayoutAction_.actions[_layerName] = new List<string>();
                     selectLayoutAction_.actions[_layerName].Add(action.name);
                     var theAction = newAction(action.name, stateLayout_, _layerName, _layerPattern, action);
-                    (theAction as LayoutAction).Layout(_contentList);
+                    (theAction as LayoutAction).Layout(_contentList, _kvS);
                 }
                 // 实例化入变换的行为
                 foreach (var action in _layerPattern.inActionS)
@@ -153,7 +153,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 }
                 // 以path作为层的名字，例如"A/1"，每个层中有多个布局行为，每个布局行为下都有自己的节点列表
                 createLayer(section.path, layerPattern, section.name, section);
-                decorateLayer(section.path, layerPattern, contentList);
+                decorateLayer(section.path, layerPattern, contentList, section.kvS);
             }
 
             myInstance.getLogger().Info(machine_.ToTreeString());
@@ -226,6 +226,10 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     action = _state.NewAction<ZipperLayoutAction>();
                     decorateAnimationAction(action);
                     break;
+                case ScrollLayoutAction.NAME:
+                    action = _state.NewAction<ScrollLayoutAction>();
+                    decorateAnimationAction(action);
+                    break;
                 /*
             case ExhibitLayoutAction.NAME:
                 action = _state.NewAction<ExhibitLayoutAction>();
@@ -278,6 +282,14 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     break;
                 case FrameOutTransitionAction.NAME:
                     action = _state.NewAction<FrameOutTransitionAction>();
+                    decorateAnimationAction(action);
+                    break;
+                case ScrollInTransitionAction.NAME:
+                    action = _state.NewAction<ScrollInTransitionAction>();
+                    decorateAnimationAction(action);
+                    break;
+                case ScrollOutTransitionAction.NAME:
+                    action = _state.NewAction<ScrollOutTransitionAction>();
                     decorateAnimationAction(action);
                     break;
                 /*

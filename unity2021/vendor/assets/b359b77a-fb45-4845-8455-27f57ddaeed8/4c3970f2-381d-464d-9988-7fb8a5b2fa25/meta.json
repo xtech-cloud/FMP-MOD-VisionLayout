@@ -1,1 +1,29 @@
-{"name":"柴云振","kvS":{},"alias":"柴云振","title":"柴云振","caption":"","label":"七一勋章","topic":"硝烟战场无畏生死 解甲归田默默耕耘","description":"","alias_i18nS":{},"title_i18nS":{},"caption_i18nS":{},"label_i18nS":{},"topic_i18nS":{},"description_i18nS":{},"labelS":[],"tagS":[],"foreign_bundle_uuid":"b359b77a-fb45-4845-8455-27f57ddaeed8","AttachmentS":[{"path":"cover.png","hash":"c6916e07b0bd1af08d31e88e59e0a74d","Size":926383,"Url":""}],"Uuid":"4c3970f2-381d-464d-9988-7fb8a5b2fa25"}
+{
+    "name": "柴云振",
+    "kvS": {
+        "XTC_VisionLayout_Hotspot_x": "-100",
+        "XTC_VisionLayout_Hotspot_y": "100"
+    },
+    "alias": "柴云振",
+    "title": "柴云振",
+    "caption": "",
+    "label": "七一勋章",
+    "topic": "硝烟战场无畏生死 解甲归田默默耕耘",
+    "description": "",
+    "alias_i18nS": {},
+    "title_i18nS": {},
+    "caption_i18nS": {},
+    "label_i18nS": {},
+    "topic_i18nS": {},
+    "description_i18nS": {},
+    "labelS": [],
+    "tagS": [],
+    "foreign_bundle_uuid": "b359b77a-fb45-4845-8455-27f57ddaeed8",
+    "AttachmentS": [{
+        "path": "cover.png",
+        "hash": "c6916e07b0bd1af08d31e88e59e0a74d",
+        "Size": 926383,
+        "Url": ""
+    }],
+    "Uuid": "4c3970f2-381d-464d-9988-7fb8a5b2fa25"
+}

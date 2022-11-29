@@ -1,1 +1,29 @@
-{"name":"陈红军","kvS":{},"alias":"陈红军","title":"陈红军","caption":"","label":"七一勋章","topic":"用鲜血和生命捍卫祖国领土主权","description":"","alias_i18nS":{},"title_i18nS":{},"caption_i18nS":{},"label_i18nS":{},"topic_i18nS":{},"description_i18nS":{},"labelS":[],"tagS":[],"foreign_bundle_uuid":"b359b77a-fb45-4845-8455-27f57ddaeed8","AttachmentS":[{"path":"cover.png","hash":"16bb07127cf4473f27b8280a72c6aadf","Size":867838,"Url":""}],"Uuid":"6fa05de9-750f-4450-a8db-e8337e48699b"}
+{
+    "name": "陈红军",
+    "kvS": {
+        "XTC_VisionLayout_Hotspot_x": "-100",
+        "XTC_VisionLayout_Hotspot_y": "-100"
+    },
+    "alias": "陈红军",
+    "title": "陈红军",
+    "caption": "",
+    "label": "七一勋章",
+    "topic": "用鲜血和生命捍卫祖国领土主权",
+    "description": "",
+    "alias_i18nS": {},
+    "title_i18nS": {},
+    "caption_i18nS": {},
+    "label_i18nS": {},
+    "topic_i18nS": {},
+    "description_i18nS": {},
+    "labelS": [],
+    "tagS": [],
+    "foreign_bundle_uuid": "b359b77a-fb45-4845-8455-27f57ddaeed8",
+    "AttachmentS": [{
+        "path": "cover.png",
+        "hash": "16bb07127cf4473f27b8280a72c6aadf",
+        "Size": 867838,
+        "Url": ""
+    }],
+    "Uuid": "6fa05de9-750f-4450-a8db-e8337e48699b"
+}

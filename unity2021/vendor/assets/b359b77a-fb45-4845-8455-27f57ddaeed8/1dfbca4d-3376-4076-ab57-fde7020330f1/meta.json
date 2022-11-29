@@ -1,1 +1,29 @@
-{"name":"王兰花","kvS":{},"alias":"王兰花","title":"王兰花","caption":"","label":"七一勋章","topic":"坚持志愿服务十余载 群众心中的“活雷锋”","description":"","alias_i18nS":{},"title_i18nS":{},"caption_i18nS":{},"label_i18nS":{},"topic_i18nS":{},"description_i18nS":{},"labelS":[],"tagS":[],"foreign_bundle_uuid":"b359b77a-fb45-4845-8455-27f57ddaeed8","AttachmentS":[{"path":"cover.png","hash":"ef625368225a6d285f0ea607d09046f3","Size":874815,"Url":""}],"Uuid":"1dfbca4d-3376-4076-ab57-fde7020330f1"}
+{
+    "name": "王兰花",
+    "kvS": {
+        "XTC_VisionLayout_Hotspot_x": "100",
+        "XTC_VisionLayout_Hotspot_y": "100"
+    },
+    "alias": "王兰花",
+    "title": "王兰花",
+    "caption": "",
+    "label": "七一勋章",
+    "topic": "坚持志愿服务十余载 群众心中的“活雷锋”",
+    "description": "",
+    "alias_i18nS": {},
+    "title_i18nS": {},
+    "caption_i18nS": {},
+    "label_i18nS": {},
+    "topic_i18nS": {},
+    "description_i18nS": {},
+    "labelS": [],
+    "tagS": [],
+    "foreign_bundle_uuid": "b359b77a-fb45-4845-8455-27f57ddaeed8",
+    "AttachmentS": [{
+        "path": "cover.png",
+        "hash": "ef625368225a6d285f0ea607d09046f3",
+        "Size": 874815,
+        "Url": ""
+    }],
+    "Uuid": "1dfbca4d-3376-4076-ab57-fde7020330f1"
+}
