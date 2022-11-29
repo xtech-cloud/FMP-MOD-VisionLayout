@@ -261,7 +261,7 @@
           <LayoutActions>
             <Action name="StackedLayout" disable="false">
               <Properties>
-                <Property key="duration" value="3" type="float"/>
+                <Property key="duration" value="30" type="float"/>
                 <Property key="span" value="40" type="int"/>
                 <Property key="alphaStep" value="0.2" type="float"/>
                 <Property key="speed" value="30" type="float"/>

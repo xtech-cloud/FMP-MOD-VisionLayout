@@ -286,6 +286,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
             cell.target.anchoredPosition = new UnityEngine.Vector2(cell.pinX, cell.pinY);
             cell.target.sizeDelta = new UnityEngine.Vector2(cell.width, cell.height);
+            cell.target.GetComponent<UnityEngine.UI.Button>().interactable = layerPattern.interactable;
             return cell;
         }
 
