@@ -230,6 +230,10 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     action = _state.NewAction<ScrollLayoutAction>();
                     decorateAnimationAction(action);
                     break;
+                case DummyLayoutAction.NAME:
+                    action = _state.NewAction<DummyLayoutAction>();
+                    decorateAnimationAction(action);
+                    break;
                 /*
             case ExhibitLayoutAction.NAME:
                 action = _state.NewAction<ExhibitLayoutAction>();
@@ -290,6 +294,14 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     break;
                 case ScrollOutTransitionAction.NAME:
                     action = _state.NewAction<ScrollOutTransitionAction>();
+                    decorateAnimationAction(action);
+                    break;
+                case DummyInTransitionAction.NAME:
+                    action = _state.NewAction<DummyInTransitionAction>();
+                    decorateAnimationAction(action);
+                    break;
+                case DummyOutTransitionAction.NAME:
+                    action = _state.NewAction<DummyOutTransitionAction>();
                     decorateAnimationAction(action);
                     break;
                 /*

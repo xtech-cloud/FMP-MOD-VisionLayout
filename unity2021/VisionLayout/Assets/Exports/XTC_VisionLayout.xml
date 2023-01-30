@@ -484,6 +484,31 @@
             </Subject>
           </Subjects>
         </LayerPattern>
+        <LayerPattern name="Dummy" interactable="true">
+          <LayoutActions>
+            <Action name="DummyLayout" disable="false">
+              <Properties>
+                <Property key="duration" value="30" type="float"/>
+              </Properties>
+            </Action>
+          </LayoutActions>
+          <InActions>
+            <Action name="DummyInTransition" disable="false">
+              <Properties>
+                <Property key="duration" value="3" type="float"/>
+              </Properties>
+            </Action>
+          </InActions>
+          <OutActions>
+            <Action name="DummyOutTransition" disable="false">
+              <Properties>
+                <Property key="duration" value="3" type="float"/>
+              </Properties>
+            </Action>
+          </OutActions>
+          <Subjects>
+          </Subjects>
+        </LayerPattern>
       </LayerPatterns>
     </Style>
   </Styles>
