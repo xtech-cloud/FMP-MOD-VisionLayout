@@ -39,6 +39,8 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             var data = new Dictionary<string, object>();
             data["uid"] = _uid;
             data["style"] = _style;
+            data["uiSlot"] = "";
+            data["worldSlot"] = "";
             modelDummy_.Publish(MySubjectBase.Create, data);
         }
 
