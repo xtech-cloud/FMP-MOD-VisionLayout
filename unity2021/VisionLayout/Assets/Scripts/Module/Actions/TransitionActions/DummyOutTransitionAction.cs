@@ -16,6 +16,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
             var data = new Dictionary<string, object>();
             data["layer"] = layer;
+            data["pattern"] = layerPattern.name;
             data["duration"] = duration;
             myInstance.getMyEntry().getDummyModel().Publish(MySubject.OnDummyOutTransitionEnter, data);
         }
@@ -31,6 +32,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
             var data = new Dictionary<string, object>();
             data["layer"] = layer;
+            data["pattern"] = layerPattern.name;
             myInstance.getMyEntry().getDummyModel().Publish(MySubject.OnDummyOutTransitionExit, data);
         }
 

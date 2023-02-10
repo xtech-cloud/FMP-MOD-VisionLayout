@@ -17,6 +17,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
             var data = new Dictionary<string, object>();
             data["layer"] = layer;
+            data["pattern"] = layerPattern.name;
             data["duration"] = duration;
             myInstance.getMyEntry().getDummyModel().Publish(MySubject.OnDummyLayoutEnter, data);
         }
@@ -29,6 +30,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             baseExit(NAME);
 
             var data = new Dictionary<string, object>();
+            data["layer"] = layer;
             data["pattern"] = layerPattern.name;
             myInstance.getMyEntry().getDummyModel().Publish(MySubject.OnDummyLayoutExit, data);
         }
@@ -49,6 +51,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             data["virtual_resolution_width"] = canvasWidth_;
             data["virtual_resolution_height"] = canvasHeight_;
             data["layer"] = layer;
+            data["pattern"] = layerPattern.name;
             // 不使用字符型绝对路径，避免在Find时找不到隐藏对象
             data["uiSlot"] = runtimeClone.layerMap[layer];
             myInstance.getMyEntry().getDummyModel().Publish(MySubject.OnDummyLayoutInlay, data);
