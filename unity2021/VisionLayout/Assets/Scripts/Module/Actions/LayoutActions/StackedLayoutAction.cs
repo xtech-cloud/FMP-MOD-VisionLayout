@@ -18,17 +18,25 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             public int contentIndex { get; set; }
             public float totalOffset { get; set; }
             public UnityEngine.GameObject container { get; set; }
+
+            public float paramSpeed { get; set; }
+            public float paramAlpha { get; set; }
+            public int paramCellMinLength { get; set; }
+            public int paramCellMaxLength { get; set; }
+            public int paramMinSpaceX { get; set; }
+            public int paramMaxSpaceX { get; set; }
+            public int paramMinSpaceY { get; set; }
+            public int paramMaxSpaceY { get; set; }
+        }
+
+        private class MyCell : Cell
+        {
+            public float speed { get; set; }
         }
 
         private int columnWidth_ { get; set; }
-        private float speed_ { get; set; }
-        private float alphaStep_ { get; set; }
-        private int cellMinLength_ { get; set; }
-        private int cellMaxLength_ { get; set; }
-        private int minSpaceX_ { get; set; }
-        private int maxSpaceX_ { get; set; }
-        private int minSpaceY_ { get; set; }
-        private int maxSpaceY_ { get; set; }
+        private int viewportCount_ { get; set; }
+
         private int columnCount_ { get; set; }
 
         private List<string> contentUriS_ = new List<string>();
@@ -80,12 +88,13 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             if (null == layoutCells_)
                 return;
 
-            float offset = UnityEngine.Time.deltaTime * speed_;
+            float deltaTime = UnityEngine.Time.deltaTime;
             needDeleteCells_.Clear();
             UnityEngine.Vector2 pos = UnityEngine.Vector2.zero;
             int margin = 10;
             foreach (var cell in layoutCells_)
             {
+                float offset = deltaTime * (cell as MyCell).speed;
                 cell.dynamicY += offset;
                 pos.x = cell.dynamicX;
                 pos.y = cell.dynamicY;
@@ -105,6 +114,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             // 补充节点
             foreach (var viewport in viewports_)
             {
+                float offset = deltaTime * viewport.paramSpeed;
                 viewport.totalOffset += offset;
                 while (true)
                 {
@@ -154,23 +164,27 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
             canvasWidth_ = getParameter(ParameterDefine.Virtual_Resolution_Width).AsInt;
             canvasHeight_ = getParameter(ParameterDefine.Virtual_Resolution_Height).AsInt;
+            viewportCount_ = parseIntFromProperty("viewportCount");
+            viewports_ = new Viewport[viewportCount_];
+            for (int i = 0; i < viewportCount_; i++)
+            {
+                viewports_[i] = new Viewport();
+                viewports_[i].paramSpeed = parseFloatFromProperty("speed_" + i.ToString());
+                viewports_[i].paramAlpha = parseFloatFromProperty("alpha_" + i.ToString());
+                viewports_[i].paramCellMinLength = parseIntFromProperty("cellMinLength_" + i.ToString());
+                viewports_[i].paramCellMaxLength = parseIntFromProperty("cellMaxLength_" + i.ToString());
+                viewports_[i].paramMinSpaceX = parseIntFromProperty("minSpaceX_" + i.ToString());
+                viewports_[i].paramMinSpaceY = parseIntFromProperty("minSpaceY_" + i.ToString());
+                viewports_[i].paramMaxSpaceX = parseIntFromProperty("maxSpaceX_" + i.ToString());
+                viewports_[i].paramMaxSpaceY = parseIntFromProperty("maxSpaceY_" + i.ToString());
+            }
 
-            speed_ = parseFloatFromProperty("speed");
-            alphaStep_ = parseFloatFromProperty("alphaStep");
-            cellMinLength_ = parseIntFromProperty("cellMinLength");
-            cellMaxLength_ = parseIntFromProperty("cellMaxLength");
-            minSpaceX_ = parseIntFromProperty("minSpaceX");
-            minSpaceY_ = parseIntFromProperty("minSpaceY");
-            maxSpaceX_ = parseIntFromProperty("maxSpaceX");
-            maxSpaceY_ = parseIntFromProperty("maxSpaceY");
             int span = parseIntFromProperty("span");
             columnCount_ = canvasWidth_ / span;
-
             columnWidth_ = canvasWidth_ / columnCount_;
 
             List<Cell> cells = new List<Cell>();
             // 上下两层视窗
-            viewports_ = new Viewport[2];
             for (int i = 0; i < viewports_.Length; i++)
             {
                 // 创建视窗
@@ -187,7 +201,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 rtContainer.localScale = UnityEngine.Vector3.one;
                 rtContainer.localRotation = UnityEngine.Quaternion.identity;
 
-                viewports_[i] = new Viewport();
                 var viewport = viewports_[i];
                 viewport.container = container;
                 viewport.index = i;
@@ -217,7 +230,8 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         {
             var contentUri = _viewport.contentIndex < contentUriS_.Count ? contentUriS_[_viewport.contentIndex] : "";
             UnityEngine.Texture2D coverTexture = loadContentCover(contentUri);
-            Cell cell = new Cell();
+            MyCell cell = new MyCell();
+            cell.speed = _viewport.paramSpeed;
 
             cell.contentUri = contentUri;
             cell.surround = false;
@@ -227,7 +241,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             cell.target.Find("frame").gameObject.SetActive(_viewport.index == viewports_.Length - 1);
             cell.column = _viewport.columnIndex;
             // 赋值图片
-            cell.pinAlpha = _viewport.index == viewports_.Length - 1 ? 1.0f : alphaStep_ * (_viewport.index + 1);
+            cell.pinAlpha = _viewport.paramAlpha;
             cell.image = cell.target.gameObject.GetComponent<UnityEngine.UI.RawImage>();
             cell.canvasGroup = cell.target.gameObject.GetComponent<UnityEngine.CanvasGroup>();
             var color = cell.image.color;
@@ -239,7 +253,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             }
 
             // 根据图片计算大小
-            int length = UnityEngine.Random.Range(cellMinLength_, cellMaxLength_);
+            int length = UnityEngine.Random.Range(_viewport.paramCellMinLength, _viewport.paramCellMaxLength);
             int width = length;
             int height = length;
             if (coverTexture.width > coverTexture.height)
@@ -254,8 +268,8 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             }
 
             // 设置位置和大小
-            int spaceX = UnityEngine.Random.Range(minSpaceX_, maxSpaceX_);
-            int spaceY = UnityEngine.Random.Range(minSpaceY_, maxSpaceY_);
+            int spaceX = UnityEngine.Random.Range(_viewport.paramMinSpaceX, _viewport.paramMaxSpaceX);
+            int spaceY = UnityEngine.Random.Range(_viewport.paramMinSpaceY, _viewport.paramMaxSpaceY);
             CellAnchor anchor = calculateAnchor(_viewport, spaceX, spaceY, width, height);
             // 需要将节点在视窗中的位置转换为在canvas中的位置
             // 视窗的左上角为（0，0），右下角为（canvasWidth, canvasHeight）
@@ -315,11 +329,11 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             anchor.posX = startX;
 
             // 5: 缩小超出视窗外的节点
-            if (anchor.posX + anchor.width + minSpaceX_ > canvasWidth_)
+            if (anchor.posX + anchor.width + _viewport.paramMinSpaceX > canvasWidth_)
             {
-                anchor.width = (int)canvasWidth_ - anchor.posX - minSpaceX_;
+                anchor.width = (int)canvasWidth_ - anchor.posX - _viewport.paramMinSpaceX;
                 anchor.height = fitHeight(_cellWidth, _cellHeight, anchor.width);
-                anchor.visible = anchor.width >= cellMinLength_ && anchor.height >= cellMinLength_;
+                anchor.visible = anchor.width >= _viewport.paramCellMinLength && anchor.height >= _viewport.paramCellMinLength;
             }
 
             // 6: 获取节点跨越列的最下方的列底线位置

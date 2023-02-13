@@ -274,14 +274,23 @@
               <Properties>
                 <Property key="duration" value="30" type="float"/>
                 <Property key="span" value="40" type="int"/>
-                <Property key="alphaStep" value="0.2" type="float"/>
-                <Property key="speed" value="30" type="float"/>
-                <Property key="cellMinLength" value="150" type="int"/>
-                <Property key="cellMaxLength" value="300" type="int"/>
-                <Property key="minSpaceX" value="50" type="int"/>
-                <Property key="maxSpaceX" value="100" type="int"/>
-                <Property key="minSpaceY" value="50" type="int"/>
-                <Property key="maxSpaceY" value="100" type="int"/>
+                <Property key="viewportCount" value="2" type="int"/>
+                <Property key="alpha_0" value="0.2" type="float"/>
+                <Property key="speed_0" value="15" type="float"/>
+                <Property key="cellMinLength_0" value="200" type="int"/>
+                <Property key="cellMaxLength_0" value="400" type="int"/>
+                <Property key="minSpaceX_0" value="50" type="int"/>
+                <Property key="maxSpaceX_0" value="100" type="int"/>
+                <Property key="minSpaceY_0" value="50" type="int"/>
+                <Property key="maxSpaceY_0" value="100" type="int"/>
+                <Property key="alpha_1" value="1" type="float"/>
+                <Property key="speed_1" value="30" type="float"/>
+                <Property key="cellMinLength_1" value="150" type="int"/>
+                <Property key="cellMaxLength_1" value="300" type="int"/>
+                <Property key="minSpaceX_1" value="50" type="int"/>
+                <Property key="maxSpaceX_1" value="100" type="int"/>
+                <Property key="minSpaceY_1" value="50" type="int"/>
+                <Property key="maxSpaceY_1" value="100" type="int"/>
               </Properties>
             </Action>
           </LayoutActions>
