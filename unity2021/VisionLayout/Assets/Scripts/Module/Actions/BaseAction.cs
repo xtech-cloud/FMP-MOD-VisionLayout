@@ -451,8 +451,14 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             string contentUri = _contentUri;
             button.onClick.AddListener(() =>
             {
-                //extendFeatures.toolbar.ClickHiddenArea(clone);
                 var pos = button.GetComponent<RectTransform>().anchoredPosition;
+                Dictionary<string, object> variableS = new Dictionary<string, object>();
+                variableS["{{content_uri}}"] = contentUri;
+                variableS["{{dummyboard_uid}}"] = System.Guid.NewGuid().ToString();
+                variableS["{{dummyboard_position_x}}"] = pos.x;
+                variableS["{{dummyboard_position_y}}"] = pos.y;
+                variableS["{{dummyboard_uiSlot}}"] = getFullPathOfTransform(runtimeClone.rootUI.Find("[DummyBoard_Slot]"));
+                //extendFeatures.toolbar.ClickHiddenArea(clone);
                 foreach (var subject in layerPattern.subjects)
                 {
                     Dictionary<string, object> data = new Dictionary<string, object>();
@@ -460,9 +466,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     {
                         if (parameter.type == "string")
                         {
-                            string val = parameter.value.Replace("{{content_uri}}", contentUri);
-                            val = val.Replace("{{dummyboard_uid}}", System.Guid.NewGuid().ToString());
-                            data[parameter.key] = val;
+                            data[parameter.key] = parameter.value;
                         }
                         else if (parameter.type == "int")
                         {
@@ -470,16 +474,18 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                         }
                         else if (parameter.type == "float")
                         {
-                            if (parameter.value == "{{dummyboard_position_x}}")
-                                data[parameter.key] = pos.x;
-                            else if (parameter.value == "{{dummyboard_position_y}}")
-                                data[parameter.key] = pos.y;
-                            else
-                                data[parameter.key] = float.Parse(parameter.value);
+                            data[parameter.key] = float.Parse(parameter.value);
                         }
                         else if (parameter.type == "bool")
                         {
                             data[parameter.key] = bool.Parse(parameter.value);
+                        }
+                        else if (parameter.type == "_")
+                        {
+                            if (variableS.ContainsKey(parameter.value))
+                            {
+                                data[parameter.key] = variableS[parameter.value];
+                            }
                         }
                     }
                     myInstance.getLogger().Trace("click the cell, position is {0} {1}", pos.x, pos.y);
@@ -582,6 +588,17 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             return meta;
         }
 
+        protected string getFullPathOfTransform(Transform _target)
+        {
+            string fullpath = "/" + _target.gameObject.name;
+            Transform parent = _target.parent;
+            while (null != parent)
+            {
+                fullpath = string.Format("/{0}{1}", parent.gameObject.name, fullpath);
+                parent = parent.parent;
+            }
+            return fullpath;
+        }
     }
 
     /// <summary>

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MyConfig version="1.0">
-  <!-- UI
+	<!-- UI
         visible: 预加载完成后是否显示
         slot: ui根节点在主Canvas中的挂载路径
     -->
-  <UI visible="true" slot="[root]"/>
-  <!-- World
+	<UI visible="true" slot="[root]"/>
+	<!-- World
         visible: 预加载完成后是否显示
         slot: world根节点在主世界中的挂载路径
     -->
-  <World visible="true" slot="[root]"/>
-  <!-- 远程过程调用
+	<World visible="true" slot="[root]"/>
+	<!-- 远程过程调用
         address: 地址
     -->
-  <GRPC address="https://localhost:19000"/>
-  <!-- 样式列表
+	<GRPC address="https://localhost:19000"/>
+	<!-- 样式列表
         name: 名称
         Style.Background: 背景, 优先级为 video>image>color，全为空时，背景不显示
         Style.ToolBar.clickTrigger: 工具栏触发的点击次数
@@ -107,459 +107,460 @@
         Style.LayerPattern.Action<name="ScrollInTraision">: 卷轴布局进入，卷轴布局专用
         Style.LayerPattern.Action<name="ScrollOutTraision">: 卷轴布局退出，卷轴布局专用
     -->
-  <Styles>
-    <Style name="default">
-      <Background color="#242424FF" image="" video=""/>
-		<ToolBar clickTrigger="20" logoImage="" entryWidth="136" paddingLeft="37" paddingRight="37" paddingTop="48" paddingBottom="80" spacing="14"/>
-      <Title>
-        <Anchor horizontal="left" vertical="top" marginH="64" marginV="0" height="100"/>
-      </Title>
-      <Profile duration="5">
-        <Anchor horizontal="left" vertical="center" marginH="64" marginV="0" width="506" height="788"/>
-      </Profile>
-      <LayerPatterns>
-        <LayerPattern name="Flow" interactable="true">
-          <LayoutActions>
-            <Action name="HorizontalFlowLayout" disable="false">
-              <Properties>
-                <Property key="duration" value="30" type="float"/>
-                <Property key="speed" value="10" type="float"/>
-                <Property key="row" value="8" type="int"/>
-                <Property key="space" value="10" type="int"/>
-                <Property key="surround" value="true" type="bool"/>
-              </Properties>
-            </Action>
-            <Action name="VerticalFlowLayout" disable="false">
-              <Properties>
-                <Property key="duration" value="30" type="float"/>
-                <Property key="speed" value="10" type="float"/>
-                <Property key="column" value="14" type="int"/>
-                <Property key="space" value="10" type="int"/>
-                <Property key="surround" value="true" type="bool"/>
-              </Properties>
-            </Action>
-          </LayoutActions>
-          <InActions>
-            <Action name="FadeInTransition" disable="false">
-              <Properties>
-                <Property key="duration" value="4.5" type="float"/>
-                <Property key="blank" value="1.5" type="float"/>
-              </Properties>
-            </Action>
-          </InActions>
-          <OutActions>
-            <Action name="FadeOutTransition" disable="false">
-              <Properties>
-                <Property key="duration" value="3" type="float"/>
-              </Properties>
-            </Action>
-          </OutActions>
-          <Subjects>
-            <Subject message="/XTC/IntegrationBoard/DirectOpen">
-              <Parameters>
-                <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
-                <Parameter key="style" value="circular" type="string"/>
-                <Parameter key="source" value="assloud://" type="string"/>
-                <Parameter key="uri" value="{{content_uri}}" type="string"/>
-                <Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
-                <Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
-                <Parameter key="delay" value="0" type="float"/>
-              </Parameters>
-            </Subject>
-          </Subjects>
-        </LayerPattern>
-        <LayerPattern name="Film" interactable="true">
-          <LayoutActions>
-            <Action name="FilmLayout" disable="false">
-              <Properties>
-                <Property key="duration" value="30" type="float"/>
-                <Property key="space" value="20" type="int"/>
-                <Property key="bgImage" value="layout.film.bg.jpg" type="string"/>
-                <Property key="trackImage" value="layout.film.track.png" type="string"/>
-                <Property key="maskImage" value="layout.film.mask.png" type="string"/>
-                <Property key="trackCount" value="7" type="int"/>
-                <Property key="pictureWidth" value="352" type="int"/>
-                <Property key="trackWidth" value="552" type="int"/>
-                <Property key="track_0_x" value="-0.25" type="float"/>
-                <Property key="track_1_x" value="0.35" type="float"/>
-                <Property key="track_2_x" value="-0.35" type="float"/>
-                <Property key="track_3_x" value="0.75" type="float"/>
-                <Property key="track_4_x" value="0.05" type="float"/>
-                <Property key="track_5_x" value="-0.78" type="float"/>
-                <Property key="track_6_x" value="0.88" type="float"/>
-                <Property key="track_0_length" value="6000" type="int"/>
-                <Property key="track_1_length" value="6000" type="int"/>
-                <Property key="track_2_length" value="6000" type="int"/>
-                <Property key="track_3_length" value="6000" type="int"/>
-                <Property key="track_4_length" value="6000" type="int"/>
-                <Property key="track_5_length" value="6000" type="int"/>
-                <Property key="track_6_length" value="6000" type="int"/>
-                <Property key="track_0_scale" value="0.4" type="float"/>
-                <Property key="track_1_scale" value="0.45" type="float"/>
-                <Property key="track_2_scale" value="0.6" type="float"/>
-                <Property key="track_3_scale" value="0.6" type="float"/>
-                <Property key="track_4_scale" value="0.8" type="float"/>
-                <Property key="track_5_scale" value="0.9" type="float"/>
-                <Property key="track_6_scale" value="0.8" type="float"/>
-                <Property key="track_0_alpha" value="0.2" type="float"/>
-                <Property key="track_1_alpha" value="0.4" type="float"/>
-                <Property key="track_2_alpha" value="0.6" type="float"/>
-                <Property key="track_3_alpha" value="1.0" type="float"/>
-                <Property key="track_4_alpha" value="0.9" type="float"/>
-                <Property key="track_5_alpha" value="1.0" type="float"/>
-                <Property key="track_6_alpha" value="1.0" type="float"/>
-                <Property key="track_0_direction" value="-1" type="float"/>
-                <Property key="track_1_direction" value="1" type="float"/>
-                <Property key="track_2_direction" value="-1" type="float"/>
-                <Property key="track_3_direction" value="1" type="float"/>
-                <Property key="track_4_direction" value="-1" type="float"/>
-                <Property key="track_5_direction" value="1" type="float"/>
-                <Property key="track_6_direction" value="-1" type="float"/>
-                <Property key="track_0_speed" value="20" type="float"/>
-                <Property key="track_1_speed" value="20" type="float"/>
-                <Property key="track_2_speed" value="20" type="float"/>
-                <Property key="track_3_speed" value="20" type="float"/>
-                <Property key="track_4_speed" value="20" type="float"/>
-                <Property key="track_5_speed" value="20" type="float"/>
-                <Property key="track_6_speed" value="20" type="float"/>
-                <Property key="track_0_angle_z" value="-13" type="float"/>
-                <Property key="track_1_angle_z" value="14" type="float"/>
-                <Property key="track_2_angle_z" value="45" type="float"/>
-                <Property key="track_3_angle_z" value="-25" type="float"/>
-                <Property key="track_4_angle_z" value="-46" type="float"/>
-                <Property key="track_5_angle_z" value="-10" type="float"/>
-                <Property key="track_6_angle_z" value="19" type="float"/>
-                <Property key="track_0_angle_x" value="0" type="float"/>
-                <Property key="track_1_angle_x" value="0" type="float"/>
-                <Property key="track_2_angle_x" value="0" type="float"/>
-                <Property key="track_3_angle_x" value="0" type="float"/>
-                <Property key="track_4_angle_x" value="0" type="float"/>
-                <Property key="track_5_angle_x" value="0" type="float"/>
-                <Property key="track_6_angle_x" value="0" type="float"/>
-                <Property key="track_0_angle_y" value="0" type="float"/>
-                <Property key="track_1_angle_y" value="0" type="float"/>
-                <Property key="track_2_angle_y" value="0" type="float"/>
-                <Property key="track_3_angle_y" value="0" type="float"/>
-                <Property key="track_4_angle_y" value="0" type="float"/>
-                <Property key="track_5_angle_y" value="0" type="float"/>
-                <Property key="track_6_angle_y" value="0" type="float"/>
-                <Property key="track_0_mask" value="0.1" type="float"/>
-                <Property key="track_1_mask" value="0.1" type="float"/>
-                <Property key="track_2_mask" value="0.1" type="float"/>
-                <Property key="track_3_mask" value="0.1" type="float"/>
-                <Property key="track_4_mask" value="0.1" type="float"/>
-                <Property key="track_5_mask" value="0.1" type="float"/>
-                <Property key="track_6_mask" value="0.1" type="float"/>
-              </Properties>
-            </Action>
-          </LayoutActions>
-          <InActions>
-            <Action name="FilmInTransition" disable="false">
-              <Properties>
-                <Property key="duration" value="3" type="float"/>
-                <Property key="blank" value="0" type="float"/>
-              </Properties>
-            </Action>
-          </InActions>
-          <OutActions>
-            <Action name="FilmOutTransition" disable="false">
-              <Properties>
-                <Property key="duration" value="3" type="float"/>
-                <Property key="blank" value="0" type="float"/>
-              </Properties>
-            </Action>
-          </OutActions>
-          <Subjects>
-            <Subject message="/XTC/IntegrationBoard/DirectOpen">
-              <Parameters>
-                <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
-                <Parameter key="style" value="circular" type="string"/>
-                <Parameter key="source" value="assloud://" type="string"/>
-                <Parameter key="uri" value="{{content_uri}}" type="string"/>
-                <Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
-                <Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
-                <Parameter key="delay" value="0" type="float"/>
-              </Parameters>
-            </Subject>
-          </Subjects>
-        </LayerPattern>
-        <LayerPattern name="Stacked" interactable="true">
-          <LayoutActions>
-            <Action name="StackedLayout" disable="false">
-              <Properties>
-                <Property key="duration" value="30" type="float"/>
-                <Property key="span" value="40" type="int"/>
-                <Property key="viewportCount" value="2" type="int"/>
-                <Property key="alpha_0" value="0.2" type="float"/>
-                <Property key="speed_0" value="15" type="float"/>
-                <Property key="cellMinLength_0" value="200" type="int"/>
-                <Property key="cellMaxLength_0" value="400" type="int"/>
-                <Property key="minSpaceX_0" value="50" type="int"/>
-                <Property key="maxSpaceX_0" value="100" type="int"/>
-                <Property key="minSpaceY_0" value="50" type="int"/>
-                <Property key="maxSpaceY_0" value="100" type="int"/>
-                <Property key="alpha_1" value="1" type="float"/>
-                <Property key="speed_1" value="30" type="float"/>
-                <Property key="cellMinLength_1" value="150" type="int"/>
-                <Property key="cellMaxLength_1" value="300" type="int"/>
-                <Property key="minSpaceX_1" value="50" type="int"/>
-                <Property key="maxSpaceX_1" value="100" type="int"/>
-                <Property key="minSpaceY_1" value="50" type="int"/>
-                <Property key="maxSpaceY_1" value="100" type="int"/>
-              </Properties>
-            </Action>
-          </LayoutActions>
-          <InActions>
-            <Action name="BreatheInTransition" disable="false">
-              <Properties>
-                <Property key="duration" value="4.5" type="float"/>
-                <Property key="blank" value="1.5" type="float"/>
-              </Properties>
-            </Action>
-          </InActions>
-          <OutActions>
-            <Action name="BreatheOutTransition" disable="false">
-              <Properties>
-                <Property key="duration" value="3" type="float"/>
-              </Properties>
-            </Action>
-          </OutActions>
-          <Subjects>
-            <Subject message="/XTC/IntegrationBoard/DirectOpen">
-              <Parameters>
-                <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
-                <Parameter key="style" value="circular" type="string"/>
-                <Parameter key="source" value="assloud://" type="string"/>
-                <Parameter key="uri" value="{{content_uri}}" type="string"/>
-                <Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
-                <Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
-                <Parameter key="delay" value="0" type="float"/>
-              </Parameters>
-            </Subject>
-          </Subjects>
-        </LayerPattern>
-        <LayerPattern name="Fench" interactable="true">
-          <LayoutActions>
-            <Action name="FenchLayout" disable="false">
-              <Properties>
-                <Property key="duration" value="30" type="float"/>
-                <Property key="column" value="6" type="int"/>
-                <Property key="moveInterval" value="5" type="int"/>
-                <Property key="moveDuration" value="1" type="float"/>
-              </Properties>
-            </Action>
-          </LayoutActions>
-          <InActions>
-            <Action name="DragTransition" disable="false">
-              <Properties>
-                <Property key="duration" value="4.5" type="float"/>
-                <Property key="blank" value="1.5" type="float"/>
-              </Properties>
-            </Action>
-          </InActions>
-          <OutActions>
-            <Action name="DropTransition" disable="false">
-              <Properties>
-                <Property key="duration" value="3" type="float"/>
-              </Properties>
-            </Action>
-          </OutActions>
-          <Subjects>
-            <Subject message="/XTC/IntegrationBoard/DirectOpen">
-              <Parameters>
-                <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
-                <Parameter key="style" value="circular" type="string"/>
-                <Parameter key="source" value="assloud://" type="string"/>
-                <Parameter key="uri" value="{{content_uri}}" type="string"/>
-                <Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
-                <Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
-                <Parameter key="delay" value="0" type="float"/>
-              </Parameters>
-            </Subject>
-          </Subjects>
-        </LayerPattern>
-        <LayerPattern name="Frame" interactable="true">
-          <LayoutActions>
-            <Action name="FrameLayout" disable="false">
-              <Properties>
-                <Property key="duration" value="30" type="float"/>
-                <Property key="column" value="6" type="int"/>
-                <Property key="bgImage" value="layout.frame.bg.jpg" type="string"/>
-                <Property key="frameImage" value="layout.frame.frame.png" type="string"/>
-                <Property key="frameBorderTop" value="256" type="int"/>
-                <Property key="frameBorderBottom" value="256" type="int"/>
-                <Property key="frameBorderLeft" value="128" type="int"/>
-                <Property key="frameBorderRight" value="128" type="int"/>
-                <Property key="frameMarginTop" value="-166" type="int"/>
-                <Property key="frameMarginBottom" value="-166" type="int"/>
-                <Property key="frameMarginLeft" value="-55" type="int"/>
-                <Property key="frameMarginRight" value="-55" type="int"/>
-                <Property key="changeInterval" value="10" type="int"/>
-                <Property key="maxWidth" value="500" type="int"/>
-                <Property key="maxHeight" value="700" type="int"/>
-              </Properties>
-            </Action>
-          </LayoutActions>
-          <InActions>
-            <Action name="FrameInTransition" disable="false">
-              <Properties>
-                <Property key="duration" value="4.5" type="float"/>
-                <Property key="blank" value="1.5" type="float"/>
-              </Properties>
-            </Action>
-          </InActions>
-          <OutActions>
-            <Action name="FrameOutTransition" disable="false">
-              <Properties>
-                <Property key="duration" value="3" type="float"/>
-              </Properties>
-            </Action>
-          </OutActions>
-          <Subjects>
-            <Subject message="/XTC/IntegrationBoard/DirectOpen">
-              <Parameters>
-                <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
-                <Parameter key="style" value="circular" type="string"/>
-                <Parameter key="source" value="assloud://" type="string"/>
-                <Parameter key="uri" value="{{content_uri}}" type="string"/>
-                <Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
-                <Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
-                <Parameter key="delay" value="0" type="float"/>
-              </Parameters>
-            </Subject>
-          </Subjects>
-        </LayerPattern>
-        <LayerPattern name="Zipper" interactable="true">
-          <LayoutActions>
-            <Action name="ZipperLayout" disable="false">
-              <Properties>
-                <Property key="duration" value="30" type="float"/>
-                <Property key="column" value="12" type="int"/>
-                <Property key="space" value="36" type="int"/>
-              </Properties>
-            </Action>
-          </LayoutActions>
-          <InActions>
-            <Action name="EdgeFlyInTransition" disable="false">
-              <Properties>
-                <Property key="duration" value="4.5" type="float"/>
-                <Property key="blank" value="1.5" type="float"/>
-              </Properties>
-            </Action>
-          </InActions>
-          <OutActions>
-            <Action name="EdgeFlyOutTransition" disable="false">
-              <Properties>
-                <Property key="duration" value="3" type="float"/>
-              </Properties>
-            </Action>
-          </OutActions>
-          <Subjects>
-            <Subject message="/XTC/IntegrationBoard/DirectOpen">
-              <Parameters>
-                <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
-                <Parameter key="style" value="circular" type="string"/>
-                <Parameter key="source" value="assloud://" type="string"/>
-                <Parameter key="uri" value="{{content_uri}}" type="string"/>
-                <Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
-                <Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
-                <Parameter key="delay" value="0" type="float"/>
-              </Parameters>
-            </Subject>
-          </Subjects>
-        </LayerPattern>
-        <LayerPattern name="Scroll" interactable="true">
-          <LayoutActions>
-            <Action name="ScrollLayout" disable="false">
-              <Properties>
-                <Property key="duration" value="30" type="float"/>
-                <Property key="hotspot_size" value="64" type="int"/>
-                <Property key="hotspot_animation_interval_min" value="5" type="int"/>
-                <Property key="hotspot_animation_interval_max" value="10" type="int"/>
-              </Properties>
-            </Action>
-          </LayoutActions>
-          <InActions>
-            <Action name="ScrollInTransition" disable="false">
-              <Properties>
-                <Property key="duration" value="4.5" type="float"/>
-                <Property key="blank" value="1.5" type="float"/>
-              </Properties>
-            </Action>
-          </InActions>
-          <OutActions>
-            <Action name="ScrollOutTransition" disable="false">
-              <Properties>
-                <Property key="duration" value="3" type="float"/>
-              </Properties>
-            </Action>
-          </OutActions>
-          <Subjects>
-            <Subject message="/XTC/IntegrationBoard/DirectOpen">
-              <Parameters>
-                <Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
-                <Parameter key="style" value="circular" type="string"/>
-                <Parameter key="source" value="assloud://" type="string"/>
-                <Parameter key="uri" value="{{content_uri}}" type="string"/>
-                <Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
-                <Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
-                <Parameter key="delay" value="0" type="float"/>
-              </Parameters>
-            </Subject>
-          </Subjects>
-        </LayerPattern>
-        <LayerPattern name="Dummy" interactable="true">
-          <LayoutActions>
-            <Action name="DummyLayout" disable="false">
-              <Properties>
-                <Property key="duration" value="30" type="float"/>
-              </Properties>
-            </Action>
-          </LayoutActions>
-          <InActions>
-            <Action name="DummyInTransition" disable="false">
-              <Properties>
-                <Property key="duration" value="3" type="float"/>
-              </Properties>
-            </Action>
-          </InActions>
-          <OutActions>
-            <Action name="DummyOutTransition" disable="false">
-              <Properties>
-                <Property key="duration" value="3" type="float"/>
-              </Properties>
-            </Action>
-          </OutActions>
-          <Subjects>
-          </Subjects>
-        </LayerPattern>
-      </LayerPatterns>
-    </Style>
-  </Styles>
-  <!-- 预创建的实例列表
+	<Styles>
+		<Style name="default">
+			<Background color="#242424FF" image="" video=""/>
+			<ToolBar clickTrigger="20" logoImage="" entryWidth="136" paddingLeft="37" paddingRight="37" paddingTop="48" paddingBottom="80" spacing="14"/>
+			<Title>
+				<Anchor horizontal="left" vertical="top" marginH="64" marginV="0" height="100"/>
+			</Title>
+			<Profile duration="5">
+				<Anchor horizontal="left" vertical="center" marginH="64" marginV="0" width="506" height="788"/>
+			</Profile>
+			<LayerPatterns>
+				<LayerPattern name="Flow" interactable="true">
+					<LayoutActions>
+						<Action name="HorizontalFlowLayout" disable="false">
+							<Properties>
+								<Property key="duration" value="30" type="float"/>
+								<Property key="speed" value="10" type="float"/>
+								<Property key="row" value="8" type="int"/>
+								<Property key="space" value="10" type="int"/>
+								<Property key="surround" value="true" type="bool"/>
+							</Properties>
+						</Action>
+						<Action name="VerticalFlowLayout" disable="false">
+							<Properties>
+								<Property key="duration" value="30" type="float"/>
+								<Property key="speed" value="10" type="float"/>
+								<Property key="column" value="14" type="int"/>
+								<Property key="space" value="10" type="int"/>
+								<Property key="surround" value="true" type="bool"/>
+							</Properties>
+						</Action>
+					</LayoutActions>
+					<InActions>
+						<Action name="FadeInTransition" disable="false">
+							<Properties>
+								<Property key="duration" value="4.5" type="float"/>
+								<Property key="blank" value="1.5" type="float"/>
+							</Properties>
+						</Action>
+					</InActions>
+					<OutActions>
+						<Action name="FadeOutTransition" disable="false">
+							<Properties>
+								<Property key="duration" value="3" type="float"/>
+							</Properties>
+						</Action>
+					</OutActions>
+					<Subjects>
+						<Subject message="/XTC/IntegrationBoard/DirectOpen">
+							<Parameters>
+								<Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
+								<Parameter key="style" value="circular" type="string"/>
+								<Parameter key="source" value="assloud://" type="string"/>
+								<Parameter key="uri" value="{{content_uri}}" type="string"/>
+								<Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
+								<Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
+								<Parameter key="delay" value="0" type="float"/>
+							</Parameters>
+						</Subject>
+					</Subjects>
+				</LayerPattern>
+				<LayerPattern name="Film" interactable="true">
+					<LayoutActions>
+						<Action name="FilmLayout" disable="false">
+							<Properties>
+								<Property key="duration" value="30" type="float"/>
+								<Property key="space" value="20" type="int"/>
+								<Property key="bgImage" value="layout.film.bg.jpg" type="string"/>
+								<Property key="trackImage" value="layout.film.track.png" type="string"/>
+								<Property key="maskImage" value="layout.film.mask.png" type="string"/>
+								<Property key="trackCount" value="7" type="int"/>
+								<Property key="pictureWidth" value="352" type="int"/>
+								<Property key="trackWidth" value="552" type="int"/>
+								<Property key="track_0_x" value="-0.25" type="float"/>
+								<Property key="track_1_x" value="0.35" type="float"/>
+								<Property key="track_2_x" value="-0.35" type="float"/>
+								<Property key="track_3_x" value="0.75" type="float"/>
+								<Property key="track_4_x" value="0.05" type="float"/>
+								<Property key="track_5_x" value="-0.78" type="float"/>
+								<Property key="track_6_x" value="0.88" type="float"/>
+								<Property key="track_0_length" value="6000" type="int"/>
+								<Property key="track_1_length" value="6000" type="int"/>
+								<Property key="track_2_length" value="6000" type="int"/>
+								<Property key="track_3_length" value="6000" type="int"/>
+								<Property key="track_4_length" value="6000" type="int"/>
+								<Property key="track_5_length" value="6000" type="int"/>
+								<Property key="track_6_length" value="6000" type="int"/>
+								<Property key="track_0_scale" value="0.4" type="float"/>
+								<Property key="track_1_scale" value="0.45" type="float"/>
+								<Property key="track_2_scale" value="0.6" type="float"/>
+								<Property key="track_3_scale" value="0.6" type="float"/>
+								<Property key="track_4_scale" value="0.8" type="float"/>
+								<Property key="track_5_scale" value="0.9" type="float"/>
+								<Property key="track_6_scale" value="0.8" type="float"/>
+								<Property key="track_0_alpha" value="0.2" type="float"/>
+								<Property key="track_1_alpha" value="0.4" type="float"/>
+								<Property key="track_2_alpha" value="0.6" type="float"/>
+								<Property key="track_3_alpha" value="1.0" type="float"/>
+								<Property key="track_4_alpha" value="0.9" type="float"/>
+								<Property key="track_5_alpha" value="1.0" type="float"/>
+								<Property key="track_6_alpha" value="1.0" type="float"/>
+								<Property key="track_0_direction" value="-1" type="float"/>
+								<Property key="track_1_direction" value="1" type="float"/>
+								<Property key="track_2_direction" value="-1" type="float"/>
+								<Property key="track_3_direction" value="1" type="float"/>
+								<Property key="track_4_direction" value="-1" type="float"/>
+								<Property key="track_5_direction" value="1" type="float"/>
+								<Property key="track_6_direction" value="-1" type="float"/>
+								<Property key="track_0_speed" value="20" type="float"/>
+								<Property key="track_1_speed" value="20" type="float"/>
+								<Property key="track_2_speed" value="20" type="float"/>
+								<Property key="track_3_speed" value="20" type="float"/>
+								<Property key="track_4_speed" value="20" type="float"/>
+								<Property key="track_5_speed" value="20" type="float"/>
+								<Property key="track_6_speed" value="20" type="float"/>
+								<Property key="track_0_angle_z" value="-13" type="float"/>
+								<Property key="track_1_angle_z" value="14" type="float"/>
+								<Property key="track_2_angle_z" value="45" type="float"/>
+								<Property key="track_3_angle_z" value="-25" type="float"/>
+								<Property key="track_4_angle_z" value="-46" type="float"/>
+								<Property key="track_5_angle_z" value="-10" type="float"/>
+								<Property key="track_6_angle_z" value="19" type="float"/>
+								<Property key="track_0_angle_x" value="0" type="float"/>
+								<Property key="track_1_angle_x" value="0" type="float"/>
+								<Property key="track_2_angle_x" value="0" type="float"/>
+								<Property key="track_3_angle_x" value="0" type="float"/>
+								<Property key="track_4_angle_x" value="0" type="float"/>
+								<Property key="track_5_angle_x" value="0" type="float"/>
+								<Property key="track_6_angle_x" value="0" type="float"/>
+								<Property key="track_0_angle_y" value="0" type="float"/>
+								<Property key="track_1_angle_y" value="0" type="float"/>
+								<Property key="track_2_angle_y" value="0" type="float"/>
+								<Property key="track_3_angle_y" value="0" type="float"/>
+								<Property key="track_4_angle_y" value="0" type="float"/>
+								<Property key="track_5_angle_y" value="0" type="float"/>
+								<Property key="track_6_angle_y" value="0" type="float"/>
+								<Property key="track_0_mask" value="0.1" type="float"/>
+								<Property key="track_1_mask" value="0.1" type="float"/>
+								<Property key="track_2_mask" value="0.1" type="float"/>
+								<Property key="track_3_mask" value="0.1" type="float"/>
+								<Property key="track_4_mask" value="0.1" type="float"/>
+								<Property key="track_5_mask" value="0.1" type="float"/>
+								<Property key="track_6_mask" value="0.1" type="float"/>
+							</Properties>
+						</Action>
+					</LayoutActions>
+					<InActions>
+						<Action name="FilmInTransition" disable="false">
+							<Properties>
+								<Property key="duration" value="3" type="float"/>
+								<Property key="blank" value="0" type="float"/>
+							</Properties>
+						</Action>
+					</InActions>
+					<OutActions>
+						<Action name="FilmOutTransition" disable="false">
+							<Properties>
+								<Property key="duration" value="3" type="float"/>
+								<Property key="blank" value="0" type="float"/>
+							</Properties>
+						</Action>
+					</OutActions>
+					<Subjects>
+						<Subject message="/XTC/IntegrationBoard/DirectOpen">
+							<Parameters>
+								<Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
+								<Parameter key="style" value="circular" type="string"/>
+								<Parameter key="source" value="assloud://" type="string"/>
+								<Parameter key="uri" value="{{content_uri}}" type="string"/>
+								<Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
+								<Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
+								<Parameter key="delay" value="0" type="float"/>
+							</Parameters>
+						</Subject>
+					</Subjects>
+				</LayerPattern>
+				<LayerPattern name="Stacked" interactable="true">
+					<LayoutActions>
+						<Action name="StackedLayout" disable="false">
+							<Properties>
+								<Property key="duration" value="30" type="float"/>
+								<Property key="span" value="40" type="int"/>
+								<Property key="viewportCount" value="2" type="int"/>
+								<Property key="alpha_0" value="0.2" type="float"/>
+								<Property key="speed_0" value="15" type="float"/>
+								<Property key="cellMinLength_0" value="200" type="int"/>
+								<Property key="cellMaxLength_0" value="400" type="int"/>
+								<Property key="minSpaceX_0" value="50" type="int"/>
+								<Property key="maxSpaceX_0" value="100" type="int"/>
+								<Property key="minSpaceY_0" value="50" type="int"/>
+								<Property key="maxSpaceY_0" value="100" type="int"/>
+								<Property key="alpha_1" value="1" type="float"/>
+								<Property key="speed_1" value="30" type="float"/>
+								<Property key="cellMinLength_1" value="150" type="int"/>
+								<Property key="cellMaxLength_1" value="300" type="int"/>
+								<Property key="minSpaceX_1" value="50" type="int"/>
+								<Property key="maxSpaceX_1" value="100" type="int"/>
+								<Property key="minSpaceY_1" value="50" type="int"/>
+								<Property key="maxSpaceY_1" value="100" type="int"/>
+							</Properties>
+						</Action>
+					</LayoutActions>
+					<InActions>
+						<Action name="BreatheInTransition" disable="false">
+							<Properties>
+								<Property key="duration" value="4.5" type="float"/>
+								<Property key="blank" value="1.5" type="float"/>
+							</Properties>
+						</Action>
+					</InActions>
+					<OutActions>
+						<Action name="BreatheOutTransition" disable="false">
+							<Properties>
+								<Property key="duration" value="3" type="float"/>
+							</Properties>
+						</Action>
+					</OutActions>
+					<Subjects>
+						<Subject message="/XTC/IntegrationBoard/DirectOpen">
+							<Parameters>
+								<Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
+								<Parameter key="style" value="circular" type="string"/>
+								<Parameter key="source" value="assloud://" type="string"/>
+								<Parameter key="uri" value="{{content_uri}}" type="string"/>
+								<Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
+								<Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
+								<Parameter key="delay" value="0" type="float"/>
+							</Parameters>
+						</Subject>
+					</Subjects>
+				</LayerPattern>
+				<LayerPattern name="Fench" interactable="true">
+					<LayoutActions>
+						<Action name="FenchLayout" disable="false">
+							<Properties>
+								<Property key="duration" value="30" type="float"/>
+								<Property key="column" value="6" type="int"/>
+								<Property key="moveInterval" value="5" type="int"/>
+								<Property key="moveDuration" value="1" type="float"/>
+							</Properties>
+						</Action>
+					</LayoutActions>
+					<InActions>
+						<Action name="DragTransition" disable="false">
+							<Properties>
+								<Property key="duration" value="4.5" type="float"/>
+								<Property key="blank" value="1.5" type="float"/>
+							</Properties>
+						</Action>
+					</InActions>
+					<OutActions>
+						<Action name="DropTransition" disable="false">
+							<Properties>
+								<Property key="duration" value="3" type="float"/>
+							</Properties>
+						</Action>
+					</OutActions>
+					<Subjects>
+						<Subject message="/XTC/IntegrationBoard/DirectOpen">
+							<Parameters>
+								<Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
+								<Parameter key="style" value="circular" type="string"/>
+								<Parameter key="source" value="assloud://" type="string"/>
+								<Parameter key="uri" value="{{content_uri}}" type="string"/>
+								<Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
+								<Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
+								<Parameter key="delay" value="0" type="float"/>
+							</Parameters>
+						</Subject>
+					</Subjects>
+				</LayerPattern>
+				<LayerPattern name="Frame" interactable="true">
+					<LayoutActions>
+						<Action name="FrameLayout" disable="false">
+							<Properties>
+								<Property key="duration" value="30" type="float"/>
+								<Property key="column" value="6" type="int"/>
+								<Property key="bgImage" value="layout.frame.bg.jpg" type="string"/>
+								<Property key="frameImage" value="layout.frame.frame.png" type="string"/>
+								<Property key="frameBorderTop" value="256" type="int"/>
+								<Property key="frameBorderBottom" value="256" type="int"/>
+								<Property key="frameBorderLeft" value="128" type="int"/>
+								<Property key="frameBorderRight" value="128" type="int"/>
+								<Property key="frameMarginTop" value="-166" type="int"/>
+								<Property key="frameMarginBottom" value="-166" type="int"/>
+								<Property key="frameMarginLeft" value="-55" type="int"/>
+								<Property key="frameMarginRight" value="-55" type="int"/>
+								<Property key="changeInterval" value="10" type="int"/>
+								<Property key="maxWidth" value="500" type="int"/>
+								<Property key="maxHeight" value="700" type="int"/>
+							</Properties>
+						</Action>
+					</LayoutActions>
+					<InActions>
+						<Action name="FrameInTransition" disable="false">
+							<Properties>
+								<Property key="duration" value="4.5" type="float"/>
+								<Property key="blank" value="1.5" type="float"/>
+							</Properties>
+						</Action>
+					</InActions>
+					<OutActions>
+						<Action name="FrameOutTransition" disable="false">
+							<Properties>
+								<Property key="duration" value="3" type="float"/>
+							</Properties>
+						</Action>
+					</OutActions>
+					<Subjects>
+						<Subject message="/XTC/IntegrationBoard/DirectOpen">
+							<Parameters>
+								<Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
+								<Parameter key="style" value="circular" type="string"/>
+								<Parameter key="source" value="assloud://" type="string"/>
+								<Parameter key="uri" value="{{content_uri}}" type="string"/>
+								<Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
+								<Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
+								<Parameter key="delay" value="0" type="float"/>
+							</Parameters>
+						</Subject>
+					</Subjects>
+				</LayerPattern>
+				<LayerPattern name="Zipper" interactable="true">
+					<LayoutActions>
+						<Action name="ZipperLayout" disable="false">
+							<Properties>
+								<Property key="duration" value="30" type="float"/>
+								<Property key="column" value="12" type="int"/>
+								<Property key="space" value="36" type="int"/>
+							</Properties>
+						</Action>
+					</LayoutActions>
+					<InActions>
+						<Action name="EdgeFlyInTransition" disable="false">
+							<Properties>
+								<Property key="duration" value="4.5" type="float"/>
+								<Property key="blank" value="1.5" type="float"/>
+							</Properties>
+						</Action>
+					</InActions>
+					<OutActions>
+						<Action name="EdgeFlyOutTransition" disable="false">
+							<Properties>
+								<Property key="duration" value="3" type="float"/>
+							</Properties>
+						</Action>
+					</OutActions>
+					<Subjects>
+						<Subject message="/XTC/IntegrationBoard/DirectOpen">
+							<Parameters>
+								<Parameter key="uid" value="{{dummyboard_uid}}" type="string"/>
+								<Parameter key="style" value="circular" type="string"/>
+								<Parameter key="source" value="assloud://" type="string"/>
+								<Parameter key="uri" value="{{content_uri}}" type="string"/>
+								<Parameter key="position_x" value="{{dummyboard_position_x}}" type="float"/>
+								<Parameter key="position_y" value="{{dummyboard_position_y}}" type="float"/>
+								<Parameter key="delay" value="0" type="float"/>
+							</Parameters>
+						</Subject>
+					</Subjects>
+				</LayerPattern>
+				<LayerPattern name="Scroll" interactable="true">
+					<LayoutActions>
+						<Action name="ScrollLayout" disable="false">
+							<Properties>
+								<Property key="duration" value="30" type="float"/>
+								<Property key="hotspot_size" value="64" type="int"/>
+								<Property key="hotspot_animation_interval_min" value="5" type="int"/>
+								<Property key="hotspot_animation_interval_max" value="10" type="int"/>
+							</Properties>
+						</Action>
+					</LayoutActions>
+					<InActions>
+						<Action name="ScrollInTransition" disable="false">
+							<Properties>
+								<Property key="duration" value="4.5" type="float"/>
+								<Property key="blank" value="1.5" type="float"/>
+							</Properties>
+						</Action>
+					</InActions>
+					<OutActions>
+						<Action name="ScrollOutTransition" disable="false">
+							<Properties>
+								<Property key="duration" value="3" type="float"/>
+							</Properties>
+						</Action>
+					</OutActions>
+					<Subjects>
+						<Subject message="/XTC/IntegrationBoard/DirectOpen">
+							<Parameters>
+								<Parameter key="uid" value="{{dummyboard_uid}}" type="_"/>
+								<Parameter key="style" value="circular" type="string"/>
+								<Parameter key="source" value="assloud://" type="string"/>
+								<Parameter key="uri" value="{{content_uri}}" type="_"/>
+								<Parameter key="position_x" value="{{dummyboard_position_x}}" type="_"/>
+								<Parameter key="position_y" value="{{dummyboard_position_y}}" type="_"/>
+								<Parameter key="uiSlot" value="{{dummyboard_uiSlot}}" type="_"/>
+								<Parameter key="delay" value="0" type="float"/>
+							</Parameters>
+						</Subject>
+					</Subjects>
+				</LayerPattern>
+				<LayerPattern name="Dummy" interactable="true">
+					<LayoutActions>
+						<Action name="DummyLayout" disable="false">
+							<Properties>
+								<Property key="duration" value="30" type="float"/>
+							</Properties>
+						</Action>
+					</LayoutActions>
+					<InActions>
+						<Action name="DummyInTransition" disable="false">
+							<Properties>
+								<Property key="duration" value="3" type="float"/>
+							</Properties>
+						</Action>
+					</InActions>
+					<OutActions>
+						<Action name="DummyOutTransition" disable="false">
+							<Properties>
+								<Property key="duration" value="3" type="float"/>
+							</Properties>
+						</Action>
+					</OutActions>
+					<Subjects>
+					</Subjects>
+				</LayerPattern>
+			</LayerPatterns>
+		</Style>
+	</Styles>
+	<!-- 预创建的实例列表
         uid: 实例的唯一ID
         style: 使用的样式名
     -->
-  <Instances>
-    <Instance uid="default" style="default" uiSlot="" worldSlot=""/>
-  </Instances>
-  <!-- 预加载 -->
-  <Preload>
-    <!-- 消息订阅的主题
+	<Instances>
+		<Instance uid="default" style="default" uiSlot="" worldSlot=""/>
+	</Instances>
+	<!-- 预加载 -->
+	<Preload>
+		<!-- 消息订阅的主题
             message: 消息
             Parameter.key: 参数的键
             Parameter.value: 参数的值
             Parameter.type: 参数的类型，支持的类型为string,int,float,bool
         -->
-    <Subjects>
-      <Subject message="/XTC/VisionLayout/Open">
-        <Parameters>
-          <Parameter key="uid" value="default" type="string"/>
-          <Parameter key="source" value="" type="string"/>
-          <Parameter key="uri" value="" type="string"/>
-          <Parameter key="delay" value="0" type="float"/>
-        </Parameters>
-      </Subject>
-    </Subjects>
-  </Preload>
+		<Subjects>
+			<Subject message="/XTC/VisionLayout/Open">
+				<Parameters>
+					<Parameter key="uid" value="default" type="string"/>
+					<Parameter key="source" value="" type="string"/>
+					<Parameter key="uri" value="" type="string"/>
+					<Parameter key="delay" value="0" type="float"/>
+				</Parameters>
+			</Subject>
+		</Subjects>
+	</Preload>
 </MyConfig>
