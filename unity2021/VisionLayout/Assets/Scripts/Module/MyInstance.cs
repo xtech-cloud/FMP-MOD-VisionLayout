@@ -76,7 +76,20 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             var goToolBar = rootUI.transform.Find("ToolBar").gameObject;
             goToolBar.SetActive(false);
             // 加载工具栏logo
-
+            if (!string.IsNullOrEmpty(style_.toolBar.logoImage))
+            {
+                loadTextureFromTheme("logo.png", (_texture) =>
+                {
+                    var imgLogo = goToolBar.transform.Find("Panel/logo").GetComponent<Image>();
+                    imgLogo.sprite = Sprite.Create(_texture, new Rect(0, 0, _texture.width, _texture.height), new Vector2(0.5f, 0.5f));
+                }, () => { });
+            }
+            // 应用工具栏样式
+            var vlg = goToolBar.transform.Find("Panel").GetComponent<VerticalLayoutGroup>();
+            vlg.padding = new RectOffset(style_.toolBar.paddingLeft, style_.toolBar.paddingRight, style_.toolBar.paddingTop, style_.toolBar.paddingBottom);
+            vlg.spacing = style_.toolBar.spacing;
+            var rtPanel = vlg.GetComponent<RectTransform>();
+            rtPanel.sizeDelta = new Vector2(style_.toolBar.entryWidth + style_.toolBar.paddingLeft + style_.toolBar.paddingRight, 0);
 
             var imageTitle = rootUI.transform.Find("LayerContainer/LayerTemplate/imgTitle");
             alignByAncor(imageTitle, style_.title.anchor);

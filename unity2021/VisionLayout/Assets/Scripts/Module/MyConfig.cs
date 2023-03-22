@@ -22,6 +22,20 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         {
             [XmlAttribute("clickTrigger")]
             public int clickTrigger { get; set; } = 20;
+            [XmlAttribute("entryWidth")]
+            public int entryWidth { get; set; } = 136;
+            [XmlAttribute("logoImage")]
+            public string logoImage { get; set; } = "";
+            [XmlAttribute("paddingLeft")]
+            public int paddingLeft { get; set; } = 37;
+            [XmlAttribute("paddingRight")]
+            public int paddingRight { get; set; } = 37;
+            [XmlAttribute("paddingTop")]
+            public int paddingTop { get; set; } = 48;
+            [XmlAttribute("paddingBottom")]
+            public int paddingBottom { get; set; } = 80;
+            [XmlAttribute("spacing")]
+            public int spacing { get; set; } = 14;
         }
 
         public class Action

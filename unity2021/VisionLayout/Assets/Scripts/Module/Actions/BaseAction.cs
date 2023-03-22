@@ -482,6 +482,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                             data[parameter.key] = bool.Parse(parameter.value);
                         }
                     }
+                    myInstance.getLogger().Trace("click the cell, position is {0} {1}", pos.x, pos.y);
                     myInstance.getMyEntry().getDummyModel().Publish(subject.message, data);
                 }
             });

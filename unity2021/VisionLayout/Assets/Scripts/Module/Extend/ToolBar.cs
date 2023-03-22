@@ -87,7 +87,10 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             toggles_[_layer] = clone.GetComponent<Toggle>();
         }
 
-        // 点击隐藏区域
+        /// <summary>
+        /// 点击隐藏区域打开工具栏
+        /// </summary>
+        /// <param name="_cell">隐藏区域对象</param>
         public void ClickHiddenArea(UnityEngine.GameObject _cell)
         {
             if (_cell.GetInstanceID() != clickCellID_)
