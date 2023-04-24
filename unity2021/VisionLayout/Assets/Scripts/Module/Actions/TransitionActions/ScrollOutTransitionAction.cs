@@ -19,6 +19,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
             baseEnter(NAME);
 
+
             if (!filterLayoutCells(LayerCategory.Disappear))
                 return;
 
@@ -40,6 +41,9 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
             hideLayer();
 
+            if (null == animCells)
+                return;
+
             bgImg_.color = new Color(1, 1, 1, 0);
             foreach (var cell in animCells)
             {
@@ -52,6 +56,9 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         protected override void onUpdate()
         {
             baseUpdate();
+
+            if (null == animCells)
+                return;
 
             if (timer_ < blank)
                 return;

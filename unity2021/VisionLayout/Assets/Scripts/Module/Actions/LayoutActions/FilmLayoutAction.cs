@@ -74,7 +74,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         }
         protected override void layout(List<string> _contentList, Dictionary<string, string> _kvS)
         {
-
             trackCount_ = parseIntFromProperty("trackCount");
             space_ = parseIntFromProperty("space");
             canvasWidth_ = getParameter(ParameterDefine.Virtual_Resolution_Width).AsInt;
