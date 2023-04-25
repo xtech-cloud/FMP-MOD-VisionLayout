@@ -345,10 +345,10 @@
 					<LayoutActions>
 						<Action name="FenchLayout" disable="false">
 							<Properties>
-								<Property key="duration" value="30" type="float"/>
+								<Property key="duration" value="300" type="float"/>
 								<Property key="column" value="6" type="int"/>
 								<Property key="moveInterval" value="5" type="int"/>
-								<Property key="moveDuration" value="1" type="float"/>
+								<Property key="moveDuration" value="0.5" type="float"/>
 							</Properties>
 						</Action>
 					</LayoutActions>

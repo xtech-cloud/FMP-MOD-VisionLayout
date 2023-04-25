@@ -62,6 +62,10 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             if (intervalTimer_ < moveInterval_)
                 return;
 
+
+            // 运行切换效果
+
+            // 在切换开始时计算一次动画开始和结束的位置
             UnityEngine.Vector2 pos = UnityEngine.Vector2.zero;
             if (!isMoving_)
             {
@@ -77,21 +81,24 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             }
 
             float precentage = (intervalTimer_ - moveInterval_) / moveDuration_;
+
+            // 在切换结束后计算一次动画开始和结束的位置
             if (precentage >= 1.0)
             {
                 intervalTimer_ = 0f;
                 precentage = 1.0f;
                 isMoving_ = false;
-                // 将队首的元素移到队尾
+                // 将队首的元素移到队尾，并将第一个节点的位置、动画开始位置、动画结束位置均设置为最后一个节点后一个节点的位置
                 var first = layoutCells_[0];
                 var last = layoutCells_[layoutCells_.Count - 1];
-                first.dynamicX = last.dynamicX + columnWidth_;
+                first.dynamicX = getColumnPositionX(layoutCells_.Count-1);
                 first.animStartPos.x = first.dynamicX;
                 first.animEndPos.x = first.dynamicX;
                 layoutCells_.RemoveAt(0);
                 layoutCells_.Add(first);
                 first.target.gameObject.SetActive(false);
             }
+
             foreach (var cell in layoutCells_)
             {
                 cell.dynamicX = UnityEngine.Mathf.Lerp(cell.animStartPos.x, cell.animEndPos.x, precentage);
@@ -108,11 +115,10 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             moveInterval_ = parseFloatFromProperty("moveInterval");
             columnCount_ = parseIntFromProperty("column");
             columnWidth_ = canvasWidth_ / columnCount_;
-            int cellWidth = canvasWidth_ / columnCount_;
+            int cellWidth = columnWidth_;
             int cellHeight = canvasHeight_;
 
             int columnIndex = 0;
-            int offset = canvasWidth_ / 2 - cellWidth / 2;
 
             List<Cell> cells = new List<Cell>();
             for (int i = 0; i < _contentList.Count || i < columnCount_ + 1; i++)
@@ -124,7 +130,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 cells.Add(cell);
                 cell.width = cellWidth;
                 cell.height = cellHeight;
-                cell.pinX = i * cellWidth - offset;
+                cell.pinX = (int)getColumnPositionX(i);
                 cell.pinY = 0;
                 cell.dynamicX = cell.pinX;
                 cell.dynamicY = cell.pinY;
@@ -150,6 +156,12 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     cell.image.texture = coverTexture;
             }
             setParameter(string.Format("layer.{0}.{1}.cells", layer, NAME), Parameter.FromCustom(cells));
+        }
+
+        private float getColumnPositionX(int _index)
+        {
+            int offset = canvasWidth_ / 2 - columnWidth_ / 2;
+            return _index * columnWidth_ - offset;
         }
     }
 }
