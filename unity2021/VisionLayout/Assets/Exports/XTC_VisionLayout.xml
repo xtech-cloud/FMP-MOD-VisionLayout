@@ -171,6 +171,7 @@
 								<Parameter key="position_y" value="{{dummyboard_position_y}}" type="_"/>
 								<Parameter key="uiSlot" value="{{dummyboard_uiSlot}}" type="_"/>
 								<Parameter key="delay" value="0" type="float"/>
+								<Parameter key="sender" value="{{uid}}" type="_"/>
 							</Parameters>
 						</Subject>
 					</Subjects>

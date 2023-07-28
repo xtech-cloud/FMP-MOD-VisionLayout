@@ -453,6 +453,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             {
                 var pos = button.GetComponent<RectTransform>().anchoredPosition;
                 Dictionary<string, object> variableS = new Dictionary<string, object>();
+                variableS["{{uid}}"] = myInstance.uid;
                 variableS["{{content_uri}}"] = contentUri;
                 variableS["{{dummyboard_uid}}"] = System.Guid.NewGuid().ToString();
                 variableS["{{dummyboard_position_x}}"] = pos.x;
