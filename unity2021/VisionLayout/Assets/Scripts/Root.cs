@@ -56,9 +56,19 @@ public class Root : RootBase
             entry_.__DebugDelete("test");
         }
 
-        if (GUI.Button(new Rect(0, 180, 60, 30), "Popup ToolBar"))
+        if (GUI.Button(new Rect(0, 180, 160, 30), "Popup ToolBar"))
         {
             entry_.__DebugPopupToolBar("test");
+        }
+
+        if (GUI.Button(new Rect(0, 210, 160, 30), "Open DummyBoard"))
+        {
+            entry_.__DebugOpenDummyBoard("test", "001", Random.Range(-Screen.width / 2, Screen.width / 2), Random.Range(-Screen.height / 2, Screen.height / 2));
+        }
+
+        if (GUI.Button(new Rect(0, 240, 160, 30), "Close DummyBoard"))
+        {
+            entry_.__DebugCloseDummyBoard("test", "001");
         }
     }
 }

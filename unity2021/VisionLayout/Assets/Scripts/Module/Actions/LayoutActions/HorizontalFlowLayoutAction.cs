@@ -13,6 +13,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         private float speed_ { get; set; }
         private int space_ { get; set; }
         private int rowCount_ { get; set; }
+        private int dummyboard_radius_ { get; set; }
 
         /// <summary>
         /// 每行的最后一个节点
@@ -52,8 +53,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             // 当前帧的节点的相对偏移位置
             float offset = UnityEngine.Time.deltaTime * speed_;
 
-            //TODO dummyboards
-            //var dummyBoards = model.DummyBoards;
             foreach (var cell in layoutCells_)
             {
                 // 计算新的坐标位置
@@ -78,11 +77,11 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     }
                 }
 
-
-                //if (cell.surround)
-                //   pos.y = roundDummyBoardFitY(dummyBoards, layerPattern.dummyBoard.radius, pos);
                 var pos = cell.target.anchoredPosition;
                 pos.x = cell.dynamicX;
+                pos.y = cell.dynamicY;
+                if (cell.surround)
+                    pos.y = roundDummyBoardFitY(myInstance.getDummyBoardS(), dummyboard_radius_, pos);
                 cell.target.anchoredPosition = pos;
             }
         }
@@ -95,6 +94,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             bool surround = parseBoolFromProperty("surround");
             rowCount_ = parseIntFromProperty("row");
             space_ = parseIntFromProperty("space");
+            dummyboard_radius_ = parseIntFromProperty("dummyboard_radius");
 
             int cellHeight = (canvasHeight_ - (rowCount_ + 1) * space_) / rowCount_;
 

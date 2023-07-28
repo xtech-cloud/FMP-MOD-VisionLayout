@@ -123,5 +123,23 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             data["uid"] = _uid;
             modelDummy_.Publish(MySubject.ToolBarPopup, data);
         }
+
+        public void __DebugOpenDummyBoard(string _uid, string _name, float _x, float _y)
+        {
+            var data = new Dictionary<string, object>();
+            data["uid"] = _uid;
+            data["name"] = _name;
+            data["posX"] = _x;
+            data["posY"] = _y;
+            modelDummy_.Publish(MySubject.DummyBoardOpen, data);
+        }
+
+        public void __DebugCloseDummyBoard(string _uid, string _name)
+        {
+            var data = new Dictionary<string, object>();
+            data["uid"] = _uid;
+            data["name"] = _name;
+            modelDummy_.Publish(MySubject.DummyBoardClose, data);
+        }
     }
 }

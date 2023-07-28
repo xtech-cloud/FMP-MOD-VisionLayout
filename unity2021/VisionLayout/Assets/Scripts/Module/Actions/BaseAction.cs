@@ -350,7 +350,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// <param name="_radius">虚拟面板的半径</param>
         /// <param name="_position">目标点</param>
         /// <returns>X坐标</returns>
-        protected float roundWorckbenchFitX(Dictionary<string, DummyBoard> _boards, int _radius, UnityEngine.Vector2 _position)
+        protected float roundDummyBoardFitX(Dictionary<string, DummyBoard> _boards, int _radius, UnityEngine.Vector2 _position)
         {
             UnityEngine.Vector2 pos = _position;
             if (null == _boards)

@@ -6,9 +6,13 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
     public class DummyBoard
     {
         /// <summary>
+        /// 名称
+        /// </summary>
+        public string name;
+
+        /// <summary>
         /// 中心点坐标
         /// </summary>
         public UnityEngine.Vector2 center;
     }
-
 }

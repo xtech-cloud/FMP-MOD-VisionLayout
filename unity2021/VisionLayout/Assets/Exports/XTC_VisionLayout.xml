@@ -43,8 +43,12 @@
         Style.LayerPattern.Action.Property."blank": TransitionIn类型的行为，在持续时间的开始预留的空白时间，过了blank时间后才开始动画
         Style.LayerPattern.Action<name="HorizontalFlowLayout">: 横向流动布局
         Style.LayerPattern.Action<name="HorizontalFlowLayout">.Property."row": 行的数目
+        Style.LayerPattern.Action<name="HorizontalFlowLayout">.Property."surround": 是否环绕打开的虚拟面板
+        Style.LayerPattern.Action<name="HorizontalFlowLayout">.Property."dummyboard_radius": 虚拟面板的半径
         Style.LayerPattern.Action<name="VerticalFlowLayout">: 纵向流动布局
         Style.LayerPattern.Action<name="VerticalFlowLayout">.Property."column": 列的数目
+        Style.LayerPattern.Action<name="VerticalFlowLayout">.Property."surround": 是否环绕打开的虚拟面板
+        Style.LayerPattern.Action<name="VerticalFlowLayout">.Property."dummyboard_radius": 虚拟面板的半径
         Style.LayerPattern.Action<name="StackedLayout">: 堆叠布局
         Style.LayerPattern.Action<name="StackedLayout">.Property."span": 虚拟列的跨越像素，数值越小越精细
         Style.LayerPattern.Action<name="StackedLayout">.Property."viewportCount": 视图的数量，视图的序号范围为[0, 视图数量-1]，序号越小，显示在越底层
@@ -127,6 +131,7 @@
 								<Property key="row" value="8" type="int"/>
 								<Property key="space" value="10" type="int"/>
 								<Property key="surround" value="true" type="bool"/>
+								<Property key="dummyboard_radius" value="300" type="float"/>
 							</Properties>
 						</Action>
 						<Action name="VerticalFlowLayout" disable="false">
@@ -136,6 +141,7 @@
 								<Property key="column" value="14" type="int"/>
 								<Property key="space" value="10" type="int"/>
 								<Property key="surround" value="true" type="bool"/>
+								<Property key="dummyboard_radius" value="300" type="float"/>
 							</Properties>
 						</Action>
 					</LayoutActions>

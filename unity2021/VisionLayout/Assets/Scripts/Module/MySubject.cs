@@ -13,9 +13,29 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// <example>
         /// var data = new Dictionary<string, object>();
         /// data["uid"] = "default";
-        /// model.Publish(/XTC/VisionLayout/ToolBarPopup, data);
+        /// model.Publish(/XTC/VisionLayout/ToolBar/Popup, data);
         /// </example>
         public const string ToolBarPopup = "/XTC/VisionLayout/ToolBar/Popup";
+
+        /// <summary>
+        /// 打开虚拟面板
+        /// </summary>
+        /// <example>
+        /// var data = new Dictionary<string, object>();
+        /// data["uid"] = "default";
+        /// model.Publish(/XTC/VisionLayout/DummyBoard/Open, data);
+        /// </example>
+        public const string DummyBoardOpen = "/XTC/VisionLayout/DummyBoard/Open";
+
+        /// <summary>
+        /// 打开虚拟面板
+        /// </summary>
+        /// <example>
+        /// var data = new Dictionary<string, object>();
+        /// data["uid"] = "default";
+        /// model.Publish(/XTC/VisionLayout/DummyBoard/Close, data);
+        /// </example>
+        public const string DummyBoardClose = "/XTC/VisionLayout/DummyBoard/Close";
 
         /// <summary>
         /// 当虚拟布局嵌入时

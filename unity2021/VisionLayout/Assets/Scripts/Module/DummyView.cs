@@ -24,6 +24,8 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         {
             base.setup();
             addSubscriber(MySubject.ToolBarPopup, handleToolBarPopup);
+            addSubscriber(MySubject.DummyBoardOpen, handleDummyBoardOpen);
+            addSubscriber(MySubject.DummyBoardClose, handleDummyBoardClose);
         }
 
         private void handleToolBarPopup(LibMVCS.Model.Status _status, object _data)
@@ -49,6 +51,56 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             }
             instance.PopupToolBar();
 
+        }
+
+        private void handleDummyBoardOpen(LibMVCS.Model.Status _status, object _data)
+        {
+            getLogger().Debug("handle DummyBoardOpen with {0}", JsonConvert.SerializeObject(_data));
+            string uid = "";
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            try
+            {
+                parameters = _data as Dictionary<string, object>;
+                uid = parameters["uid"] as string;
+            }
+            catch (Exception ex)
+            {
+                getLogger().Exception(ex);
+                return;
+            }
+            MyInstance instance;
+            runtime.instances.TryGetValue(uid, out instance);
+            if (null == instance)
+            {
+                getLogger().Error("instance {0} not found", uid);
+                return;
+            }
+            instance.OpenDummyBoard(parameters);
+        }
+
+        private void handleDummyBoardClose(LibMVCS.Model.Status _status, object _data)
+        {
+            getLogger().Debug("handle DummyBoardClose with {0}", JsonConvert.SerializeObject(_data));
+            string uid = "";
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            try
+            {
+                parameters = _data as Dictionary<string, object>;
+                uid = parameters["uid"] as string;
+            }
+            catch (Exception ex)
+            {
+                getLogger().Exception(ex);
+                return;
+            }
+            MyInstance instance;
+            runtime.instances.TryGetValue(uid, out instance);
+            if (null == instance)
+            {
+                getLogger().Error("instance {0} not found", uid);
+                return;
+            }
+            instance.CloseDummyBoard(parameters);
         }
 
     }

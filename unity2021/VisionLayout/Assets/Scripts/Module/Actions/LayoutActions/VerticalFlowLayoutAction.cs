@@ -13,6 +13,8 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         private float speed_ { get; set; }
         private int space_ { get; set; }
         private int columnCount_ { get; set; }
+        private int dummyboard_radius_ { get; set; }
+
 
         /// <summary>
         /// 每列的最后一个节点
@@ -76,10 +78,11 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                         columnTailS_[cell.column] = cell;
                     }
                 }
-                //if (cell.surround)
-                //    pos.x = roundWorckbenchFitX(dummyBoards, config.dummyBoard.radius, pos);
                 var pos = cell.target.anchoredPosition;
+                pos.x = cell.dynamicX;
                 pos.y = cell.dynamicY;
+                if (cell.surround)
+                    pos.x = roundDummyBoardFitX(myInstance.getDummyBoardS(), dummyboard_radius_, pos);
                 cell.target.anchoredPosition = pos;
             }
         }
@@ -91,6 +94,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             bool surround = parseBoolFromProperty("surround");
             columnCount_ = parseIntFromProperty("column");
             space_ = parseIntFromProperty("space");
+            dummyboard_radius_ = parseIntFromProperty("dummyboard_radius");
 
             int cellWidth = (canvasWidth_ - (columnCount_ + 1) * space_) / columnCount_;
 

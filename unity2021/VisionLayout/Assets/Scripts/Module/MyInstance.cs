@@ -44,6 +44,13 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             return contentReader_;
         }
 
+        public Dictionary<string, DummyBoard> getDummyBoardS()
+        {
+            return dummyBoardS_;
+        }
+
+        private Dictionary<string, DummyBoard> dummyBoardS_ = new Dictionary<string, DummyBoard>();
+
 
         public MyInstance(string _uid, string _style, MyConfig _config, MyCatalog _catalog, LibMVCS.Logger _logger, Dictionary<string, LibMVCS.Any> _settings, MyEntryBase _entry, MonoBehaviour _mono, GameObject _rootAttachments)
             : base(_uid, _style, _config, _catalog, _logger, _settings, _entry, _mono, _rootAttachments)
@@ -143,6 +150,41 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         public void PopupToolBar()
         {
             fastFSM_.extendFeatures.toolbar.Popup();
+        }
+
+        public void OpenDummyBoard(Dictionary<string, object> _params)
+        {
+            object objName = "";
+            string name = "";
+            if (_params.TryGetValue("name", out objName))
+                name = (string)objName;
+            object objX = "";
+            float x = 0;
+            if (_params.TryGetValue("posX", out objX))
+                x = (float)objX;
+            object objY = "";
+            float y = 0;
+            if (_params.TryGetValue("posY", out objY))
+                y = (float)objY;
+            if (string.IsNullOrEmpty(name) || dummyBoardS_.ContainsKey(name))
+                return;
+
+            DummyBoard dummyboard = new DummyBoard();
+            dummyboard.name = name;
+            dummyboard.center = new Vector2(x, y);
+            dummyBoardS_[name] = dummyboard;
+        }
+
+        public void CloseDummyBoard(Dictionary<string, object> _params)
+        {
+            object objName = "";
+            string name = "";
+            if (_params.TryGetValue("name", out objName))
+                name = (string)objName;
+            if (string.IsNullOrEmpty(name) || !dummyBoardS_.ContainsKey(name))
+                return;
+
+            dummyBoardS_.Remove(name);
         }
     }
 }
