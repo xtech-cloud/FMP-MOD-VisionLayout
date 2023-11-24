@@ -73,6 +73,11 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         public float animDuration = 0f;
 
         /// <summary>
+        /// 节点的动画的计时器
+        /// </summary>
+        public float animTimer = 0f;
+
+        /// <summary>
         /// 节点所在的行数
         /// </summary>
         public int row = 0;

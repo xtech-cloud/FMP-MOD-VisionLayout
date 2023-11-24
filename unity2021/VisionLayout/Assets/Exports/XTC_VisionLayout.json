@@ -122,6 +122,22 @@
       }
     },
     {
+      "name": "FlipCard",
+      "path": "/FlipCard",
+      "instanceS": [
+        "default"
+      ],
+      "contentS": [
+        "2f0b906f-1861-4c49-a687-1784a14953c5/+"
+      ],
+      "kvS": {
+        "LayerPattern": "FlipCard",
+        "TitleImage": "",
+        "ProfileImage": ""
+      }
+    },
+
+    {
       "name": "Dummy",
       "path": "/Dummy",
       "instanceS": [
