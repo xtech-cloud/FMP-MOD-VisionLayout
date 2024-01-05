@@ -308,6 +308,14 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                     action = _state.NewAction<DummyOutTransitionAction>();
                     decorateAnimationAction(action);
                     break;
+                case EmptyInTransitionAction.NAME:
+                    action = _state.NewAction<EmptyInTransitionAction>();
+                    decorateAnimationAction(action);
+                    break;
+                case EmptyOutTransitionAction.NAME:
+                    action = _state.NewAction<EmptyOutTransitionAction>();
+                    decorateAnimationAction(action);
+                    break;
                 /*
             case DissolveInTransitionAction.NAME:
                 action = _state.NewAction<DissolveInTransitionAction>();

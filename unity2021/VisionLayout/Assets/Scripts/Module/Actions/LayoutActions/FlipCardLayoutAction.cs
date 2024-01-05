@@ -39,11 +39,18 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         public const string NAME = "FlipCardLayout";
         private float animDelayMin_ = 0;
         private float animDelayMax_ = 0;
+        private float splashTime_ = 0;
+        private bool splashFinished_ = false;
         /// <summary>
         /// 内容使用权重表
         /// </summary>
         private Dictionary<string, int> contentUsedWeight_ = new Dictionary<string, int>();
         private Dictionary<string, SpriteClip> spriteClipS = new Dictionary<string, SpriteClip>();
+        // 节点的封面图
+        private Dictionary<Cell, Texture2D> cellCoverS = new Dictionary<Cell, Texture2D>();
+        // 节点的过场图
+        private Dictionary<Cell, Texture2D> cellSplashS = new Dictionary<Cell, Texture2D>();
+
 
         protected override void onEnter()
         {
@@ -56,15 +63,18 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 return;
 
             restoreVisible();
-            restoreInteractable();
+            // 在过场结束前禁用交互
+            disableInteractable();
 
             if (null == layoutCells_)
                 return;
 
             foreach (var cell in layoutCells_)
             {
-                finishFlip(cell);
+                resetSplash(cell);
             }
+
+            splashFinished_ = false;
         }
 
         protected override void onExit()
@@ -82,6 +92,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             {
                 finishFlip(cell);
             }
+
         }
 
         protected override void onUpdate()
@@ -90,6 +101,16 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
             if (null == layoutCells_)
                 return;
+
+            if (timer_ < splashTime_)
+                return;
+
+            if (!splashFinished_)
+            {
+                splashFinished_ = true;
+                restoreInteractable();
+                return;
+            }
 
             float deltaTime = Time.deltaTime;
             foreach (var cell in layoutCells_)
@@ -116,11 +137,12 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             int spaceY = parseIntFromProperty("spaceY");
             animDelayMin_ = parseFloatFromProperty("animDelayMin");
             animDelayMax_ = parseFloatFromProperty("animDelayMax");
+            splashTime_ = parseFloatFromProperty("splashTime");
             float animDuration = parseFloatFromProperty("animDuration");
-            animDuration = 10f;
 
             int cellWidth = (canvasWidth_ - (column + 1) * spaceX) / column;
             int cellHeight = (canvasHeight_ - (row + 1) * spaceY) / row;
+
 
             // 初始化内容使用权重为0
             foreach (var contentUri in _contentList)
@@ -141,7 +163,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 int columnIndex = i % column;
                 int rowIndex = i / column;
                 int pinX = (columnIndex + 1) * spaceX + columnIndex * cellWidth + cellWidth / 2 - canvasWidth_ / 2;
-                int pinY = (rowIndex + 1) * spaceY + rowIndex * cellHeight + cellHeight / 2 - canvasHeight_ / 2;
+                int pinY = -(rowIndex + 1) * spaceY - rowIndex * cellHeight - cellHeight / 2 + canvasHeight_ / 2;
 
                 FlibCardCell cell = new FlibCardCell();
                 cells.Add(cell);
@@ -156,7 +178,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 cell.animEndPos.x = pinX;
                 cell.animEndPos.y = pinY;
                 cell.animDuration = animDuration;
-                cell.animDelay = UnityEngine.Random.Range(animDelayMin_, animDelayMax_);
+                cell.animDelay = splashTime_;
                 cell.row = rowIndex;
                 cell.column = columnIndex;
                 cell.directionX = 0;
@@ -174,8 +196,16 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 cell.target.sizeDelta = new UnityEngine.Vector2(cell.width, cell.height);
                 cell.pinVisible = true;
                 cell.target.gameObject.SetActive(false);
-                if (null != coverTexture)
-                    cell.image.texture = coverTexture;
+                cellCoverS[cell] = coverTexture;
+                cell.image.texture = coverTexture;
+
+                string splash = $"flipcard.splash.{layer.Replace("/", "_")}#{i + 1}.png";
+                myInstance.LoadTextureFromTheme(splash, (_texture) =>
+                {
+                    cellSplashS[cell] = _texture;
+                }, () =>
+                {
+                });
             }
             setParameter(string.Format("layer.{0}.{1}.cells", layer, NAME), Parameter.FromCustom(cells));
         }
@@ -253,6 +283,18 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             myCell.bottomPartTo.gameObject.SetActive(false);
             myCell.topPartFrom.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             myCell.bottomPartTo.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+
+        private void resetSplash(Cell _cell)
+        {
+            finishFlip(_cell);
+            _cell.animDelay = splashTime_;
+            Texture2D texture;
+            if (!cellSplashS.TryGetValue(_cell, out texture))
+            {
+                return;
+            }
+            _cell.image.texture = texture;
         }
 
     }

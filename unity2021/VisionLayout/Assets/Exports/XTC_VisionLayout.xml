@@ -527,21 +527,21 @@
 						<Action name="FlipCardLayout" disable="false">
 							<Properties>
 								<Property key="duration" value="30" type="float"/>
+								<Property key="splashTime" value="3" type="float"/>
 								<Property key="row" value="4" type="int"/>
 								<Property key="column" value="7" type="int"/>
 								<Property key="spaceX" value="20" type="int"/>
 								<Property key="spaceY" value="20" type="int"/>
 								<Property key="animDelayMin" value="5" type="float"/>
 								<Property key="animDelayMax" value="15" type="float"/>
-								<Property key="animDuration" value="10" type="float"/>
+								<Property key="animDuration" value="1" type="float"/>
 							</Properties>
 						</Action>
 					</LayoutActions>
 					<InActions>
-						<Action name="FadeInTransition" disable="false">
+						<Action name="EmptyInTransition" disable="false">
 							<Properties>
-								<Property key="duration" value="4.5" type="float"/>
-								<Property key="blank" value="1.5" type="float"/>
+								<Property key="duration" value="3" type="float"/>
 							</Properties>
 						</Action>
 					</InActions>
