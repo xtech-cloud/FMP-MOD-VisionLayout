@@ -448,13 +448,12 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             clone.name = _contentUri;
             var button = clone.GetComponent<UnityEngine.UI.Button>();
             string layer = _layer;
-            string contentUri = _contentUri;
             button.onClick.AddListener(() =>
             {
                 var pos = button.GetComponent<RectTransform>().anchoredPosition;
                 Dictionary<string, object> variableS = new Dictionary<string, object>();
                 variableS["{{uid}}"] = myInstance.uid;
-                variableS["{{content_uri}}"] = contentUri;
+                variableS["{{content_uri}}"] = clone.name;
                 variableS["{{dummyboard_uid}}"] = System.Guid.NewGuid().ToString();
                 variableS["{{dummyboard_position_x}}"] = pos.x;
                 variableS["{{dummyboard_position_y}}"] = pos.y;

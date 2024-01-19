@@ -199,7 +199,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 cellCoverS[cell] = coverTexture;
                 cell.image.texture = coverTexture;
 
-                string splash = $"flipcard.splash.{layer.Replace("/", "_")}#{i + 1}.png";
+                string splash = $"flipcard.splash.{layer.Replace("/", "_")}-{i + 1}.png";
                 myInstance.LoadTextureFromTheme(splash, (_texture) =>
                 {
                     cellSplashS[cell] = _texture;
@@ -261,7 +261,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
                 myCell.image.texture = newTexture;
                 myCell.contentUri = contentUri;
-
+                myCell.target.name = contentUri;
             }
             var rotationTopX = Mathf.Lerp(0, -180f, (myCell.animTimer - myCell.animDelay) / myCell.animDuration);
             myCell.topPartFrom.gameObject.SetActive(rotationTopX > -90);
