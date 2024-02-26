@@ -229,7 +229,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         private Cell addCell(Viewport _viewport)
         {
             var contentUri = _viewport.contentIndex < contentUriS_.Count ? contentUriS_[_viewport.contentIndex] : "";
-            UnityEngine.Texture2D coverTexture = loadContentCover(contentUri);
+            UnityEngine.Texture2D coverTexture = loadCellThumb(contentUri);
             MyCell cell = new MyCell();
             cell.speed = _viewport.paramSpeed;
 

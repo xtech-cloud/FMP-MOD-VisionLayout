@@ -555,18 +555,22 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// </summary>
         /// <param name="_contentUri">内容的短路径</param>
         /// <returns></returns>
-        protected UnityEngine.Texture2D loadContentCover(string _contentUri)
+        protected UnityEngine.Texture2D loadCellThumb(string _contentUri)
         {
             if (string.IsNullOrEmpty(_contentUri))
                 return null;
 
-            object cover;
-            UnityEngine.Texture2D coverTexture = null;
-            if (myInstance.preloadsRepetition.TryGetValue(_contentUri + "/cover.png", out cover))
+            object img;
+            UnityEngine.Texture2D imgTexture = null;
+            if (myInstance.preloadsRepetition.TryGetValue(_contentUri + $"/{myInstance.getConfig().preloader.cell.picture}", out img))
             {
-                coverTexture = cover as UnityEngine.Texture2D;
+                imgTexture = img as UnityEngine.Texture2D;
             }
-            return coverTexture;
+
+            if (null == imgTexture)
+                imgTexture = new Texture2D(1,1);
+
+            return imgTexture;
         }
 
         /// <summary>

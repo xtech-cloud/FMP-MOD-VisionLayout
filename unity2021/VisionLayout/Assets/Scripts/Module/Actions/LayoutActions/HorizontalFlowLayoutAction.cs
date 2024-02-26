@@ -120,7 +120,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 int fitWidth = cellHeight;
                 int fitHeight = cellHeight;
                 string contentUri = _contentList.Count > 0 ? _contentList[cells.Count % _contentList.Count] : "";
-                var coverTexture = loadContentCover(contentUri);
+                var coverTexture = loadCellThumb(contentUri);
                 if (null != coverTexture)
                 {
                     fitWidth = (int)((float)coverTexture.width / coverTexture.height * fitHeight);

@@ -124,7 +124,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             for (int i = 0; i < _contentList.Count || i < columnCount_ + 1; i++)
             {
                 string contentUri = _contentList.Count > 0 ? _contentList[cells.Count % _contentList.Count] : "";
-                UnityEngine.Texture2D coverTexture = loadContentCover(contentUri);
+                UnityEngine.Texture2D coverTexture = loadCellThumb(contentUri);
 
                 Cell cell = new Cell();
                 cells.Add(cell);

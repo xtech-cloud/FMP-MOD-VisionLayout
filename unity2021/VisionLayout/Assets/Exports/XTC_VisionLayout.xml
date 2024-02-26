@@ -14,6 +14,12 @@
         address: 地址
     -->
 	<GRPC address="https://localhost:19000"/>
+	<!-- 预加载器
+	 Cell.picture: 节点的图片的名称，默认为cover.png
+	-->
+	<Preloader>
+		<Cell picture="cover.png"/>
+	</Preloader>
 	<!-- 样式列表
         name: 名称
         Style.Background: 背景, 优先级为 video>image>color，全为空时，背景不显示

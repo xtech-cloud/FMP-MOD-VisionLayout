@@ -156,10 +156,10 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         {
             string assetRootPath = settings_["path.assets"].AsString();
             string dir = Path.Combine(assetRootPath, _contentUri);
-            string filefullpath = Path.Combine(dir, "cover.png");
+            string filefullpath = Path.Combine(dir, config_.preloader.cell.picture);
             preloadObjectsPool_.LoadTexture(filefullpath, null, (_texture) =>
             {
-                preloads_[_contentUri + "/cover.png"] = _texture;
+                preloads_[_contentUri + $"/{config_.preloader.cell.picture}"] = _texture;
                 _onFinish();
             }, _onError);
         }

@@ -127,7 +127,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             for (int i = 0; i < _contentList.Count || i < columnCount_; i++)
             {
                 var contentUri = _contentList.Count > 0 ? _contentList[i % _contentList.Count] : "";
-                var coverTexture = loadContentCover(contentUri);
+                var coverTexture = loadCellThumb(contentUri);
                 int cellWidth = maxWidth;
                 int cellHeight = maxHeight;
                 if (null != coverTexture)

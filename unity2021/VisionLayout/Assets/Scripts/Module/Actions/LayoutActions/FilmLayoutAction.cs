@@ -132,7 +132,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 while (_contentList.Count > 0 && offset < length / 2)
                 {
                     var contentUri = _contentList.Count > 0 ? _contentList[contentIndex % _contentList.Count] : "";
-                    var coverTexture = loadContentCover(contentUri);
+                    var coverTexture = loadCellThumb(contentUri);
                     contentIndex += 1;
                     // 适配高度
                     int fitWidth = cellWidth;

@@ -34,6 +34,11 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             return catalog_;
         }
 
+        public MyConfig getConfig()
+        {
+            return config_;
+        }
+
         public MyEntry getMyEntry()
         {
             return entry_ as MyEntry;

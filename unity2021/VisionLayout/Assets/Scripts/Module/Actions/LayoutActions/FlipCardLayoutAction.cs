@@ -158,7 +158,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 string contentUri = _contentList.Count > 0 ? _contentList[i % _contentList.Count] : "";
                 // 更新内容权重
                 contentUsedWeight_[contentUri] += 1;
-                var coverTexture = loadContentCover(contentUri);
+                var coverTexture = loadCellThumb(contentUri);
 
                 int columnIndex = i % column;
                 int rowIndex = i / column;
@@ -243,7 +243,7 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
                 contentUsedWeight_[contentUri] += 1;
                 contentUsedWeight_[myCell.contentUri] -= 1;
 
-                Texture2D newTexture = loadContentCover(contentUri);
+                Texture2D newTexture = loadCellThumb(contentUri);
                 Texture2D oldTexture = myCell.image.texture as Texture2D;
 
                 // 将FlipCard设置为下层的图片

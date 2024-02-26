@@ -107,6 +107,22 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
 
         [XmlArray("Styles"), XmlArrayItem("Style")]
         public Style[] styles { get; set; } = new Style[0];
+
+
+        public class Preloader
+        {
+            public class Cell
+            {
+                [XmlAttribute("picture")]
+                public string picture { get; set; } = "cover.png";
+            }
+
+            [XmlElement("Cell")]
+            public Cell cell { get; set; } = new Cell();
+        }
+
+        [XmlElement("Preloader")]
+        public Preloader preloader { get; set; } = new Preloader();
     }
 }
 
