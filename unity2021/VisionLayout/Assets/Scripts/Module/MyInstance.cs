@@ -180,6 +180,11 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             dummyBoardS_[name] = dummyboard;
         }
 
+        public void ChangeBackgroundVisible(bool _visible)
+        {
+            rootUI.transform.Find("bg").gameObject.SetActive(_visible);
+        }
+
         public void CloseDummyBoard(Dictionary<string, object> _params)
         {
             object objName = "";

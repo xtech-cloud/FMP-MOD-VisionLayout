@@ -18,6 +18,17 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         public const string ToolBarPopup = "/XTC/VisionLayout/ToolBar/Popup";
 
         /// <summary>
+        /// 设置背景可见性
+        /// </summary>
+        /// <example>
+        /// var data = new Dictionary<string, object>();
+        /// data["uid"] = "default";
+        /// data["flag"] = true;
+        /// model.Publish(/XTC/VisionLayout/Background/Visible, data);
+        /// </example>
+        public const string BackgroundVisible = "/XTC/VisionLayout/Background/Visible";
+
+        /// <summary>
         /// 打开虚拟面板
         /// </summary>
         /// <example>
@@ -119,5 +130,6 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
         /// }
         /// </example>
         public const string OnDummyOutTransitionExit = "/XTC/VisionLayout/DummyOutTransition/OnExit";
+
     }
 }
