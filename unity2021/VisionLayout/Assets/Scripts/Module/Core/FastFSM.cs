@@ -123,6 +123,9 @@ namespace XTC.FMP.MOD.VisionLayout.LIB.Unity
             // 遍历纲目，创建对应的层
             foreach (var section in myInstance.getCatalog().sectionS)
             {
+                var sectionInstanceS = new List<string>(section.instanceS);
+                if (!sectionInstanceS.Contains(myInstance.uid))
+                    continue;
                 List<string> contentList = new List<string>();
                 foreach (var contentPattern in section.contentS)
                 {
